@@ -20,5 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "SonicProject"
-include(":app")
- 
+include(":sonic_library")
