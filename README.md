@@ -1,4 +1,5 @@
-- To console: 
+- To console:
+  
  git submodule add https://github.com/alexander-topilskii/SonicProject.git
 
  git commit -m "Добавлен сабмодуль: sonic project"
