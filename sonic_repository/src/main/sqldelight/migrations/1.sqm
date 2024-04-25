@@ -1,0 +1,3 @@
+ALTER TABLE Mood ADD COLUMN energyValue REAL DEFAULT 0;
+
+UPDATE Mood SET energyValue = 0;
