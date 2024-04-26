@@ -13,4 +13,6 @@ interface Navigation {
     fun registerMultistackScreenContainer(screenContainer: NavigationContainer<MultiScreenState>)
     fun registerCurrentScreenContainer(screenContainer: StackScreen)
     fun registerRootScreenContainer(screenContainer: StackScreen)
+
+    fun openTab(index: Int)
 }

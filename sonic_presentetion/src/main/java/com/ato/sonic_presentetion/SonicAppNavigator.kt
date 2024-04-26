@@ -2,6 +2,7 @@ package com.ato.sonic_presentetion
 
 import com.github.terrakok.modo.NavigationContainer
 import com.github.terrakok.modo.multiscreen.MultiScreenState
+import com.github.terrakok.modo.multiscreen.selectContainer
 import com.github.terrakok.modo.stack.StackScreen
 import com.github.terrakok.modo.stack.StackState
 
@@ -20,5 +21,9 @@ class SonicAppNavigator : Navigation {
 
     override fun registerMultistackScreenContainer(screenContainer: NavigationContainer<MultiScreenState>) {
         multistackNavigator = screenContainer
+    }
+
+    override fun openTab(index: Int) {
+        multistackNavigator?.selectContainer(index)
     }
 }
