@@ -4,6 +4,11 @@ interface DiGraph {
 
     val graphes: MutableMap<String, Graph>
 
+    /*
+override val graphes = mutableMapOf<String, Graph>()
+val set = mutableSetOf<Any>()
+init {DiGraphInstance.graphHolder = this}
+     */
 }
 
 interface Graph {

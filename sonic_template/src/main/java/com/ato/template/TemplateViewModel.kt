@@ -23,6 +23,6 @@ internal class TemplateViewModel(
         )
 
     fun onClick(uiMoodAndEnergyItem: UiMoodAndEnergyItem) {
-        navigation.forwardMoodEnergyItem(uiMoodAndEnergyItem.id)
+//        navigation.forwardMoodEnergyItem(uiMoodAndEnergyItem.id)
     }
 }
