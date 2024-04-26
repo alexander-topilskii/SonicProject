@@ -58,7 +58,6 @@ dependencies {
 
     // navigation
     implementation(libs.modo.compose)
-    implementation(project(":common_presentation"))
 
     // database
     implementation(libs.sqldelight.android.driver)
