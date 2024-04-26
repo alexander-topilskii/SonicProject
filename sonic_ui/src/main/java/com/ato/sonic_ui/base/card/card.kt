@@ -20,7 +20,7 @@ import com.ato.ui_state.base.card.UiDeleteCard
 
 
 @Composable
-fun UiDeleteCard.Display(onDeleteClicked: () -> Unit, modifier: Modifier = Modifier) {
+fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
     ) {
@@ -35,7 +35,7 @@ fun UiDeleteCard.Display(onDeleteClicked: () -> Unit, modifier: Modifier = Modif
                 Text(title, textAlign = TextAlign.Center)
                 Icon(
                     modifier = Modifier.clickable {
-                        onDeleteClicked.invoke()
+                        onDeleteClicked.invoke(this@Display)
                     },
                     imageVector = Icons.Default.Delete,
                     contentDescription = "Delete"
