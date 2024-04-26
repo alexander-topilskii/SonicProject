@@ -9,13 +9,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.ato.sonic_ui.base.Display
+import com.github.terrakok.modo.NavigationContainer
 import com.github.terrakok.modo.Screen
 import com.github.terrakok.modo.multiscreen.MultiScreen
 import com.github.terrakok.modo.multiscreen.MultiScreenNavModel
+import com.github.terrakok.modo.multiscreen.MultiScreenState
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
-class BottomScreen(
+abstract class BottomScreen(
     private val navModel: MultiScreenNavModel
 ) : MultiScreen(navModel) {
 
@@ -28,18 +29,15 @@ class BottomScreen(
 
     @Composable
     override fun Content() {
-        val viewModel: BottomViewModel = remember { BottomGraph.registerIn(this) }
-
-        val state by viewModel.state.collectAsState(null)
         Scaffold(
-            bottomBar = {
-                state?.bottomBar?.Display(viewModel::onItemClicked)
-            },
+            bottomBar = displayBottomBar(),
         ) { innerPadding ->
             Box(modifier = Modifier.padding(innerPadding)) {
                 SelectedScreen()
             }
         }
-
     }
+
+    @Composable
+    abstract fun displayBottomBar(): @Composable () -> Unit
 }
