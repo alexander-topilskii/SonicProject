@@ -25,6 +25,9 @@ project(":sonic_template").projectDir = file("SonicProject/sonic_template")
 
 include(":sonic_di")
 project(":sonic_di").projectDir = file("SonicProject/sonic_di")
+
+include(":sonic_bottom")
+project(":sonic_bottom").projectDir = file("SonicProject/sonic_bottom")
 ```
 also:
 ```
@@ -34,6 +37,7 @@ implementation(project(":sonic_presentetion"))  //
 implementation(project(":sonic_domain"))        //
 implementation(project(":sonic_repository"))    //
 implementation(project(":sonic_di"))            //
+implementation(project(":sonic_bottom"))        //
 implementation(project(":sonic_template"))      //
 // ------------------- Sonic -------------------//
 ```
