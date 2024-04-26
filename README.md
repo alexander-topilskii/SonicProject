@@ -20,7 +20,20 @@ project(":sonic_domain").projectDir = file("SonicProject/sonic_domain")
 include(":sonic_repository")
 project(":sonic_repository").projectDir = file("SonicProject/sonic_repository")
 
-include(":di")
-project(":di").projectDir = file("SonicProject/di")
+include(":sonic_template")
+project(":sonic_template").projectDir = file("SonicProject/sonic_template")
+
+include(":sonic_di")
+project(":sonic_di").projectDir = file("SonicProject/sonic_di")
 ```
-also: 
+also:
+```
+// ------------------- Sonic -------------------//
+implementation(project(":sonic_ui"))            //
+implementation(project(":sonic_presentetion"))  //
+implementation(project(":sonic_domain"))        //
+implementation(project(":sonic_repository"))    //
+implementation(project(":sonic_di"))            //
+implementation(project(":sonic_template"))      //
+// ------------------- Sonic -------------------//
+```
