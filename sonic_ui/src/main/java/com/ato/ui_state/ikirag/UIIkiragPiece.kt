@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class UiIkiragPiece(
     val text: String,
     val tag: String? = null,
-    val isLiked: Boolean = false
+    val isLiked: Boolean? = null
 )
 
 object IkiragSamples {
