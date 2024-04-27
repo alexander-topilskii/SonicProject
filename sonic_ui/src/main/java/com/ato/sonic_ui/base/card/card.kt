@@ -32,7 +32,7 @@ fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modi
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(title, textAlign = TextAlign.Center)
+                Text(content, textAlign = TextAlign.Center)
                 Icon(
                     modifier = Modifier.clickable {
                         onDeleteClicked.invoke(this@Display)
