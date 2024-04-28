@@ -4,6 +4,9 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,6 +19,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ato.sonic_ui.base.Display
+import com.ato.ui_state.base.UiIcon
 import com.ato.ui_state.ikirag.UiIkiragPiece
 
 
@@ -30,23 +35,31 @@ fun UiIkiragPiece.Display(
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
-            val v = remember {
+            val icon = remember {
                 when (isLiked) {
-                    true -> "like"
-                    false -> "dislike"
-                    else -> ""
+                    true -> Icons.Filled.Favorite
+                    false -> Icons.Filled.Clear
+                    else -> null
                 }
             }
             Text(
-                text = "$text $v",
+                text = text,
                 color = MaterialTheme.colorScheme.primary,
                 fontSize = 22.sp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(8.dp)
                     .align(Alignment.Center)
             )
+
+            if (icon != null) {
+                UiIcon(icon).Display(
+                    Modifier
+                        .padding(16.dp)
+                        .align(Alignment.BottomEnd)
+                )
+            }
         }
     }
 }
