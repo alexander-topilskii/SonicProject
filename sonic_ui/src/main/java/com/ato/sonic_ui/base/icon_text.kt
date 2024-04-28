@@ -27,12 +27,14 @@ fun UiIconText.Display(modifier: Modifier = Modifier) {
             imageVector = icon,
             contentDescription = text
         )
-        Text(
-            modifier = Modifier.align(
-                alignment = Alignment.CenterHorizontally
-            ),
-            text = text
-        )
+        text?.let {
+            Text(
+                modifier = Modifier.align(
+                    alignment = Alignment.CenterHorizontally
+                ),
+                text = text
+            )
+        }
     }
 }
 

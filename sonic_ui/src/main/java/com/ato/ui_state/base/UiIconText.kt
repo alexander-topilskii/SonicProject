@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 data class UiIconText(
     val icon: ImageVector,
-    val text: String
+    val text: String? = null
 )
 
  object UiIconItemSamples {
