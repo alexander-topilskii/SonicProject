@@ -3,6 +3,7 @@ package com.ato.sonic_ui.base.card
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -32,11 +33,14 @@ fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modi
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(content, textAlign = TextAlign.Center)
+                Text(modifier = Modifier.weight(100f), text = content, textAlign = TextAlign.Center)
                 Icon(
-                    modifier = Modifier.clickable {
-                        onDeleteClicked.invoke(this@Display)
-                    },
+                    modifier = Modifier
+                        .defaultMinSize(16.dp)
+                        .weight(1f)
+                        .clickable {
+                            onDeleteClicked.invoke(this@Display)
+                        },
                     imageVector = Icons.Default.Delete,
                     contentDescription = "Delete"
                 )
@@ -49,5 +53,5 @@ fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modi
 @Preview()
 @Composable
 fun UiDeleteCardPreview() {
-    UiDeleteCard("Text").Display({})
+    UiDeleteCard("TextTextTextTextTextTextTextTextTextTextTextTextTextText").Display({})
 }
