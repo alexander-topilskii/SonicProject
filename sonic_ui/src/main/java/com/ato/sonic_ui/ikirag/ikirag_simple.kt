@@ -1,5 +1,6 @@
 package com.ato.sonic_ui.ikirag
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,9 +20,12 @@ import com.ato.ui_state.ikirag.UiIkiragPiece
 @Composable
 fun UiIkiragPiece.DisplaySimple(
     modifier: Modifier = Modifier,
+    onClick: (UiIkiragPiece) -> Unit = {  }
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier.clickable {
+
+        },
     ) {
         Box(
             modifier = Modifier.fillMaxSize()
