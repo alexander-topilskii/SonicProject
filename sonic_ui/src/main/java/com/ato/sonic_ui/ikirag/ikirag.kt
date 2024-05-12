@@ -2,8 +2,11 @@ package com.ato.sonic_ui.ikirag
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Favorite
@@ -42,16 +45,22 @@ fun UiIkiragPiece.Display(
                     else -> null
                 }
             }
-            Text(
-                text = text,
-                color = MaterialTheme.colorScheme.primary,
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Medium,
-                modifier = Modifier
-                    .padding(8.dp)
-                    .align(Alignment.Center)
-            )
+            Column(
+                Modifier
+                    .verticalScroll(rememberScrollState())
+                    .align(Alignment.Center)) {
+                Text(
+                    text = text,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier
+                        .padding(8.dp)
+
+                )
+            }
+
 
             if (icon != null) {
                 UiIcon(icon).Display(

@@ -33,11 +33,11 @@ fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modi
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(modifier = Modifier.weight(100f), text = content, textAlign = TextAlign.Center)
+                Text(modifier = Modifier.weight(1f), text = content, textAlign = TextAlign.Center)
                 Icon(
                     modifier = Modifier
                         .defaultMinSize(16.dp)
-                        .weight(1f)
+                        .padding(start = 8.dp)
                         .clickable {
                             onDeleteClicked.invoke(this@Display)
                         },
@@ -53,5 +53,5 @@ fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modi
 @Preview()
 @Composable
 fun UiDeleteCardPreview() {
-    UiDeleteCard("TextTextTextTextTextTextTextTextTextTextTextTextTextText").Display({})
+    UiDeleteCard("TextTextTextTextTextTextTesdfxtTextTextTextTextTextTextText").Display({})
 }
