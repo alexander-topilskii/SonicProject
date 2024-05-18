@@ -23,9 +23,7 @@ fun UiIkiragPiece.DisplaySimple(
     onClick: (UiIkiragPiece) -> Unit = {  }
 ) {
     Card(
-        modifier = modifier.clickable {
-
-        },
+        modifier = modifier.clickable { onClick.invoke(this) },
     ) {
         Box(
             modifier = Modifier.fillMaxSize()
