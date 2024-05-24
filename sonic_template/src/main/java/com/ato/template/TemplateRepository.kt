@@ -1,12 +1,10 @@
 package com.ato.template
 
-import com.ato.sonic_repository.Database
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlin.coroutines.CoroutineContext
 
 internal class TemplateRepository(
-    private val database: Database,
     private val coroutineContext: CoroutineContext
 ) {
 

@@ -53,5 +53,5 @@ fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modi
 @Preview()
 @Composable
 fun UiDeleteCardPreview() {
-    UiDeleteCard("TextTextTextTextTextTextTesdfxtTextTextTextTextTextTextText").Display({})
+    UiDeleteCard("TextTextTextTextTextTextTesdfxtTextTextTextTextTextTextText", id = 0L).Display({})
 }

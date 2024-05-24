@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     id("kotlin-kapt")
     id("kotlin-parcelize")
+    alias(libs.plugins.compose.compiler)
 }
 
 
@@ -39,9 +40,6 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -58,10 +56,6 @@ dependencies {
 
     // navigation
     implementation(libs.modo.compose)
-
-    // database
-    implementation(libs.sqldelight.android.driver)
-    implementation(libs.sqldelight.coroutines)
 
     // other
     implementation(libs.core.ktx)

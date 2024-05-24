@@ -21,11 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ato.sonic_ui.base.Display
 import com.ato.ui_state.base.UiIcon
-import com.ato.ui_state.ikirag.UiIkiragPiece
+import com.ato.ui_state.ikirag.IkiragData
 
 
 @Composable
-fun UiIkiragPiece.Display(
+fun IkiragData.Display(
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -73,7 +73,7 @@ fun UiIkiragPiece.Display(
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    UiIkiragPiece(
+    IkiragData(
         text = """
             Не в силах нас ни смех,  ни грех 
             свернуть с пути отважного,

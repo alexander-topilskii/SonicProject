@@ -15,12 +15,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ato.ui_state.ikirag.UiIkiragPiece
+import com.ato.ui_state.ikirag.IkiragData
 
 @Composable
-fun UiIkiragPiece.DisplaySimple(
+fun IkiragData.DisplaySimple(
     modifier: Modifier = Modifier,
-    onClick: (UiIkiragPiece) -> Unit = {  }
+    onClick: (IkiragData) -> Unit = { }
 ) {
     Card(
         modifier = modifier.clickable { onClick.invoke(this) },
@@ -49,7 +49,7 @@ fun UiIkiragPiece.DisplaySimple(
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    UiIkiragPiece(
+    IkiragData(
         text = """
             Не в силах нас ни смех,  ни грех 
             свернуть с пути отважного,

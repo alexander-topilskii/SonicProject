@@ -2,7 +2,6 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.app.cash.sqldelight)
 }
 
 android {
@@ -42,9 +41,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.sqldelight.android.driver)
-    implementation(libs.sqldelight.coroutines)
-
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     testImplementation(libs.junit)

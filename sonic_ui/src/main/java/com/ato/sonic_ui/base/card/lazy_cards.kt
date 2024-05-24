@@ -15,7 +15,7 @@ import com.ato.sonic_ui.ikirag.Display
 import com.ato.sonic_ui.tinder.Direction
 import com.ato.sonic_ui.tinder.rememberSwipeableCardState
 import com.ato.sonic_ui.tinder.swipableCard
-import com.ato.ui_state.ikirag.UiIkiragPiece
+import com.ato.ui_state.ikirag.IkiragData
 
 //  TODO: не законченные
 @Composable
@@ -26,7 +26,7 @@ fun Display(modifier: Modifier = Modifier) {
     }
 }
 
-val onePice = UiIkiragPiece(
+val onePice = IkiragData(
     text = """
             Не в силах нас ни смех,  ни грех 
             свернуть с пути отважного,
@@ -34,7 +34,7 @@ val onePice = UiIkiragPiece(
             и нам плевать на каждого.
         """.trimIndent()
 )
-val onePice2 = UiIkiragPiece(
+val onePice2 = IkiragData(
     text = """
             Нсе в силах нас ни смех,  ни грех 
             свернуть с пути отважного,
@@ -42,7 +42,7 @@ val onePice2 = UiIkiragPiece(
             и нам плевать на каждого.
         """.trimIndent()
 )
-val onePice3 = UiIkiragPiece(
+val onePice3 = IkiragData(
     text = """
             Нсе в силах нас ни смех,  ни грех 
             свернуть с пути отважного,
@@ -50,7 +50,7 @@ val onePice3 = UiIkiragPiece(
             и нам плевать на каждого...
         """.trimIndent()
 )
-val onePice4 = UiIkiragPiece(
+val onePice4 = IkiragData(
     text = """
             Нсе в силах нас ни смех,  ни грех 
             свернуть с пути отважного,
@@ -59,13 +59,13 @@ val onePice4 = UiIkiragPiece(
         """.trimIndent()
 )
 
-val items: List<UiIkiragPiece> = listOf(onePice, onePice2, onePice3, onePice4)
+val items: List<IkiragData> = listOf(onePice, onePice2, onePice3, onePice4)
 
 @Composable
-fun List<UiIkiragPiece>.Display(
-    onLiked: (UiIkiragPiece) -> Unit,
-    onDisliked: (UiIkiragPiece) -> Unit,
-    onNeutral: (UiIkiragPiece) -> Unit,
+fun List<IkiragData>.Display(
+    onLiked: (IkiragData) -> Unit,
+    onDisliked: (IkiragData) -> Unit,
+    onNeutral: (IkiragData) -> Unit,
 ) {
     val itemss = this
     val states = this.map { it to rememberSwipeableCardState() }
