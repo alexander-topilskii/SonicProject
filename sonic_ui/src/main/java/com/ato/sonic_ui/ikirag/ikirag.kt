@@ -35,7 +35,7 @@ fun IkiragData.Display(
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
-            val icon = remember {
+            val icon = remember(isLiked) {
                 when (isLiked) {
                     true -> Icons.Filled.Favorite
                     false -> Icons.Filled.Clear

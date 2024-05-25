@@ -43,7 +43,7 @@ fun UiDeleteCard.Display(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                val icon = remember {
+                val icon = remember(isLiked) {
                     when (isLiked) {
                         true -> Icons.Filled.Favorite
                         false -> Icons.Filled.Clear
@@ -60,7 +60,7 @@ fun UiDeleteCard.Display(
                     Icon(
                         modifier = Modifier
                             .defaultMinSize(16.dp)
-                            .padding(start = 8.dp)
+                            .padding(8.dp)
                             .clickable {
                                 onDeleteClicked.invoke(this@Display)
                             },
@@ -72,7 +72,7 @@ fun UiDeleteCard.Display(
                         Icon(
                             modifier = Modifier
                                 .defaultMinSize(16.dp)
-                                .padding(start = 8.dp)
+                                .padding(8.dp)
                                 .clickable {
                                     onChangeReactionClicked.invoke(this@Display)
                                 },
