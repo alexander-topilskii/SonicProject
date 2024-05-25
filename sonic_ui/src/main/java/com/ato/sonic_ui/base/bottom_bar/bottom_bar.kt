@@ -1,13 +1,14 @@
-package com.ato.sonic_ui.base
+package com.ato.sonic_ui.base.bottom_bar
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.ato.sonic_ui.base.Display
 import com.ato.ui_state.base.UiBottomBar
-import com.ato.ui_state.base.UiIconText
 import com.ato.ui_state.base.UiIconItemSamples
+import com.ato.ui_state.base.UiIconText
 
 @Composable
 fun UiBottomBar.Display(onClick: (UiIconText) -> Unit = {  }) {

@@ -4,3 +4,13 @@ data class UiBottomBar(
     val items: List<UiIconText>
 )
 
+data class UiNavBar(
+    val items: List<NavBarItem>
+)
+
+data class NavBarItem(
+    val icon: UiIcon,
+    val title: String? = null
+)
+
+

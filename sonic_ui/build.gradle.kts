@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.androidx.room.common)
     api(libs.androidx.room.runtime)
