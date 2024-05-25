@@ -10,8 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ato.ui_state.base.UiIconText
 import com.ato.ui_state.base.UiIconItemSamples
+import com.ato.ui_state.base.UiIconText
 
 @Composable
 fun UiIconText.Display(modifier: Modifier = Modifier) {
@@ -37,6 +37,10 @@ fun UiIconText.Display(modifier: Modifier = Modifier) {
         }
     }
 }
+
+// ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 
 @Preview(showBackground = true)
 @Composable
