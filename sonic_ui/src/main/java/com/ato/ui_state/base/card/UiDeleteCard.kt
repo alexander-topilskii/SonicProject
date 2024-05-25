@@ -4,5 +4,6 @@ import com.ato.ui_state.Ui
 
 data class UiDeleteCard(
     val content: String,
-    override val id: Long,
+    val isLiked: Boolean? = null,
+    override val id: Long = 0L,
 ): Ui
