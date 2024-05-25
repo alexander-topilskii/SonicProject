@@ -27,7 +27,11 @@ import com.ato.ui_state.base.card.UiDeleteCard
 
 
 @Composable
-fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modifier = Modifier) {
+fun UiDeleteCard.Display(
+    onDeleteClicked: (UiDeleteCard) -> Unit,
+    onChangeReactionClicked: (UiDeleteCard) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Card(
         modifier = modifier
     ) {
@@ -47,7 +51,11 @@ fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modi
                     }
                 }
 
-                Text(modifier = Modifier.weight(1f), text = content, textAlign = TextAlign.Center)
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = content,
+                    textAlign = TextAlign.Center
+                )
                 Column {
                     Icon(
                         modifier = Modifier
@@ -59,14 +67,14 @@ fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modi
                         imageVector = Icons.Default.Delete,
                         contentDescription = "Delete"
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
                     icon?.let {
+                        Spacer(modifier = Modifier.height(16.dp))
                         Icon(
                             modifier = Modifier
                                 .defaultMinSize(16.dp)
                                 .padding(start = 8.dp)
                                 .clickable {
-                                    onDeleteClicked.invoke(this@Display)
+                                    onChangeReactionClicked.invoke(this@Display)
                                 },
                             imageVector = icon,
                             contentDescription = "Delete"
@@ -82,5 +90,5 @@ fun UiDeleteCard.Display(onDeleteClicked: (UiDeleteCard) -> Unit, modifier: Modi
 @Preview()
 @Composable
 fun UiDeleteCardPreview() {
-    UiDeleteCard("TexttTextTextTextTextTextTextText", id = 0L, isLiked = true).Display({})
+    UiDeleteCard("TexttTextTextTextTextTextTextText", id = 0L, isLiked = true).Display({}, {})
 }
