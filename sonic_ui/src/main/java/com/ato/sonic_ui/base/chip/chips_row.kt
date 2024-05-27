@@ -34,14 +34,14 @@ fun UiChipRow.Display(
 fun UiChipRowDemo() {
     UiChipRow(
         chips = listOf(
-            UiChip("green"),
-            UiChip("red"),
-            UiChip("orange"),
-            UiChip("blue"),
-            UiChip("green"),
-            UiChip("red"),
-            UiChip("orange"),
-            UiChip("blue"),
+            UiChip(isSelected = false, text = "green"),
+            UiChip(isSelected = false, text = "red"),
+            UiChip(isSelected = false, text = "orange"),
+            UiChip(isSelected = false, text = "blue"),
+            UiChip(isSelected = false, text = "green"),
+            UiChip(isSelected = false, text = "red"),
+            UiChip(isSelected = false, text = "orange"),
+            UiChip(isSelected = false, text = "blue"),
         )
     ).Display({})
 }

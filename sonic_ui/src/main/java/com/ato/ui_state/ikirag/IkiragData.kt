@@ -24,6 +24,7 @@ data class IkiragData(
 data class Tag(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
+    val isSelected: Boolean = false,
     val name: String
 )
 
