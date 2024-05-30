@@ -1,5 +1,6 @@
 package com.ato.ui_state.ikirag
 
+import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -18,13 +19,16 @@ data class IkiragData(
     val id: Long = 0L
 )
 
-
 @Serializable
-@Entity(tableName = "tags")
+@Entity(
+    tableName = "tags",
+    indices = [Index(value = ["name"], unique = true)]
+)
 data class Tag(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
     val isSelected: Boolean = false,
+    @ColumnInfo(name = "name")
     val name: String
 )
 

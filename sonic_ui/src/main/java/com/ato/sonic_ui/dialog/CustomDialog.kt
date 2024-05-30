@@ -15,11 +15,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,24 +23,17 @@ import androidx.compose.ui.window.Dialog
 
 @Preview(showBackground = true)
 @Composable
-fun CustomDialog(show: Boolean, content: @Composable ((Boolean) -> Unit) -> Unit) {
-    var showDialog by remember { mutableStateOf(show) }
-
-    // Обновляем showDialog, если параметр show изменяется
-    LaunchedEffect(show) { showDialog = show }
-
-    // Проверяем, нужно ли показывать диалог
-    if (showDialog) {
-        Dialog(onDismissRequest = { showDialog = false }) {
-            // Дизайн для диалога
+fun CustomDialog(show: Boolean, onDismiss: (Boolean) -> Unit, content: @Composable () -> Unit) {
+    if (show) {
+        Dialog(onDismissRequest = {
+            onDismiss(false)
+        }) {
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp), // Скругленные углы
                 shadowElevation = 8.dp // Тень под диалогом
             ) {
-                val onShow: (Boolean) -> Unit = { showDialog = it }
-
-                content(onShow)
+                content()
             }
         }
     }

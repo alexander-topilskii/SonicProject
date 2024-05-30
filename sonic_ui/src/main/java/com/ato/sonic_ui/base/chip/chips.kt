@@ -5,7 +5,6 @@ import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.ato.ui_state.base.chip.UiChip
 
@@ -14,7 +13,7 @@ fun UiChip.Display(onClick: (UiChip) -> Unit) {
     FilterChip(
         colors = FilterChipDefaults.filterChipColors(
             selectedContainerColor = MaterialTheme.colorScheme.primary,
-            selectedLabelColor = Color.Blue,
+            selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
         ),
         onClick = {
             onClick.invoke(this)
