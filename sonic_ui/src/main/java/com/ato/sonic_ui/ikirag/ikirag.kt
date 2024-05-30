@@ -4,6 +4,8 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Favorite
@@ -42,7 +44,7 @@ fun IkiragData.Display(
                     else -> null
                 }
             }
-
+            val scroll = rememberScrollState(0)
             Text(
                 text = text,
                 color = MaterialTheme.colorScheme.primary,
@@ -52,6 +54,7 @@ fun IkiragData.Display(
                 modifier = Modifier
                     .padding(8.dp)
                     .align(Alignment.Center)
+                    .verticalScroll(scroll)
 
             )
 
