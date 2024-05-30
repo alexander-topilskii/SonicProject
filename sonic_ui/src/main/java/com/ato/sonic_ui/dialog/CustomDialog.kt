@@ -21,7 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -41,8 +40,8 @@ fun CustomDialog(content: @Composable ((Boolean) -> Unit) -> Unit) {
         Dialog(onDismissRequest = { showDialog = false }) {
             // Custom design for the dialog
             Surface(
+                modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp), // Rounded corners
-                color = Color.White, // Background color of the dialog
                 shadowElevation = 8.dp // Shadow under the dialog
             ) {
                 val onShow: (Boolean) -> Unit = { showDialog = it }
