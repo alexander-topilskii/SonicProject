@@ -26,7 +26,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -39,7 +41,9 @@ object LoadOptions {
 @Composable
 fun MyApp() {
     var fileContent by remember { mutableStateOf("Press button to load text") }
-    val readFilesLauncher by getLauncher { loadedText ->
+    val readFilesLauncher by getLauncher(onStartLoading = {
+
+    }) { loadedText ->
         fileContent = loadedText
     }
 
@@ -63,7 +67,10 @@ fun MyApp() {
 }
 
 @Composable
-fun getLauncher(onLoaded: (String) -> Unit): State<ActivityResultLauncher<String>> {
+fun getLauncher(
+    onStartLoading: () -> Unit = {},
+    onLoaded: (String) -> Unit = {}
+): State<ActivityResultLauncher<String>> {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
@@ -71,8 +78,16 @@ fun getLauncher(onLoaded: (String) -> Unit): State<ActivityResultLauncher<String
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         uri?.let {
+
             scope.launch {
-                onLoaded(readTextFromUri(context, it))
+                println("GGGG::getLauncher:onStartLoading")
+                onStartLoading()
+                val text = withContext(Dispatchers.IO) {
+                    readTextFromUri(context, it)
+                }
+                println("GGGG::getLauncher:loaded $text")
+
+                onLoaded(text)
             }
         }
     }

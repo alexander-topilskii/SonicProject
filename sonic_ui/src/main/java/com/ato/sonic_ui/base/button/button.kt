@@ -12,7 +12,8 @@ import com.ato.ui_state.base.button.UiButton
 fun UiButton.Display(onClick: () -> Unit, modifier: Modifier = Modifier) {
     Button(
         modifier = modifier,
-        onClick = onClick
+        onClick = onClick,
+        enabled = isEnabled
     ) {
         Text(text = title)
     }

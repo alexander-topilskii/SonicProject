@@ -11,7 +11,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 data class UiIcon(
     val icon: ImageVector,
-    val contentDescription: String = ""
+    val contentDescription: String = "",
+    val isLoading: Boolean = false
 )
 
 
