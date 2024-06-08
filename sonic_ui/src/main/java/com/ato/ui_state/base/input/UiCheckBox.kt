@@ -4,5 +4,6 @@ import com.ato.ui_state.Ui
 
 data class UiCheckBox(
     val isChecked: Boolean,
-    val description: String?
+    val description: String?,
+    val textToCheck: Boolean = true
 ) : Ui

@@ -20,15 +20,24 @@ fun UiCheckBox.Display(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
     ) {
+        if (!textToCheck) {
+            Checkbox(
+                checked = this@Display.isChecked,
+                onCheckedChange = { onValueChanged.invoke(it) }
+            )
+        }
         description?.let {
             Text(
                 description,
             )
         }
-        Checkbox(
-            checked = this@Display.isChecked,
-            onCheckedChange = { onValueChanged.invoke(it) }
-        )
+        if (textToCheck) {
+            Checkbox(
+                checked = this@Display.isChecked,
+                onCheckedChange = { onValueChanged.invoke(it) }
+            )
+        }
+
     }
 }
 
@@ -49,11 +58,12 @@ class UiCheckBoxProvider : PreviewParameterProvider<UiCheckBox> {
         ),
         UiCheckBox(
             isChecked = false,
-            description = "text2"
+            description = "text2",
+            textToCheck = false
         ),
         UiCheckBox(
             isChecked = false,
-            description = null
+            description = null,
         ),
         UiCheckBox(
             isChecked = false,

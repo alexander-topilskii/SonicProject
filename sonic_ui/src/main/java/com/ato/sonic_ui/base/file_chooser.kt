@@ -80,12 +80,10 @@ fun getLauncher(
         uri?.let {
 
             scope.launch {
-                println("GGGG::getLauncher:onStartLoading")
                 onStartLoading()
                 val text = withContext(Dispatchers.IO) {
                     readTextFromUri(context, it)
                 }
-                println("GGGG::getLauncher:loaded $text")
 
                 onLoaded(text)
             }
