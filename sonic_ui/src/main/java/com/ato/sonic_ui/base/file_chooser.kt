@@ -34,6 +34,8 @@ import java.io.InputStreamReader
 
 object LoadOptions {
     const val PLAIN_TEXT = "text/plain"
+    const val ALL_TYPES = "*/*"
+    const val EPUB_TEXT = "application/epub+zip"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -94,14 +96,24 @@ fun getLauncher(
 }
 
 fun readTextFromUri(context: Context, uri: Uri): String {
-    val stringBuilder = StringBuilder()
-    context.contentResolver.openInputStream(uri)?.use { inputStream ->
-        BufferedReader(InputStreamReader(inputStream)).use { reader ->
-            var line: String?
-            while (reader.readLine().also { line = it } != null) {
-                stringBuilder.append(line).append('\n')
+    val contentResolver = context.contentResolver
+    val mime = contentResolver.getType(uri)
+    return when (mime) {
+        "text/plain" -> {
+            val stringBuilder = StringBuilder()
+            context.contentResolver.openInputStream(uri)?.use { inputStream ->
+                BufferedReader(InputStreamReader(inputStream)).use { reader ->
+                    var line: String?
+                    while (reader.readLine().also { line = it } != null) {
+                        stringBuilder.append(line).append('\n')
+                    }
+                }
             }
+            stringBuilder.toString()
+        }
+
+        else -> {
+            "not supported"
         }
     }
-    return stringBuilder.toString()
 }

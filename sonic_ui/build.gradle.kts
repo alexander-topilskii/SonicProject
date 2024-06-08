@@ -71,4 +71,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
 
     implementation(libs.kotlinx.serialization.json)
+
+
+//    implementation("com.github.mertakdut:EpubParser:1.0.95")
 }
