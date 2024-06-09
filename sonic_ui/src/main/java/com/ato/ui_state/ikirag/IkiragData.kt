@@ -8,6 +8,7 @@ import androidx.room.Index
 import androidx.room.Junction
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import com.ato.ui_state.Ui
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -16,8 +17,8 @@ data class IkiragData(
     val text: String,
     val isLiked: Boolean? = null,
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L
-)
+    override val id: Long = 0L
+) : Ui
 
 @Serializable
 @Entity(
