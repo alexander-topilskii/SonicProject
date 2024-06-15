@@ -1,11 +1,11 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.serialization)
     alias(libs.plugins.compose.compiler)
     id("kotlin-parcelize")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.ksp)
 }
 
 android {
