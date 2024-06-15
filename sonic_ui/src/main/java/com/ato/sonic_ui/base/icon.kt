@@ -19,7 +19,11 @@ fun UiIcon.Display(modifier: Modifier = Modifier, selected: Boolean = false) {
             modifier = Modifier.align(Alignment.Center),
             imageVector = icon,
             contentDescription = null,
-            tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+            tint = if (selected) {
+                MaterialTheme.colorScheme.onPrimary
+            } else MaterialTheme.colorScheme.onPrimary.copy(
+                alpha = 0.6f
+            )
         )
     }
 }

@@ -27,7 +27,11 @@ fun DisplayIcon(state: UiIcon?, modifier: Modifier = Modifier, selected: Boolean
                         modifier = Modifier.align(Alignment.Center),
                         imageVector = icon,
                         contentDescription = null,
-                        tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+                        tint = if (selected) {
+                            MaterialTheme.colorScheme.onPrimary
+                        } else MaterialTheme.colorScheme.onPrimary.copy(
+                            alpha = 0.6f
+                        )
                     )
                 }
             }

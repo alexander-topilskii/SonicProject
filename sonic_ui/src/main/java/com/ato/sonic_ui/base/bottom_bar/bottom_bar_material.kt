@@ -13,6 +13,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -45,6 +47,39 @@ fun UiNavBar.Display(onClick: (Int) -> Unit = { }) {
                         if (text != null) {
                             Text(
                                 text = text,
+                                fontWeight = if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Normal
+                            )
+                        }
+                    }
+                }
+            )
+        }
+    }
+}
+
+@Composable
+fun NavigationBar(vararg items: Pair<NavBarItem, () -> Unit>) {
+    var selectedTabIndex by rememberSaveable {
+        mutableIntStateOf(0)
+    }
+    val list: List<Pair<NavBarItem, () -> Unit>> by remember { mutableStateOf(items.asList()) }
+
+    NavigationBar {
+        list.forEachIndexed { index, (navBarItem: NavBarItem, action) ->
+            NavigationBarItem(
+                selected = false,
+                onClick = {
+                    selectedTabIndex = index
+                    action.invoke()
+                },
+                icon = {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        navBarItem.icon.Display(selected = selectedTabIndex == index)
+                        if (navBarItem.title != null) {
+                            Text(
+                                text = navBarItem.title,
                                 fontWeight = if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Normal
                             )
                         }
