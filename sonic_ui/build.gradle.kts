@@ -50,17 +50,16 @@ android {
 dependencies {
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
 
     implementation(libs.coil)
     implementation(libs.coil.compose)
 
     implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.navigation.compose)
 
     implementation(libs.androidx.room.common)
