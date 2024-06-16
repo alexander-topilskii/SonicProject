@@ -59,9 +59,8 @@ fun UiNavBar.Display(onClick: (Int) -> Unit = { }) {
 
 @Composable
 fun NavigationBar(vararg items: Pair<NavBarItem, () -> Unit>) {
-    var selectedTabIndex by rememberSaveable {
-        mutableIntStateOf(0)
-    }
+    var selectedTabIndex by rememberSaveable { mutableIntStateOf(0) }
+
     val list: List<Pair<NavBarItem, () -> Unit>> by remember { mutableStateOf(items.asList()) }
 
     NavigationBar {
