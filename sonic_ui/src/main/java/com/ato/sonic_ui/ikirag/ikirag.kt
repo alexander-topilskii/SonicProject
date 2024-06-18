@@ -47,7 +47,6 @@ fun IkiragData.Display(
             val scroll = rememberScrollState(0)
             Text(
                 text = text,
-                color = MaterialTheme.colorScheme.primary,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Medium,
@@ -55,7 +54,6 @@ fun IkiragData.Display(
                     .padding(8.dp)
                     .align(Alignment.Center)
                     .verticalScroll(scroll)
-
             )
 
             if (icon != null) {
