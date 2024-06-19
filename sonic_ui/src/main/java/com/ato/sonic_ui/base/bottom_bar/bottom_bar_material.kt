@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -34,7 +35,7 @@ fun UiNavBar.Display(onClick: (Int) -> Unit = { }) {
     NavigationBar {
         items.forEachIndexed { index, (uiIconText, text) ->
             NavigationBarItem(
-                selected = false,
+                selected = selectedTabIndex == index,
                 onClick = {
                     selectedTabIndex = index
                     onClick(index)
@@ -43,7 +44,10 @@ fun UiNavBar.Display(onClick: (Int) -> Unit = { }) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        uiIconText.Display(selected = selectedTabIndex == index)
+                        uiIconText.Display(
+                            tint = LocalContentColor.current,
+                            selected = selectedTabIndex == index,
+                        )
                         if (text != null) {
                             Text(
                                 text = text,
