@@ -7,9 +7,7 @@ import com.ato.nasa_repository.responses.apod.ApodResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-internal class TemplateGateways(
-//    private val greetingApi: ApiService = RetrofitClient.instance,
-) {
+internal class TemplateGateways {
 
     suspend fun getData(): Flow<ResultOf<TemplateModel>> {
         return try {

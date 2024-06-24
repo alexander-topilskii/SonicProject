@@ -24,19 +24,19 @@ sealed class ResultOf<out T> {
 }
 
 inline fun <T> ResultOf<T>.ifSuccess(action: (T) -> Unit) {
-    if (this is ResultOf.Success<T>) {
+    if (this is Success<T>) {
         action(data)
     }
 }
 
 val ResultOf<*>.isSuccess: Boolean
-    get() = this is ResultOf.Success<*>
+    get() = this is Success<*>
 
 val ResultOf<*>.isLoading: Boolean
-    get() = this is ResultOf.Loading<*>
+    get() = this is Loading<*>
 
 val ResultOf<*>.isError: Boolean
-    get() = this is ResultOf.Error<*>
+    get() = this is Error<*>
 
 fun <T> ResultOf<T>.getOrNull(): T? {
     return (this as? Success)?.data
@@ -69,26 +69,26 @@ inline fun <T> ResultOf<T>.onError(action: (Throwable) -> Unit): ResultOf<T> {
     return this
 }
 
-fun <T> T.toSuccess(previous: ResultOf<T>? = null): ResultOf.Success<T> {
-    return ResultOf.Success(this, previous?.getOrNull())
+fun <T> T.toSuccess(previous: ResultOf<T>? = null): Success<T> {
+    return Success(this, previous?.getOrNull())
 }
 
-fun <T> Throwable.toError(previous: ResultOf<T>? = null): ResultOf.Error<T> {
-    return ResultOf.Error(this, previous?.getOrNull())
+fun <T> Throwable.toError(previous: ResultOf<T>? = null): Error<T> {
+    return Error(this, previous?.getOrNull())
 }
 
-fun <T> T.toLoading(previous: ResultOf<T>? = null): ResultOf.Loading<T> {
-    return ResultOf.Loading(previous?.getOrNull())
+fun <T> T.toLoading(previous: ResultOf<T>? = null): Loading<T> {
+    return Loading(previous?.getOrNull())
 }
 
 fun <T, R> ResultOf<T>.map(transform: (T) -> R): ResultOf<R> {
     return when (this) {
-        is ResultOf.Success -> ResultOf.Success(
+        is Success -> Success(
             transform(this.data),
         )
 
-        is ResultOf.Loading -> ResultOf.Loading()
-        is ResultOf.Error -> ResultOf.Error(this.exception)
+        is Loading -> Loading()
+        is Error -> Error(this.exception)
     }
 }
 
@@ -99,8 +99,8 @@ inline fun <T> ResultOf<T>.display(
     onError: (exception: Throwable, previous: T?) -> Unit = { _, _ -> }
 ): ResultOf<T> {
     when (this) {
-        is ResultOf.Loading -> onLoading(this.previous)
-        is ResultOf.Success -> {
+        is Loading -> onLoading(this.previous)
+        is Success -> {
             if (data == null) {
                 onSuccessEmpty(this.previous)
             } else {
@@ -108,7 +108,7 @@ inline fun <T> ResultOf<T>.display(
             }
         }
 
-        is ResultOf.Error -> onError(this.exception, this.previous)
+        is Error -> onError(this.exception, this.previous)
     }
     return this
 }
