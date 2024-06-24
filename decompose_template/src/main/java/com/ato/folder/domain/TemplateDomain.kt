@@ -19,7 +19,7 @@ internal class TemplateDomain(
 ) : InstanceKeeper.Instance, CoroutineScope by componentContext.componentCoroutineScope() {
 
     val state: MutableStateFlow<ResultOf<TemplateModel?>> = MutableStateFlow(
-        value = ResultOf.Loading(previous = ResultOf.Success(initialState))
+        value = ResultOf.Loading(previous = initialState)
     )
 
     init {
