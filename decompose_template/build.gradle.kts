@@ -36,7 +36,6 @@ android {
 
 dependencies {
     implementation(project(":sonic_helpers"))
-    implementation(project(":nasa_repository"))
     implementation(project(":sonic_ui"))
 
     implementation(libs.androidx.appcompat)
