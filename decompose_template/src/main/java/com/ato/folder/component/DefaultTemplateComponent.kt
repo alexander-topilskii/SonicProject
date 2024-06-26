@@ -37,7 +37,7 @@ class DefaultTemplateComponent(
         handler.state.map { it.toApodUiState() }
 
     private fun ResultOf<TemplateModel?>.toApodUiState(): ResultOf<TemplateUiState?> =
-        this.map { TemplateUiState(item) }
+        this.map { TemplateUiState(null) } //item
 
     override fun onItemClicked(item: String) {
         launch {
