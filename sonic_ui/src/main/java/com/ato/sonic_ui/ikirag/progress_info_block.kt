@@ -6,11 +6,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ato.ui_state.ikirag.ProgressInfoBlock
+import com.ato.ui_state.ikirag.CountInfoBlock
 
 
 @Composable
-fun ProgressInfoBlock.Display(
+fun CountInfoBlock.Display(
     modifier: Modifier = Modifier
 ) {
     Text(
@@ -26,7 +26,7 @@ fun ProgressInfoBlock.Display(
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    ProgressInfoBlock(
+    CountInfoBlock(
         text = """
             10 элементов
         """.trimIndent()

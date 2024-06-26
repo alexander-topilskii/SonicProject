@@ -23,7 +23,11 @@ import androidx.compose.ui.window.Dialog
 
 @Preview(showBackground = true)
 @Composable
-fun CustomDialog(show: Boolean, onDismiss: (Boolean) -> Unit, content: @Composable () -> Unit) {
+fun CustomDialog(
+    show: Boolean = false,
+    onDismiss: (Boolean) -> Unit = {},
+    content: @Composable () -> Unit = {}
+) {
     if (show) {
         Dialog(onDismissRequest = {
             onDismiss(false)
@@ -41,7 +45,6 @@ fun CustomDialog(show: Boolean, onDismiss: (Boolean) -> Unit, content: @Composab
 
 @Composable
 fun SampleDialogContent(onShow: (Boolean) -> Unit) {
-
     Column(
         modifier = Modifier.padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
