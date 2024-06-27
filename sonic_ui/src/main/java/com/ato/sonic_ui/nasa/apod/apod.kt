@@ -31,8 +31,8 @@ import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.request.SuccessResult
-import com.ato.ui_state.base.video.VideoPlayer
-import com.ato.ui_state.base.video.YoutubePlayer
+import com.ato.sonic_ui.video.VideoPlayer
+import com.ato.sonic_ui.video.YoutubePlayer
 import com.ato.ui_state.nasa.apod.ApodUiState
 import com.ato.ui_state.nasa.apod.MediaTypeUi
 import kotlinx.coroutines.Dispatchers

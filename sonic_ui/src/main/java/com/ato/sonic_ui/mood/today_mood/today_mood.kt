@@ -58,9 +58,9 @@ fun UiMoodItem.UiAddMissedMoodItem.Display(
                     onClick = { },
                     modifier = Modifier.size(80.dp),  //avoid the oval shape
                     shape = CircleShape,
-                    border = BorderStroke(1.dp, circleColor),
+                    border = BorderStroke(1.dp, Color(circleColor)),
                     contentPadding = PaddingValues(0.dp),  //avoid the little icon
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = circleColor)
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(circleColor))
                 ) {
                     Icon(Icons.Default.Add, contentDescription = "content description")
                 }
@@ -86,7 +86,7 @@ fun UiMoodItem.UiAddMissedMoodItem.Display(
 private fun Preview() {
     UiMoodItem.UiAddMissedMoodItem(
         addMoodText = "Добавить настроение",
-        circleColor = Color.White,
+        circleColor = Color.White.value.toLong(),
         time = Calendar.getInstance()
     ).Display(onClicked = {})
 }

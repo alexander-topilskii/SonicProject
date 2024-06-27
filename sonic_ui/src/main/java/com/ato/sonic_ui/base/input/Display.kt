@@ -10,6 +10,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
@@ -43,7 +44,7 @@ fun UiEditTextState.Display(
         maxLines = maxLines,
         singleLine = singleLine,
         modifier = modifier,
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType)
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType as KeyboardType)
     )
 }
 
@@ -60,22 +61,26 @@ class UiEditTextStateProvider : PreviewParameterProvider<UiEditTextState> {
     override val values = listOf(
         UiEditTextState(
             title = "title",
-            inputText = "kek"
+            inputText = "kek",
+            keyboardType = KeyboardType.Text
         ),
         UiEditTextState(
             title = "",
-            inputText = "kek"
+            inputText = "kek",
+            keyboardType = KeyboardType.Text
         ),
         UiEditTextState(
             title = "title",
             inputText = "kek",
-            minLines = 4
+            minLines = 4,
+            keyboardType = KeyboardType.Text
         ),
         UiEditTextState(
             title = "title",
             inputText = "kek",
             minLines = 5,
-            endIcon = UiIcon(Icons.Filled.AddCircle)
+            endIcon = UiIcon(Icons.Filled.AddCircle),
+            keyboardType = KeyboardType.Text
         )
     ).asSequence()
 }

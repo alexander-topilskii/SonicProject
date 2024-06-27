@@ -5,9 +5,6 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
 
-    alias(libs.plugins.jetbrains.compose)
-    alias(libs.plugins.compose.compiler)
-
     alias(libs.plugins.ksp)
     alias(libs.plugins.serialization)
 }
@@ -28,21 +25,8 @@ kotlin {
 
     sourceSets {
         androidMain.dependencies {
-            implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(compose.material3)
-
-            implementation(libs.coil)
-            implementation(libs.coil.compose)
-
             implementation(libs.kotlinx.serialization.json)
 
             implementation(libs.androidx.room.common)

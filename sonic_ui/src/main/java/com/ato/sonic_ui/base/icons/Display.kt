@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import com.ato.ui_state.base.UiIcon
 
 @Composable
@@ -31,7 +32,7 @@ fun DisplayIcon(
                 } else {
                     Icon(
                         modifier = Modifier.align(Alignment.Center),
-                        imageVector = icon,
+                        imageVector = icon as ImageVector,
                         contentDescription = null,
                         tint = tint ?: if (selected) {
                             MaterialTheme.colorScheme.onPrimary

@@ -1,6 +1,5 @@
 package com.ato.ui_state.mood.today_mood
 
-import androidx.compose.ui.graphics.Color
 import java.util.Calendar
 
 
@@ -9,12 +8,12 @@ sealed class UiMoodItem {
         val id: Long = 0L,
         val moodText: String,
         val timeText: String,
-        val circleColors: List<Color>
+        val circleColors: List<Long>
     ): UiMoodItem()
 
     data class UiAddMissedMoodItem(
         val addMoodText: String,
-        val circleColor: Color,
+        val circleColor: Long,
         val time: Calendar
     ): UiMoodItem()
 }

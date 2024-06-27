@@ -1,4 +1,4 @@
-package com.ato.ui_state.base.video
+package com.ato.sonic_ui.video
 
 import android.net.Uri
 import androidx.compose.runtime.Composable

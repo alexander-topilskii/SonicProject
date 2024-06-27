@@ -1,4 +1,4 @@
-package com.ato.ui_state.base.loading
+package com.ato.sonic_ui.loading
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing

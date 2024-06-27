@@ -67,7 +67,7 @@ fun UiMoodItem.UiOldMoodItem.Display(onClicked: (UiMoodItem) -> Unit, modifier: 
                     onDraw = {
                         drawCircle(
                             Brush.radialGradient(
-                                colors = circleColors
+                                colors = circleColors.map { Color(it) }
                             )
                         )
                     }
@@ -96,8 +96,8 @@ private fun Preview() {
         moodText = "Нормальное",
         timeText = "Утро 4:00 AM",
         circleColors = listOf(
-            Color(0xFFDDB093),
-            Color(0xFFC578E6),
+            0xFFDDB093,
+            0xFFC578E6,
         )
     ).Display({})
 }

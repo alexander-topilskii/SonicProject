@@ -33,7 +33,7 @@ import com.ato.ui_state.base.circle.UiSimpleOutlinedCircle
 internal fun UiSimpleFilledCircle.Display(modifier: Modifier = Modifier) {
     Canvas(modifier = modifier, onDraw = {
         drawCircle(
-            color = color
+            color = Color(color)
         )
     })
 }
@@ -42,7 +42,7 @@ internal fun UiSimpleFilledCircle.Display(modifier: Modifier = Modifier) {
 internal fun UiSimpleOutlinedCircle.Display(modifier: Modifier = Modifier) {
     Canvas(modifier = modifier, onDraw = {
         drawCircle(
-            color = color,
+            color = Color(color),
             style = Stroke(width)
         )
     })
@@ -69,7 +69,7 @@ internal fun UiGradientCircle.Display(
 @Composable
 internal fun UiSimpleFilledCirclePreview() {
     UiSimpleFilledCircle(
-        color = Color.Red
+        color = Color.Red.value.toLong()
     ).Display(
         Modifier.size(100.dp)
     )
@@ -79,7 +79,7 @@ internal fun UiSimpleFilledCirclePreview() {
 @Composable
 internal fun UiSimpleOutlinedCirclePreview() {
     UiSimpleOutlinedCircle(
-        color = Color.Red,
+        color = Color.Red.value.toLong(),
         width = 12f
     ).Display(
         Modifier.size(100.dp)
@@ -99,8 +99,8 @@ internal fun UiGradientCirclePreview() {
 
     UiGradientCircle(
         colors = listOf(
-            Color.Yellow,
-            Color.Red,
+            Color.Yellow.value.toLong(),
+            Color.Red.value.toLong(),
         )
     ).Display(
         brush,
