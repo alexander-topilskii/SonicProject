@@ -44,8 +44,6 @@ dependencies {
     implementation(project(":sonic_ui"))
     implementation(project(":sonic_repository"))
 
-    implementation(libs.modo.compose)
-
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)

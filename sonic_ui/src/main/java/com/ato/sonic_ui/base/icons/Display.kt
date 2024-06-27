@@ -7,10 +7,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.ato.ui_state.base.UiIcon
 
 @Composable
-fun DisplayIcon(state: UiIcon?, modifier: Modifier = Modifier, selected: Boolean = false) =
+fun DisplayIcon(
+    state: UiIcon?,
+    modifier: Modifier = Modifier,
+    selected: Boolean = false,
+    tint: Color? = null
+) =
     with(state) {
         if (this == null) {
 
@@ -27,7 +33,7 @@ fun DisplayIcon(state: UiIcon?, modifier: Modifier = Modifier, selected: Boolean
                         modifier = Modifier.align(Alignment.Center),
                         imageVector = icon,
                         contentDescription = null,
-                        tint = if (selected) {
+                        tint = tint ?: if (selected) {
                             MaterialTheme.colorScheme.onPrimary
                         } else MaterialTheme.colorScheme.onPrimary.copy(
                             alpha = 0.6f

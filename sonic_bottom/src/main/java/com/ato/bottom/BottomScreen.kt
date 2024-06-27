@@ -5,9 +5,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.github.terrakok.modo.Screen
-import com.github.terrakok.modo.multiscreen.MultiScreen
-import com.github.terrakok.modo.multiscreen.MultiScreenNavModel
 
 abstract class BottomScreen(
     private val navModel: MultiScreenNavModel

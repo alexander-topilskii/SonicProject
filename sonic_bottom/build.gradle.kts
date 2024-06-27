@@ -54,9 +54,6 @@ dependencies {
     implementation(project(":sonic_presentetion"))
     implementation(project(":sonic_di"))
 
-    // navigation
-    implementation(libs.modo.compose)
-
     // other
     implementation(libs.androidx.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)

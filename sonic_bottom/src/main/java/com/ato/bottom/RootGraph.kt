@@ -3,7 +3,6 @@ package com.ato.bottom
 import android.app.Application
 import com.ato.di.DiGraphInstance
 import com.ato.di.Graph
-import com.ato.sonic_presentetion.Navigation
 import com.github.terrakok.modo.stack.StackScreen
 
 internal class RootGraph(

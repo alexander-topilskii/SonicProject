@@ -1,7 +1,6 @@
 package com.ato.template
 
 import androidx.lifecycle.ViewModel
-import com.ato.sonic_presentetion.Navigation
 import com.ato.ui_state.mood.UiMoodAndEnergyItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted

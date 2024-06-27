@@ -8,9 +8,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 
 fun ComponentContext.componentCoroutineScope(): CoroutineScope {
@@ -47,6 +49,20 @@ private class ValueStateFlow<out T : Any>(private val source: Value<T>) : StateF
             flow.collect(collector)
         } finally {
             disposable.cancel()
+        }
+    }
+}
+
+
+fun <T> CoroutineScope.createStateFlow(
+    defaultValue: T? = null,
+    source: suspend () -> Flow<T>
+): StateFlow<T?> {
+    return MutableStateFlow(defaultValue).also { stateFlow ->
+        launch {
+            source().collect { data ->
+                stateFlow.value = data
+            }
         }
     }
 }
