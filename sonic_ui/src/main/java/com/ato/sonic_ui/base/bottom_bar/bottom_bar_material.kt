@@ -28,16 +28,12 @@ import com.ato.ui_state.base.UiNavBar
 
 @Composable
 fun UiNavBar.Display(onClick: (Int) -> Unit = { }) {
-    var selectedTabIndex by rememberSaveable {
-        mutableIntStateOf(0)
-    }
 
     NavigationBar {
-        items.forEachIndexed { index, (uiIconText, text) ->
+        items.forEachIndexed { index, (uiIconText, text, isSelected) ->
             NavigationBarItem(
-                selected = selectedTabIndex == index,
+                selected = isSelected,
                 onClick = {
-                    selectedTabIndex = index
                     onClick(index)
                 },
                 icon = {
@@ -46,12 +42,12 @@ fun UiNavBar.Display(onClick: (Int) -> Unit = { }) {
                     ) {
                         uiIconText.Display(
                             tint = LocalContentColor.current,
-                            selected = selectedTabIndex == index,
+                            selected = isSelected,
                         )
                         if (text != null) {
                             Text(
                                 text = text,
-                                fontWeight = if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Normal
+                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
                             )
                         }
                     }
