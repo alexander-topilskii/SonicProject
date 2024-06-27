@@ -43,3 +43,11 @@ implementation(project(":sonic_template"))      //
 
 Theme builder:
 https://material-foundation.github.io/material-theme-builder/ 
+
+
+
+Принципы:
+- Знания ускоряют разработку
+- шаблоны ускоряют разработку 
+- проработка ускоряет разработку
+- заменяемость быстрее поддерживаемости
