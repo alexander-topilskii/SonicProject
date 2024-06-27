@@ -6,7 +6,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -33,7 +31,6 @@ import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.request.SuccessResult
-import com.ato.sonic_ui.R
 import com.ato.ui_state.base.video.VideoPlayer
 import com.ato.ui_state.base.video.YoutubePlayer
 import com.ato.ui_state.nasa.apod.ApodUiState
@@ -113,7 +110,7 @@ fun MyImageComposable(url: String) {
             .data(url)
             .crossfade(true)
             .build(),
-        placeholder = painterResource(R.drawable.placeholder_view_vector),
+//        placeholder = painterResource(R.drawable.placeholder_view_vector),
         contentDescription = null,
         contentScale = ContentScale.None,
         modifier = Modifier
@@ -133,7 +130,7 @@ private fun ApodImage(
             .data(uiState.url)
             .crossfade(true)
             .build(),
-        placeholder = painterResource(R.drawable.placeholder_view_vector),
+//        placeholder = painterResource(R.drawable.placeholder_view_vector),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = Modifier
