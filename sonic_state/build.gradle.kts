@@ -48,15 +48,12 @@ kotlin {
             implementation(libs.androidx.room.common)
             api(libs.androidx.room.runtime)
             api(libs.androidx.room.ktx)
-
-            implementation(project(":sonic_state"))
-
         }
     }
 }
 
 android {
-    namespace = "org.ato.sonic_ui"
+    namespace = "org.ato.sonic_state"
     compileSdk = libs.versions.android.compile.sdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

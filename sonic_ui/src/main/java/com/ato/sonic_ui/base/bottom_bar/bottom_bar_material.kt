@@ -78,7 +78,7 @@ fun NavigationBar(vararg items: Pair<NavBarItem, () -> Unit>) {
                         navBarItem.icon.Display(selected = selectedTabIndex == index)
                         if (navBarItem.title != null) {
                             Text(
-                                text = navBarItem.title,
+                                text = navBarItem.title!!,
                                 fontWeight = if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Normal
                             )
                         }

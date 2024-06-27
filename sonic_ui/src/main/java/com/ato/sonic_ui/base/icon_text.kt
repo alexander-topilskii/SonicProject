@@ -32,7 +32,7 @@ fun UiIconText.Display(modifier: Modifier = Modifier) {
                 modifier = Modifier.align(
                     alignment = Alignment.CenterHorizontally
                 ),
-                text = text
+                text = text!!
             )
         }
     }

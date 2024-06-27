@@ -1,4 +1,4 @@
-package com.ato.ui_state.tinder
+package com.ato.sonic_ui.tinder
 
 import android.util.Log
 import androidx.compose.foundation.layout.Box
@@ -22,8 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.ato.sonic_ui.tinder.rememberSwipeableCardState
-import com.ato.sonic_ui.tinder.swipableCard
 
 @Composable
 private fun ProfileCard(
@@ -72,7 +70,7 @@ fun display() {
                         .fillMaxSize()
                         .swipableCard(
                             state = state,
-                            blockedDirections = listOf(com.ato.sonic_ui.tinder.Direction.Down),
+                            blockedDirections = listOf(Direction.Down),
                             onSwiped = {
                                 // swipes are handled by the LaunchedEffect
                                 // so that we track button clicks & swipes

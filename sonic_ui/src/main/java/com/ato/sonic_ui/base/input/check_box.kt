@@ -28,7 +28,7 @@ fun UiCheckBox.Display(
         }
         description?.let {
             Text(
-                description,
+                description!!,
             )
         }
         if (textToCheck) {

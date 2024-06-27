@@ -1,7 +1,6 @@
 package com.ato.ui_state.mood.today_mood
 
 import androidx.compose.ui.graphics.Color
-import com.ato.ui_state.mood.new_mood.UiNewMood
 import java.util.Calendar
 
 
