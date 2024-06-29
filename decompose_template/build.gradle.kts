@@ -61,7 +61,6 @@ dependencies {
 
     // COROUTINES
     implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.coroutines.android)
 
     // DECOMPOSE
     implementation(libs.decompose)

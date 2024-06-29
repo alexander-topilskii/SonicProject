@@ -1,16 +1,18 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
+val moduleName = "sonic_ui"
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
 
+    alias(libs.plugins.serialization)
+
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.compose.compiler)
-
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.serialization)
 }
+
 
 kotlin {
     androidTarget {
@@ -20,43 +22,52 @@ kotlin {
         }
     }
 
-//    iosX64()
-//    iosArm64()
-//    iosSimulatorArm64()
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = moduleName
+            isStatic = true
+        }
+    }
 
-    jvm()
+    jvm("desktop")
 
     sourceSets {
-        androidMain.dependencies {
-            implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
-        }
+        val desktopMain by getting
+
         commonMain.dependencies {
+            implementation(projects.sonicState)
+            // serialization
+            implementation(libs.kotlinx.serialization.json)
+
+            // room
+            implementation(libs.androidx.room.runtime)
+
+            // compose
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
+            implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(compose.material3)
 
-            implementation(libs.coil)
-            implementation(libs.coil.compose)
+            // decompose
+            api(libs.decompose)
+            api(libs.decompose.compose)
 
-            implementation(libs.kotlinx.serialization.json)
-
-            implementation(libs.androidx.room.common)
-            api(libs.androidx.room.runtime)
-            api(libs.androidx.room.ktx)
-
-            implementation(project(":sonic_state"))
-
+            // decompose-essenty
+            api(libs.essenty.lifecycle)
+            api(libs.essenty.stateKeeper)
+            api(libs.essenty.backHandler)
         }
     }
 }
 
 android {
-    namespace = "org.ato.sonic_ui"
+    namespace = "com.ato.$moduleName"
     compileSdk = libs.versions.android.compile.sdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
