@@ -14,7 +14,13 @@ import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 
+
+internal val json =
+    Json {
+        allowStructuredMapKeys = true
+    }
 
 fun ComponentContext.componentCoroutineScope(): CoroutineScope {
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)

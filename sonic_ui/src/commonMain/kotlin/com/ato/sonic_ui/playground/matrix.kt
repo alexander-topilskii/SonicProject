@@ -10,9 +10,6 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
-import androidx.compose.ui.graphics.nativeCanvas
-import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.random.Random
@@ -49,21 +46,21 @@ fun MatrixEffect() {
         val cellWidth = canvasWidth / cols
         val cellHeight = canvasHeight / rows
 
-        drawIntoCanvas { canvas ->
-            val paint = android.graphics.Paint().apply {
-                color = android.graphics.Color.GREEN
-                textSize = 12.sp.toPx()
-                typeface = android.graphics.Typeface.MONOSPACE
-            }
-            for (col in 0 until cols) {
-                for (row in matrixState[col]) {
-                    val x = col * cellWidth
-                    val y = row * cellHeight
-                    val symbol = symbols.random()
-                    canvas.nativeCanvas.drawText(symbol.toString(), x, y, paint)
-                }
-            }
-        }
+//        drawIntoCanvas { canvas ->
+//            val paint = android.graphics.Paint().apply {
+//                color = android.graphics.Color.GREEN
+//                textSize = 12.sp.toPx()
+//                typeface = android.graphics.Typeface.MONOSPACE
+//            }
+//            for (col in 0 until cols) {
+//                for (row in matrixState[col]) {
+//                    val x = col * cellWidth
+//                    val y = row * cellHeight
+//                    val symbol = symbols.random()
+//                    canvas.nativeCanvas.drawText(symbol.toString(), x, y, paint)
+//                }
+//            }
+//        }
     }
 }
 

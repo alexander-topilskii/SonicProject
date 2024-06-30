@@ -4,11 +4,13 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.tween
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.dp
 
 
 enum class Direction {
@@ -18,13 +20,13 @@ enum class Direction {
 @Composable
 fun rememberSwipeableCardState(): SwipeableCardState {
     val screenWidth = with(LocalDensity.current) {
-        LocalConfiguration.current.screenWidthDp.dp.toPx()
+//        LocalConfiguration.current.screenWidthDp.dp.toPx()
     }
     val screenHeight = with(LocalDensity.current) {
-        LocalConfiguration.current.screenHeightDp.dp.toPx()
+//        LocalConfiguration.current.screenHeightDp.dp.toPx()
     }
     return remember {
-        SwipeableCardState(screenWidth, screenHeight)
+        SwipeableCardState(0f, 0f)
     }
 }
 

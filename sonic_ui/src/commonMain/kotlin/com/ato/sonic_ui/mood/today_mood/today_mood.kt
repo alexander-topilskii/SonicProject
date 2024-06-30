@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ato.ui_state.mood.today_mood.UiMoodItem
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import java.util.Calendar
 
 
 @Composable
@@ -87,6 +86,5 @@ private fun Preview() {
     UiMoodItem.UiAddMissedMoodItem(
         addMoodText = "Добавить настроение",
         circleColor = Color.White.value.toLong(),
-        time = Calendar.getInstance()
     ).Display(onClicked = {})
 }

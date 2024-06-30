@@ -55,13 +55,13 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
 
             // decompose
-            api(libs.decompose)
-            api(libs.decompose.compose)
+            implementation(libs.decompose)
+            implementation(libs.decompose.compose)
 
             // decompose-essenty
-            api(libs.essenty.lifecycle)
-            api(libs.essenty.stateKeeper)
-            api(libs.essenty.backHandler)
+            implementation(libs.essenty.lifecycle)
+            implementation(libs.essenty.stateKeeper)
+            implementation(libs.essenty.backHandler)
         }
     }
 }

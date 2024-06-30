@@ -14,7 +14,7 @@ import com.ato.sonic_ui.ikirag.Display
 import com.ato.sonic_ui.tinder.Direction
 import com.ato.sonic_ui.tinder.rememberSwipeableCardState
 import com.ato.sonic_ui.tinder.swipableCard
-import com.ato.ui_state.ikirag.IkiragData
+import com.ato.ui_state.ikirag.IkiragUi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 //  TODO: не законченные
@@ -26,7 +26,7 @@ fun Display(modifier: Modifier = Modifier) {
     }
 }
 
-val onePice = IkiragData(
+val onePice = IkiragUi(
     text = """
             Не в силах нас ни смех,  ни грех 
             свернуть с пути отважного,
@@ -34,7 +34,7 @@ val onePice = IkiragData(
             и нам плевать на каждого.
         """.trimIndent()
 )
-val onePice2 = IkiragData(
+val onePice2 = IkiragUi(
     text = """
             Нсе в силах нас ни смех,  ни грех 
             свернуть с пути отважного,
@@ -42,7 +42,7 @@ val onePice2 = IkiragData(
             и нам плевать на каждого.
         """.trimIndent()
 )
-val onePice3 = IkiragData(
+val onePice3 = IkiragUi(
     text = """
             Нсе в силах нас ни смех,  ни грех 
             свернуть с пути отважного,
@@ -50,7 +50,7 @@ val onePice3 = IkiragData(
             и нам плевать на каждого...
         """.trimIndent()
 )
-val onePice4 = IkiragData(
+val onePice4 = IkiragUi(
     text = """
             Нсе в силах нас ни смех,  ни грех 
             свернуть с пути отважного,
@@ -59,13 +59,13 @@ val onePice4 = IkiragData(
         """.trimIndent()
 )
 
-val items: List<IkiragData> = listOf(onePice, onePice2, onePice3, onePice4)
+val items: List<IkiragUi> = listOf(onePice, onePice2, onePice3, onePice4)
 
 @Composable
-fun List<IkiragData>.Display(
-    onLiked: (IkiragData) -> Unit,
-    onDisliked: (IkiragData) -> Unit,
-    onNeutral: (IkiragData) -> Unit,
+fun List<IkiragUi>.Display(
+    onLiked: (IkiragUi) -> Unit,
+    onDisliked: (IkiragUi) -> Unit,
+    onNeutral: (IkiragUi) -> Unit,
 ) {
     val itemss = this
     val states = this.map { it to rememberSwipeableCardState() }

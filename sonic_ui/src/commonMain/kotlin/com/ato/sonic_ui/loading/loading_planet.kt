@@ -20,7 +20,6 @@ import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kotlin.math.acos
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -28,7 +27,7 @@ private const val NUM_DOTS = 1000
 private const val GLOBE_RADIUS_FACTOR = 0.7f
 private const val DOT_RADIUS_FACTOR = 0.007f
 private const val FIELD_OF_VIEW_FACTOR = 0.8f
-private const val TWO_PI = 2 * Math.PI.toFloat()
+private const val TWO_PI = 2 * 3.14
 private const val ORBIT_RADIUS_FACTOR = 0.3f
 
 @Composable
@@ -48,9 +47,9 @@ fun LoadingAtoms(colors: List<Color>, modifier: Modifier = Modifier) {
 
     val dotInfos = remember {
         (0 until NUM_DOTS).map {
-            val azimuthAngle = Math.random().toFloat() * TWO_PI
-            val polarAngle = Math.random().toFloat() * TWO_PI
-            DotInfo(azimuthAngle, polarAngle)
+            val azimuthAngle = TWO_PI * 3f
+            val polarAngle = TWO_PI * 3f
+            DotInfo(azimuthAngle.toFloat(), polarAngle.toFloat())
         }
     }
 
@@ -86,11 +85,11 @@ fun LoadingAtoms(colors: List<Color>, modifier: Modifier = Modifier) {
             val dotRadius = minSize * DOT_RADIUS_FACTOR
             val scaledDotRadius = dotRadius * projectedScale
 
-            val offset = Offset(projectedX, projectedY)
+            val offset = Offset(projectedX.toFloat(), projectedY.toFloat())
             if (offset != Offset.Unspecified) {
                 drawCircle(
                     brush = brush,
-                    radius = scaledDotRadius,
+                    radius = scaledDotRadius.toFloat(),
                     center = offset,
                 )
             }
@@ -114,9 +113,9 @@ fun LoadingPlanet(colors: List<Color>, modifier: Modifier = Modifier) {
 
     val dotInfos = remember {
         (0 until NUM_DOTS).map {
-            val azimuthAngle = acos((Math.random().toFloat() * 2) - 1)
-            val polarAngle = Math.random().toFloat() * TWO_PI
-            DotInfo(azimuthAngle, polarAngle)
+//            val azimuthAngle = acos((Math.random().toFloat() * 2) - 1)
+//            val polarAngle = Math.random().toFloat() * TWO_PI
+            DotInfo(0f, 0f)
         }
     }
 
@@ -146,11 +145,11 @@ fun LoadingPlanet(colors: List<Color>, modifier: Modifier = Modifier) {
             val dotRadius = minSize * DOT_RADIUS_FACTOR
             val scaledDotRadius = dotRadius * projectedScale
 
-            val offset = Offset(projectedX, projectedY)
+            val offset = Offset(projectedX.toFloat(), projectedY.toFloat())
             if (offset != Offset.Unspecified) {
                 drawCircle(
                     brush = brush,
-                    radius = scaledDotRadius,
+                    radius = scaledDotRadius.toFloat(),
                     center = offset,
                 )
             }

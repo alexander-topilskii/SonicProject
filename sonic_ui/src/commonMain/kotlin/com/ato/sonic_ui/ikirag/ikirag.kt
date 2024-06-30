@@ -22,12 +22,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ato.sonic_ui.base.Display
 import com.ato.ui_state.base.UiIcon
-import com.ato.ui_state.ikirag.IkiragData
+import com.ato.ui_state.ikirag.IkiragUi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
 @Composable
-fun IkiragData.Display(
+fun IkiragUi.Display(
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -74,7 +74,7 @@ fun IkiragData.Display(
 @Preview()
 @Composable
 private fun Preview() {
-    IkiragData(
+    IkiragUi(
         text = """
             Не в силах нас ни смех,  ни грех 
             свернуть с пути отважного,

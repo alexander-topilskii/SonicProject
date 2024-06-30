@@ -1,7 +1,5 @@
 package com.ato.ui_state.mood.today_mood
 
-import java.util.Calendar
-
 
 sealed class UiMoodItem {
     data class UiOldMoodItem(
@@ -14,6 +12,5 @@ sealed class UiMoodItem {
     data class UiAddMissedMoodItem(
         val addMoodText: String,
         val circleColor: Long,
-        val time: Calendar
     ): UiMoodItem()
 }

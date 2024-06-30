@@ -13,13 +13,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ato.ui_state.ikirag.IkiragData
+import com.ato.ui_state.ikirag.IkiragUi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun IkiragData.DisplaySimple(
+fun IkiragUi.DisplaySimple(
     modifier: Modifier = Modifier,
-    onClick: (IkiragData) -> Unit = { }
+    onClick: (IkiragUi) -> Unit = { }
 ) {
     Card(
         modifier = modifier.clickable { onClick.invoke(this) },
@@ -47,7 +47,7 @@ fun IkiragData.DisplaySimple(
 @Preview()
 @Composable
 private fun Preview() {
-    IkiragData(
+    IkiragUi(
         text = """
             Не в силах нас ни смех,  ни грех 
             свернуть с пути отважного,
