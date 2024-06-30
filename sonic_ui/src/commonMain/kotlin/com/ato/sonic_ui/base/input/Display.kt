@@ -3,8 +3,6 @@ package com.ato.sonic_ui.base.input
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -13,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.icons.DisplayIcon
-import com.ato.ui_state.base.UiIcon
 import com.ato.ui_state.base.input.UiEditTextState
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
@@ -39,7 +37,7 @@ fun UiEditTextState.Display(
         },
         value = inputText,
         onValueChange = onValueChanged,
-        label = { Text(title) },
+        label = { Text(stringResource(title)) },
         minLines = minLines,
         maxLines = maxLines,
         singleLine = singleLine,
@@ -58,29 +56,29 @@ fun Demo(
 }
 
 class UiEditTextStateProvider : PreviewParameterProvider<UiEditTextState> {
-    override val values = listOf(
-        UiEditTextState(
-            title = "title",
-            inputText = "kek",
-            keyboardType = KeyboardType.Text
-        ),
-        UiEditTextState(
-            title = "",
-            inputText = "kek",
-            keyboardType = KeyboardType.Text
-        ),
-        UiEditTextState(
-            title = "title",
-            inputText = "kek",
-            minLines = 4,
-            keyboardType = KeyboardType.Text
-        ),
-        UiEditTextState(
-            title = "title",
-            inputText = "kek",
-            minLines = 5,
-            endIcon = UiIcon(Icons.Filled.AddCircle),
-            keyboardType = KeyboardType.Text
-        )
+    override val values = listOf<UiEditTextState>(
+//        UiEditTextState(
+//            title = "title",
+//            inputText = "kek",
+//            keyboardType = KeyboardType.Text
+//        ),
+//        UiEditTextState(
+//            title = "",
+//            inputText = "kek",
+//            keyboardType = KeyboardType.Text
+//        ),
+//        UiEditTextState(
+//            title = "title",
+//            inputText = "kek",
+//            minLines = 4,
+//            keyboardType = KeyboardType.Text
+//        ),
+//        UiEditTextState(
+//            title = "title",
+//            inputText = "kek",
+//            minLines = 5,
+//            endIcon = UiIcon(Icons.Filled.AddCircle),
+//            keyboardType = KeyboardType.Text
+//        )
     ).asSequence()
 }

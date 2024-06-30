@@ -36,13 +36,13 @@ fun UiButtonsRow.Display(onClick: (UiButton) -> Unit, modifier: Modifier = Modif
 @Composable
 fun UiButtonsRowPreview() {
     UiButtonsRow(
-        buttons = listOf(
-            UiButton(
-                "clear spaces"
-            ),
-            UiButton(
-                "???"
-            )
+        buttons = listOf<UiButton>(
+//            UiButton(
+//                "clear spaces"
+//            ),
+//            UiButton(
+//                "???"
+//            )
         )
     )
 }

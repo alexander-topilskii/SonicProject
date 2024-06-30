@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ato.ui_state.ikirag.CountInfoBlock
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
@@ -14,7 +15,7 @@ fun CountInfoBlock.Display(
     modifier: Modifier = Modifier
 ) {
     Text(
-        text = this.text,
+        text = stringResource(text, count),
         modifier = modifier.padding(4.dp)
     )
 }
@@ -26,9 +27,9 @@ fun CountInfoBlock.Display(
 @Preview()
 @Composable
 private fun Preview() {
-    CountInfoBlock(
-        text = """
-            10 элементов
-        """.trimIndent()
-    ).Display()
+//    CountInfoBlock(
+//        text = """
+//            10 элементов
+//        """.trimIndent()
+//    ).Display()
 }

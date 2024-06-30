@@ -14,6 +14,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.icons.DisplayIcon
 import com.ato.ui_state.base.input.UiEditTextState
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
@@ -42,7 +43,7 @@ fun DisplayEditableText(
             textState.value = it
             onValueChanged(it)
         },
-        label = { Text(title) },
+        label = { Text(stringResource(title)) },
         minLines = minLines,
         maxLines = maxLines,
         singleLine = singleLine,

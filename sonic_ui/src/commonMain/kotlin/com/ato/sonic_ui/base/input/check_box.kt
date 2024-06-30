@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.ato.ui_state.base.input.UiCheckBox
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
@@ -26,9 +27,9 @@ fun UiCheckBox.Display(
                 onCheckedChange = { onValueChanged.invoke(it) }
             )
         }
-        description?.let {
+        description?.let { description ->
             Text(
-                description!!,
+                stringResource(description),
             )
         }
         if (textToCheck) {
@@ -51,23 +52,23 @@ fun Demo(
 }
 
 class UiCheckBoxProvider : PreviewParameterProvider<UiCheckBox> {
-    override val values = listOf(
-        UiCheckBox(
-            isChecked = true,
-            description = "text1"
-        ),
-        UiCheckBox(
-            isChecked = false,
-            description = "text2",
-            textToCheck = false
-        ),
-        UiCheckBox(
-            isChecked = false,
-            description = null,
-        ),
-        UiCheckBox(
-            isChecked = false,
-            description = "long long long text"
-        ),
+    override val values = listOf<UiCheckBox>(
+//        UiCheckBox(
+//            isChecked = true,
+//            description = "text1"
+//        ),
+//        UiCheckBox(
+//            isChecked = false,
+//            description = "text2",
+//            textToCheck = false
+//        ),
+//        UiCheckBox(
+//            isChecked = false,
+//            description = null,
+//        ),
+//        UiCheckBox(
+//            isChecked = false,
+//            description = "long long long text"
+//        ),
     ).asSequence()
 }

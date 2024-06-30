@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ato.ui_state.base.button.UiButton
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
@@ -29,7 +30,7 @@ fun UiButton.Display(
                 strokeWidth = 2.dp
             )
         } else {
-            Text(text = title)
+            Text(text = stringResource(title))
         }
     }
 }
@@ -43,10 +44,10 @@ fun ButtonPreview(
 }
 
 class UiButtonProvider : PreviewParameterProvider<UiButton> {
-    override val values = listOf(
-        UiButton("Text"),
-        UiButton("Text", isLoading = true),
-        UiButton("Text", isEnabled = false),
-        UiButton("Text", isLoading = true, isEnabled = false),
+    override val values = listOf<UiButton>(
+//        UiButton("Text"),
+//        UiButton("Text", isLoading = true),
+//        UiButton("Text", isEnabled = false),
+//        UiButton("Text", isLoading = true, isEnabled = false),
     ).asSequence()
 }
