@@ -11,14 +11,22 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.darkrockstudios.libraries.mpfilepicker.FilePicker
+import io.github.vinceglb.filekit.compose.PickerResultLauncher
+import io.github.vinceglb.filekit.compose.rememberFilePickerLauncher
+import io.github.vinceglb.filekit.core.PickerMode
+import io.github.vinceglb.filekit.core.PickerType
+import io.github.vinceglb.filekit.core.PlatformFile
+import io.github.vinceglb.filekit.core.extension
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 object LoadOptions {
@@ -59,17 +67,29 @@ fun MyApp() {
 
 @Composable
 fun getLauncher(
-    showFilePicker: Boolean,
+    title: StringResource,
     onStartLoading: () -> Unit = {},
-    onLoaded: (String?) -> Unit = {}
-) {
-    if (showFilePicker) {
-        onStartLoading()
+    onLoaded: (String) -> Unit = {},
+): PickerResultLauncher {
+    return rememberFilePickerLauncher(
+        type = PickerType.File(listOf("txt")),
+        mode = PickerMode.Single,
+        title = stringResource(title),
+    ) { file: PlatformFile? ->
+        readFile(file, onLoaded)
     }
+}
 
-    val fileType = listOf("txt")
-    FilePicker(show = showFilePicker, fileExtensions = fileType) { platformFile ->
-        onLoaded(platformFile?.path)
+fun readFile(file: PlatformFile?, onLoaded: (String) -> Unit) {
+    CoroutineScope(Dispatchers.Main).launch {
+        try {
+            val fileBytes = file?.readBytes()
+            val fileContent = fileBytes?.decodeToString()?: "can't parse file"
+
+            onLoaded(fileContent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
 

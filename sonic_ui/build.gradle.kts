@@ -63,7 +63,9 @@ kotlin {
             implementation(libs.essenty.stateKeeper)
             implementation(libs.essenty.backHandler)
 
-            implementation(libs.mpfilepicker)
+            implementation(libs.filekit.core)
+            implementation(libs.filekit.compose)
+            implementation(libs.okio)
         }
     }
 }
