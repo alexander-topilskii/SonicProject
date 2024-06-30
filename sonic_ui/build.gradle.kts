@@ -62,6 +62,8 @@ kotlin {
             implementation(libs.essenty.lifecycle)
             implementation(libs.essenty.stateKeeper)
             implementation(libs.essenty.backHandler)
+
+            implementation(libs.mpfilepicker)
         }
     }
 }

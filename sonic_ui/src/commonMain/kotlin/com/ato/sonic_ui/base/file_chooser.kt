@@ -15,8 +15,10 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.darkrockstudios.libraries.mpfilepicker.FilePicker
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 object LoadOptions {
@@ -30,11 +32,11 @@ object LoadOptions {
 @Composable
 fun MyApp() {
     var fileContent by remember { mutableStateOf("Press button to load text") }
-    val readFilesLauncher by getLauncher(onStartLoading = {
-
-    }) { loadedText ->
-        fileContent = loadedText
-    }
+//    getLauncher(onStartLoading = {
+//
+//    }) { loadedText ->
+//        fileContent = loadedText
+//    }
 
     Scaffold(
         topBar = {
@@ -57,13 +59,21 @@ fun MyApp() {
 
 @Composable
 fun getLauncher(
+    showFilePicker: Boolean,
     onStartLoading: () -> Unit = {},
-    onLoaded: (String) -> Unit = {}
-): State<String> {
-    return mutableStateOf("kek")
+    onLoaded: (String?) -> Unit = {}
+) {
+    if (showFilePicker) {
+        onStartLoading()
+    }
+
+    val fileType = listOf("txt")
+    FilePicker(show = showFilePicker, fileExtensions = fileType) { platformFile ->
+        onLoaded(platformFile?.path)
+    }
 }
 
-//
+
 //@Composable
 //fun getLauncher(
 //    onStartLoading: () -> Unit = {},
