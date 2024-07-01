@@ -24,6 +24,7 @@ import io.github.vinceglb.filekit.core.PlatformFile
 import io.github.vinceglb.filekit.core.extension
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -71,17 +72,21 @@ fun getLauncher(
     onStartLoading: () -> Unit = {},
     onLoaded: (String) -> Unit = {},
 ): PickerResultLauncher {
+
+
     return rememberFilePickerLauncher(
         type = PickerType.File(listOf("txt")),
         mode = PickerMode.Single,
         title = stringResource(title),
     ) { file: PlatformFile? ->
+        onStartLoading()
+
         readFile(file, onLoaded)
     }
 }
 
 fun readFile(file: PlatformFile?, onLoaded: (String) -> Unit) {
-    CoroutineScope(Dispatchers.Main).launch {
+    CoroutineScope(Dispatchers.IO).launch {
         try {
             val fileBytes = file?.readBytes()
             val fileContent = fileBytes?.decodeToString()?: "can't parse file"

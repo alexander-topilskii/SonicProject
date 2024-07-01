@@ -11,22 +11,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
 
 
 enum class Direction {
     Left, Right, Up, Down
 }
 
+data class ScreenSizeInfo(val hPX: Int, val wPX: Int, val hDP: Dp, val wDP: Dp)
+
+@Composable expect fun getScreenSizeInfo(): ScreenSizeInfo
+
 @Composable
 fun rememberSwipeableCardState(): SwipeableCardState {
-    val screenWidth = with(LocalDensity.current) {
-//        LocalConfiguration.current.screenWidthDp.dp.toPx()
-    }
-    val screenHeight = with(LocalDensity.current) {
-//        LocalConfiguration.current.screenHeightDp.dp.toPx()
-    }
+    val size = getScreenSizeInfo()
+
     return remember {
-        SwipeableCardState(0f, 0f)
+        SwipeableCardState(size.wPX.toFloat(), size.hPX.toFloat())
     }
 }
 
