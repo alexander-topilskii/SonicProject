@@ -1,68 +1,78 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+val moduleName = "decompose_template"
+
 plugins {
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.compose.compiler)
+
     alias(libs.plugins.serialization)
+
+    alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.compose.compiler)
+}
+
+
+kotlin {
+    androidTarget {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = moduleName
+            isStatic = true
+        }
+    }
+
+    jvm("desktop")
+
+    sourceSets {
+        val desktopMain by getting
+
+        commonMain.dependencies {
+            // serialization
+            implementation(libs.kotlinx.serialization.json)
+
+            // room
+            implementation(libs.androidx.room.runtime)
+
+            // compose
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
+
+            // decompose
+            implementation(libs.decompose)
+            implementation(libs.decompose.compose)
+
+            // decompose-essenty
+            implementation(libs.essenty.lifecycle)
+            implementation(libs.essenty.stateKeeper)
+            implementation(libs.essenty.backHandler)
+        }
+    }
 }
 
 android {
-    namespace = "com.ato.folder"
-    compileSdk = 34
-
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
+    namespace = "com.ato.$moduleName"
+    compileSdk = libs.versions.android.compile.sdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
+    defaultConfig {
+        minSdk = libs.versions.android.min.sdk.get().toInt()
     }
-}
-
-dependencies {
-    implementation(project(":sonic_helpers"))
-    implementation(project(":sonic_ui"))
-
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    // compose
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-
-    // coil
-    implementation(libs.coil.compose)
-
-    // Network
-    implementation(libs.retrofit)
-    implementation(libs.retrofit2.kotlinx.serialization.converter)
-    implementation(libs.okhttp3.logging.interceptor)
-    implementation(libs.kotlinx.serialization.json)
-
-    // COROUTINES
-    implementation(libs.kotlinx.coroutines.core)
-
-    // DECOMPOSE
-    implementation(libs.decompose)
-    implementation(libs.decompose.compose)
 }
