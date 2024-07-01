@@ -39,6 +39,8 @@ kotlin {
         val desktopMain by getting
 
         commonMain.dependencies {
+            implementation(projects.sonicHelpers)
+
             // serialization
             implementation(libs.kotlinx.serialization.json)
 
