@@ -9,8 +9,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.ato.folder.component.TemplateComponent
-import com.ato.helpers.ResultOf
-import com.ato.helpers.display
 
 
 @Composable
