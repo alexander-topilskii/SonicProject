@@ -1,21 +1,27 @@
 package com.ato.folder.gateways
 
-import com.ato.folder.domain.TemplateModel
-import com.ato.helpers.ResultOf
-import com.ato.helpers.toError
+import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.essenty.instancekeeper.InstanceKeeper
+import com.ato.folder.ui.TemplateUiState
+import com.ato.helpers.componentCoroutineScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-internal class TemplateGateways {
+internal class TemplateGateways(
+    componentContext: ComponentContext,
+    initialState: String?
+) : InstanceKeeper.Instance, CoroutineScope by componentContext.componentCoroutineScope() {
 
-    suspend fun getData(): Flow<ResultOf<TemplateModel>> {
+    suspend fun getData(): Flow<TemplateUiState> {
         return try {
 //            flowOf(greetingApi.getApod())
 //                .map { it.toModel() }
 //                .map { it.toSuccess() }
             flowOf()
         } catch (e: Exception) {
-            flowOf(e.toError())
+            e.printStackTrace()
+            flowOf()
         }
     }
 }

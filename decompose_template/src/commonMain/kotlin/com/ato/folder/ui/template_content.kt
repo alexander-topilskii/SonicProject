@@ -18,25 +18,12 @@ fun TemplateContent(
     component: TemplateComponent,
     modifier: Modifier = Modifier
 ) {
-    val model by component.uiState.collectAsState(ResultOf.Loading())
+    val model by component.uiState.collectAsState(null)
 
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        model.display(
-            onLoading = {
-                Text("Template Display Loading")
-            },
-            onError = { _, _ ->
-                Text("Template Error")
-            },
-            onSuccess = { data: TemplateUiState?, _ ->
-                Text("Template Display $data")
-            },
-            onSuccessEmpty = {
-                Text("Template There is noting")
-            }
-        )
+        Text("Template Display $model")
     }
 }
