@@ -3,6 +3,7 @@ package com.ato.helpers
 import com.ato.helpers.ResultOf.Error
 import com.ato.helpers.ResultOf.Loading
 import com.ato.helpers.ResultOf.Success
+import kotlinx.coroutines.flow.StateFlow
 
 
 sealed class ResultOf<out T> {
@@ -54,7 +55,7 @@ fun <T> ResultOf<T>.previousOrNull(): T? {
     }
 }
 
-inline fun <T> ResultOf<T>.onSuccess(action: (T) -> Unit): ResultOf<T> {
+inline fun <T> ResultOf<T>.onSuccess(action: (T?) -> Unit): ResultOf<T> {
     if (this is Success) action(data)
     return this
 }
@@ -111,4 +112,19 @@ inline fun <T> ResultOf<T>.display(
         is Error -> onError(this.exception, this.previous)
     }
     return this
+}
+
+suspend fun <T> StateFlow<ResultOf<T>>.ifSuccess(action: suspend (T?) -> Unit) {
+    this.value.ifSuccess { data: T ->
+        action(data)
+    }
+}
+
+private fun <T> StateFlow<ResultOf<T>>.ifSuccessGetData(action: (T?) -> Unit): T? {
+    val result = this.value
+    return if (result is Success<T>) {
+        result.data
+    } else {
+        null
+    }
 }

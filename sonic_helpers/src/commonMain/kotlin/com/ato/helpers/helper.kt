@@ -1,8 +1,10 @@
 package com.ato.helpers
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.lifecycle.Lifecycle
+import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.essenty.lifecycle.doOnDestroy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -60,9 +62,8 @@ private class ValueStateFlow<out T : Any>(private val source: Value<T>) : StateF
     }
 }
 
-
 fun <T> CoroutineScope.createStateFlow(
-    defaultValue: T? = null,
+    defaultValue: T?,
     source: suspend () -> Flow<T>
 ): StateFlow<T?> {
     return MutableStateFlow(defaultValue).also { stateFlow ->
@@ -73,3 +74,20 @@ fun <T> CoroutineScope.createStateFlow(
         }
     }
 }
+
+fun <T> CoroutineScope.createNotNullStateFlow(
+    defaultValue: T,
+    source: suspend () -> Flow<T>
+): StateFlow<T> {
+    return MutableStateFlow(defaultValue).also { stateFlow ->
+        launch {
+            source().collect { data ->
+                stateFlow.value = data
+            }
+        }
+    }
+}
+
+object PreviewComponentContext : ComponentContext by DefaultComponentContext(
+    lifecycle = LifecycleRegistry(),
+)

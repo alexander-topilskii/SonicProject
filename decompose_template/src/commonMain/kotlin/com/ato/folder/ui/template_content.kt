@@ -26,16 +26,16 @@ fun TemplateContent(
     ) {
         model.display(
             onLoading = {
-                Text("Display Loading")
+                Text("Template Display Loading")
             },
             onError = { _, _ ->
-                Text("Error")
+                Text("Template Error")
             },
             onSuccess = { data: TemplateUiState?, _ ->
-                Text("Display $data")
+                Text("Template Display $data")
             },
             onSuccessEmpty = {
-                Text("There is noting")
+                Text("Template There is noting")
             }
         )
     }

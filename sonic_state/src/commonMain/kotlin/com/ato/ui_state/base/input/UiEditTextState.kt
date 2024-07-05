@@ -7,9 +7,10 @@ import org.jetbrains.compose.resources.StringResource
 data class UiEditTextState(
     val title: StringResource,
     val inputText: String,
+    val keyboardType: Any,
     val maxLines: Int = Int.MAX_VALUE,
     val minLines: Int = 1,
     val singleLine: Boolean = false,
-    val keyboardType: Any,
+    val errorText: StringResource? = null,
     val endIcon: UiIcon? = null
 ): Ui

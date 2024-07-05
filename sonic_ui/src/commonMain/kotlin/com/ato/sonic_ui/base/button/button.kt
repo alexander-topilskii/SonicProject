@@ -35,6 +35,28 @@ fun UiButton.Display(
     }
 }
 
+@Composable
+fun DisplayButton(
+    state: UiButton,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Button(
+        modifier = modifier,
+        onClick = onClick,
+        enabled = state.isEnabled
+    ) {
+        if (state.isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.size(ButtonDefaults.IconSize),
+                strokeWidth = 2.dp
+            )
+        } else {
+            Text(text = stringResource(state.title))
+        }
+    }
+}
+
 @Preview()
 @Composable
 fun ButtonPreview(
