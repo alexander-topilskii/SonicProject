@@ -2,6 +2,7 @@ package com.ato.folder.component
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.instancekeeper.getOrCreate
+import com.ato.folder.di.Di
 import com.ato.folder.gateways.TemplateGateways
 import com.ato.folder.ui.TemplateUiState
 import com.ato.helpers.componentCoroutineScope
@@ -14,6 +15,7 @@ import kotlinx.serialization.builtins.serializer
 class DefaultTemplateComponent(
     private val componentContext: ComponentContext,
     private val item: String,
+    private val di: Di = Di()
 ) : TemplateComponent, ComponentContext by componentContext,
     CoroutineScope by componentContext.componentCoroutineScope() {
 

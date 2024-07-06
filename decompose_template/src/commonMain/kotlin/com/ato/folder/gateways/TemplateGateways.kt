@@ -6,6 +6,7 @@ import com.ato.folder.ui.TemplateUiState
 import com.ato.helpers.componentCoroutineScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
 
 internal class TemplateGateways(
@@ -13,16 +14,12 @@ internal class TemplateGateways(
     initialState: String?
 ) : InstanceKeeper.Instance, CoroutineScope by componentContext.componentCoroutineScope() {
 
+    private val mutableStateFlow: MutableStateFlow<TemplateUiState> = MutableStateFlow(
+        TemplateUiState("")
+    )
+
     suspend fun getData(): Flow<TemplateUiState> {
-        return try {
-//            flowOf(greetingApi.getApod())
-//                .map { it.toModel() }
-//                .map { it.toSuccess() }
-            flowOf()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            flowOf()
-        }
+        return mutableStateFlow
     }
 }
 
