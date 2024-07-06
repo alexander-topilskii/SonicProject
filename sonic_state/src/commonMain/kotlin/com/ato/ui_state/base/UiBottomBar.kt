@@ -12,6 +12,7 @@ data class NavBarItem(
     val icon: UiIcon,
     val title: String? = null,
     val isSelected: Boolean = false,
+    val meta: Any? = null
 )
 
 
