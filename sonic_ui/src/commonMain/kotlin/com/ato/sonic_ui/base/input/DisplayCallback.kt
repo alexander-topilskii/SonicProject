@@ -28,6 +28,7 @@ fun DisplayEditableText(
     val textState = remember(inputText) { mutableStateOf(inputText) }
 
     OutlinedTextField(
+        enabled = isEnabled,
         trailingIcon = {
             DisplayIcon(
                 state = endIcon,
@@ -50,7 +51,13 @@ fun DisplayEditableText(
             onValueChanged(it)
         },
         label = { Text(stringResource(title)) },
-        supportingText = { errorText?.let { Text(stringResource(it)) } },
+        supportingText = {
+            errorText?.let {
+                Text(stringResource(it))
+            } ?: supportText?.let {
+                Text(stringResource(it))
+            }
+        },
         isError = errorText != null,
         minLines = minLines,
         maxLines = maxLines,

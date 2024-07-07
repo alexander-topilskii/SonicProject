@@ -14,5 +14,7 @@ data class UiEditTextState(
     val minLines: Int = 1,
     val singleLine: Boolean = false,
     val errorText: StringResource? = null,
-    val endIcon: UiIcon? = null
+    val endIcon: UiIcon? = null,
+    val isEnabled: Boolean = true,
+    val supportText: StringResource? = null
 ): Ui
