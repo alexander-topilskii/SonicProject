@@ -40,6 +40,11 @@ fun DisplayEditableText(
             )
         },
         value = textState.value,
+        placeholder = if (hint == null) {
+            null
+        } else {
+            hint?.let { { Text(stringResource(it)) } }
+        },
         onValueChange = {
             textState.value = it
             onValueChanged(it)

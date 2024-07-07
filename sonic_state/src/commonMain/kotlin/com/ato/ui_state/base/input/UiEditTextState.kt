@@ -8,6 +8,8 @@ data class UiEditTextState(
     val title: StringResource,
     val inputText: String,
     val keyboardType: Any,
+    val hint: StringResource? = null,
+    val keyboardOptions: Any? = null,
     val maxLines: Int = Int.MAX_VALUE,
     val minLines: Int = 1,
     val singleLine: Boolean = false,
