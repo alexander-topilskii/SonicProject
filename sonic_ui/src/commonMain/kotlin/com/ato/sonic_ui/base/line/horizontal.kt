@@ -13,13 +13,13 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HorizontalSpaceLine(
-    spaceStart: Dp,
-    spaceEnd: Dp,
+    spaceTop: Dp,
+    spaceBottom: Dp,
     lineColor: Color,
     line: Dp = 1.dp,
 ) {
     Spacer(
-        modifier = Modifier.height(spaceStart)
+        modifier = Modifier.height(spaceTop)
     )
     Spacer(
         modifier = Modifier.height(line)
@@ -27,6 +27,6 @@ fun HorizontalSpaceLine(
             .background(lineColor)
     )
     Spacer(
-        modifier = Modifier.height(spaceEnd)
+        modifier = Modifier.height(spaceBottom)
     )
 }
