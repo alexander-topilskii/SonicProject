@@ -18,10 +18,12 @@ fun TemplateContent(
 ) {
     val model by component.uiState.collectAsState(null)
 
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text("Template Display $model")
+    model?.let { data->
+        Box(
+            modifier = modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Template Display $model")
+        }
     }
 }

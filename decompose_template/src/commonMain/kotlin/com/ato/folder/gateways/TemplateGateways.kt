@@ -7,19 +7,18 @@ import com.ato.helpers.componentCoroutineScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.flowOf
 
 internal class TemplateGateways(
     componentContext: ComponentContext,
     initialState: String?
 ) : InstanceKeeper.Instance, CoroutineScope by componentContext.componentCoroutineScope() {
 
-    private val mutableStateFlow: MutableStateFlow<TemplateUiState> = MutableStateFlow(
+    private val state: MutableStateFlow<TemplateUiState> = MutableStateFlow(
         TemplateUiState("")
     )
 
     suspend fun getData(): Flow<TemplateUiState> {
-        return mutableStateFlow
+        return state
     }
 }
 
