@@ -20,8 +20,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun DisplayInfoBlock(data: UiUserInfo, modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier
-            .padding(horizontal = 16.dp),
+        modifier = modifier,
     ) {
         Card(
             border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
