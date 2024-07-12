@@ -23,7 +23,7 @@ fun FirestoreWishItem(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = modifier.padding(horizontal = 16.dp, vertical = 2.dp),
+        modifier = modifier,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
         onClick = remember(wish) { { onClick.invoke(wish) } }
     ) {
