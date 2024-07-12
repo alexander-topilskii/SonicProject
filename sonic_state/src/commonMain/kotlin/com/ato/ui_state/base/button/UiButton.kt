@@ -7,7 +7,8 @@ data class UiButton(
     val title: StringResource,
     val key: String? = null,
     val isEnabled: Boolean = true,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val isVisible: Boolean = true
 ): Ui
 
 

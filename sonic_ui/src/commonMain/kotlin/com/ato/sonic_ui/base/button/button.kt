@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -41,18 +42,21 @@ fun DisplayButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Button(
-        modifier = modifier,
-        onClick = onClick,
-        enabled = state.isEnabled
-    ) {
-        if (state.isLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier.size(ButtonDefaults.IconSize),
-                strokeWidth = 2.dp
-            )
-        } else {
-            Text(text = stringResource(state.title))
+    if (state.isVisible) {
+        Button(
+            modifier = modifier,
+            onClick = onClick,
+            enabled = state.isEnabled
+        ) {
+            if (state.isLoading) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(ButtonDefaults.IconSize),
+                    strokeWidth = 2.dp,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            } else {
+                Text(text = stringResource(state.title))
+            }
         }
     }
 }
