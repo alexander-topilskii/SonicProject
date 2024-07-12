@@ -38,6 +38,14 @@ fun <T> LazyListScope.displayList(
                 )
             }
         } else {
+            uiList.contentTitle?.let { contentTitle ->
+                item {
+                    Text(
+                        text = stringResource(contentTitle),
+                        modifier = modifier
+                    )
+                }
+            }
             items(list) { item ->
                 listContent(item, modifier)
             }

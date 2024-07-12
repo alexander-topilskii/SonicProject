@@ -5,5 +5,6 @@ import org.jetbrains.compose.resources.StringResource
 data class UiList<T>(
     val loading: StringResource,
     val empty: StringResource,
+    val contentTitle: StringResource? = null,
     val content: List<T>?
 )
