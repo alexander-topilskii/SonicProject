@@ -12,14 +12,15 @@ import org.jetbrains.compose.resources.stringResource
 
 fun <T> LazyListScope.displayList(
     uiList: UiList<T>,
-    listContent: @Composable (T) -> Unit
+    modifier: Modifier = Modifier,
+    listContent: @Composable (T, Modifier) -> Unit,
 ) {
     val list = uiList.content
     if (list == null) {
         item {
             Text(
                 text = stringResource(uiList.loading),
-                modifier = Modifier.padding(
+                modifier = modifier.padding(
                     horizontal = 16.dp,
                     vertical = 2.dp
                 )
@@ -30,7 +31,7 @@ fun <T> LazyListScope.displayList(
             item {
                 Text(
                     text = stringResource(uiList.empty),
-                    modifier = Modifier.padding(
+                    modifier = modifier.padding(
                         horizontal = 16.dp,
                         vertical = 2.dp
                     )
@@ -38,7 +39,7 @@ fun <T> LazyListScope.displayList(
             }
         } else {
             items(list) { item ->
-                listContent(item)
+                listContent(item, modifier)
             }
         }
     }
