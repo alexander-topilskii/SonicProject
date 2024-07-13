@@ -11,8 +11,14 @@ fun DisplayText(
     state: UiSimpleText,
     modifier: Modifier = Modifier
 ) {
+    val title = if (state.formatArgs == null) {
+        stringResource(state.text)
+    } else {
+        stringResource(state.text, state.formatArgs!!)
+    }
+
     Text(
-        text = stringResource(state.text),
+        text = title,
         modifier = modifier
     )
 }
