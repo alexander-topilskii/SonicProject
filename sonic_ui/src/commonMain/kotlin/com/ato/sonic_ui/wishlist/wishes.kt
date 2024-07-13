@@ -109,7 +109,7 @@ fun ClickableUrlText(url: String, modifier: Modifier = Modifier) {
 
     val annotatedText = buildAnnotatedString {
         pushStringAnnotation(tag = "URL", annotation = url)
-        withStyle(style = SpanStyle(color = Color.Blue)) {
+        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.error)) {
             append(url)
         }
         pop()
@@ -120,7 +120,11 @@ fun ClickableUrlText(url: String, modifier: Modifier = Modifier) {
         onClick = { offset ->
             annotatedText.getStringAnnotations(tag = "URL", start = offset, end = offset)
                 .firstOrNull()?.let { annotation ->
-                    uriHandler.openUri(annotation.item)
+                    try {
+                        uriHandler.openUri(annotation.item)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 }
         },
         modifier = modifier
