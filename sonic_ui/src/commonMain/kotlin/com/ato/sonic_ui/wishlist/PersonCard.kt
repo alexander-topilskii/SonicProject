@@ -26,7 +26,7 @@ fun PersonCard(
 ) {
     Card(
         modifier = modifier,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+//        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         onClick = onClick
     ) {
         Text(
@@ -59,7 +59,7 @@ fun PersonCardButtons(
 ) {
     Card(
         modifier = modifier,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+//        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         onClick = onClick
     ) {
         Spacer(modifier = Modifier.height(8.dp))
