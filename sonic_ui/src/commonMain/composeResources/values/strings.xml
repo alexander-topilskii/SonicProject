@@ -1,0 +1,17 @@
+<resources>
+    <string name="person_title">Person</string>
+    <string name="person_back">Back</string>
+    <string name="person_wishes_empty">There is no wishes</string>
+    <string name="person_wishes_loading">Wishes loading</string>
+    <string name="person_wishes_list_title">Wishes:</string>
+    <string name="person_your_info">Main info</string>
+    <string name="person_name_title">Name:</string>
+    <string name="person_nick_title">Nick:</string>
+    <string name="person_email_title">Email:</string>
+    <string name="person_follow_button_empty"> </string>
+    <string name="person_follow_button_follow">Follow</string>
+    <string name="person_follow_button_unfollow">Unfollow</string>
+    <string name="person_follower_explanation">This user is following you. \nIf you accept them he could pick your wishes</string>
+    <string name="person_follower_accept">Accept</string>
+    <string name="person_follower_decline">Decline</string>
+</resources>
