@@ -23,7 +23,7 @@ fun DisplayInfoBlock(data: UiUserInfo, modifier: Modifier = Modifier) {
         modifier = modifier,
     ) {
         Card(
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
             modifier = Modifier,
         ) {
             Row {

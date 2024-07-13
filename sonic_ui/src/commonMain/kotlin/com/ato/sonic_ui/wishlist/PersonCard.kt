@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
@@ -25,7 +26,7 @@ fun PersonCard(
 ) {
     Card(
         modifier = modifier,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         onClick = onClick
     ) {
         Text(
@@ -58,9 +59,10 @@ fun PersonCardButtons(
 ) {
     Card(
         modifier = modifier,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         onClick = onClick
     ) {
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = name,
             fontWeight = FontWeight.Bold,
@@ -75,7 +77,10 @@ fun PersonCardButtons(
                 .padding(horizontal = 8.dp)
                 .padding(bottom = 8.dp)
         )
-        Row(horizontalArrangement = Arrangement.SpaceEvenly) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceAround,
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+        ) {
             DisplayButton(
                 state = acceptButton,
                 onClick = onDecline
@@ -85,5 +90,7 @@ fun PersonCardButtons(
                 onClick = onBlock
             )
         }
+
+        Spacer(modifier = Modifier.height(8.dp))
     }
 }

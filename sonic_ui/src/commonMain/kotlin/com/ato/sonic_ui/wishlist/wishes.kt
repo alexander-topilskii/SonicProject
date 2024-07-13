@@ -30,7 +30,7 @@ fun DisplayWish(
 ) {
     Card(
         modifier = modifier,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         onClick = remember(wish) { { onClick.invoke(wish) } }
     ) {
         Column(
@@ -68,7 +68,7 @@ fun DisplayFullWish(
 ) {
     Card(
         modifier = modifier,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
     ) {
         Column(
             modifier = Modifier
