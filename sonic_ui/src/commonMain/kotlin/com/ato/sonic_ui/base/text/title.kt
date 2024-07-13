@@ -31,8 +31,14 @@ fun DisplayTitle(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier.fillMaxWidth()
     ) {
+        val title = if (state.titleFormatArgs == null) {
+            stringResource(state.title)
+        } else {
+            stringResource(state.title, state.titleFormatArgs!!)
+        }
+
         Text(
-            text = stringResource(state.title),
+            text = title,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .padding(horizontal = 16.dp),
