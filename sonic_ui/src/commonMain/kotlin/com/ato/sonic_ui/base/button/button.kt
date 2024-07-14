@@ -46,7 +46,7 @@ fun DisplayButton(
         Button(
             modifier = modifier,
             onClick = onClick,
-            enabled = state.isEnabled
+            enabled = state.isEnabled,
         ) {
             if (state.isLoading) {
                 CircularProgressIndicator(
@@ -55,7 +55,7 @@ fun DisplayButton(
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             } else {
-                Text(text = stringResource(state.title))
+                Text(text = stringResource(state.title), maxLines = 1)
             }
         }
     }

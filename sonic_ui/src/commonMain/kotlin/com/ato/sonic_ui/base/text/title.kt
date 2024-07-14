@@ -12,8 +12,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,7 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ato.sonic_ui.base.button.DisplayButton
 import com.ato.sonic_ui.base.line.HorizontalSpaceLine
 import com.ato.ui_state.base.text.UiTitle
 import org.jetbrains.compose.resources.stringResource
@@ -40,7 +42,6 @@ fun DisplayTitle(
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.Bottom
     ) {
         val title = if (state.titleFormatArgs == null) {
             stringResource(state.title)
@@ -50,10 +51,11 @@ fun DisplayTitle(
 
         Row(
             modifier = Modifier
-                .padding(horizontal = 16.dp),
+                .padding(end = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (onBackClicked != null) {
+                Spacer(modifier = Modifier.width(8.dp))
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "",
@@ -66,6 +68,8 @@ fun DisplayTitle(
                         .padding(8.dp),
                 )
                 Spacer(modifier = Modifier.width(8.dp))
+            } else {
+                Spacer(modifier = Modifier.width(16.dp))
             }
 
             Text(
@@ -77,13 +81,29 @@ fun DisplayTitle(
             )
         }
 
-
         state.button?.let {
-            DisplayButton(
-                state = it,
+            SmallFloatingActionButton(
                 onClick = onClick,
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                contentColor = MaterialTheme.colorScheme.secondary,
+                content = {
+                    if (it.isLoading) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(ButtonDefaults.IconSize),
+                            strokeWidth = 2.dp,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    } else {
+                        Text(
+                            text = stringResource(resource = it.title),
+                            modifier = Modifier.padding(horizontal = 8.dp),
+                            maxLines = 1
+                        )
+                    }
+                },
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
+                    .align(Alignment.Bottom)
             )
         }
     }
