@@ -97,7 +97,8 @@ fun DisplayTitle(
                         Text(
                             text = stringResource(resource = it.title),
                             modifier = Modifier.padding(horizontal = 8.dp),
-                            maxLines = 1
+                            maxLines = 1,
+                            color = MaterialTheme.colorScheme.onSecondary
                         )
                     }
                 },
