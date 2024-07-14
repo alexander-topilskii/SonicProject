@@ -1,6 +1,5 @@
 package com.ato.sonic_ui.wishlist
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -54,8 +52,8 @@ fun PersonCardButtons(
     modifier: Modifier = Modifier,
     acceptButton: UiButton,
     declineButton: UiButton,
+    onAccept: () -> Unit,
     onDecline: () -> Unit,
-    onBlock: () -> Unit,
 ) {
     Card(
         modifier = modifier,
@@ -83,11 +81,11 @@ fun PersonCardButtons(
         ) {
             DisplayButton(
                 state = acceptButton,
-                onClick = onDecline
+                onClick = onAccept
             )
             DisplayButton(
                 state = declineButton,
-                onClick = onBlock
+                onClick = onDecline
             )
         }
 

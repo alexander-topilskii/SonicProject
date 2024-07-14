@@ -104,7 +104,6 @@ fun DisplayTitle(
                 },
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
-                    .align(Alignment.Bottom)
             )
         }
     }
