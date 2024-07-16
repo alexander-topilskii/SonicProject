@@ -68,6 +68,10 @@ kotlin {
             //
             implementation(libs.kmp.firebase.database)
             implementation(libs.kmp.firebase.firestore)
+
+            // for deeplink data
+            implementation(libs.ktor.client.core)
+
         }
     }
 }
