@@ -71,6 +71,7 @@ kotlin {
 
             // for deeplink data
             implementation(libs.ktor.client.core)
+            implementation(libs.ktor.http)
 
         }
     }

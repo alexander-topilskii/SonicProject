@@ -1,6 +1,7 @@
-package com.ato.ui_state.wishlist
+package com.ato.ui_state.wishlist.deeplink
 
 import io.ktor.http.Url
+import io.ktor.http.encodeURLParameter
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -32,5 +33,17 @@ data class DeeplinkParams(
                 wishName = wishName
             )
         }
+
+
+    }
+
+    fun toQueryString(): String {
+        val params = mutableListOf<String>()
+        userId?.let { params.add("$PARAM_USER_ID=${it.encodeURLParameter()}") }
+        wishId?.let { params.add("$PARAM_WISH_ID=${it.encodeURLParameter()}") }
+        wishName?.let { params.add("$PARAM_WISH_NAME=${it.encodeURLParameter()}") }
+        wishUrl?.let { params.add("$PARAM_WISH_URL=${it.encodeURLParameter()}") }
+        wishDescription?.let { params.add("$PARAM_WISH_DESCRIPTION=${it.encodeURLParameter()}") }
+        return params.joinToString(separator = "&")
     }
 }

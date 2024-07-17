@@ -1,4 +1,4 @@
-package com.ato.ui_state.wishlist
+package com.ato.ui_state.wishlist.deeplink
 
 import io.ktor.http.Url
 import kotlinx.serialization.Serializable
@@ -21,15 +21,8 @@ data class DeepLinkData(
         const val SETTINGS: String = "settings"
         const val EVENTS: String = "events"
 
-        val addWish = DeepLinkData(
-            scheme = SCHEME,
-            host = HOST,
-            pathSegments = listOf(APP, WISHES, ADD_WISH),
-            deeplinkParams = DeeplinkParams()
-        )
 
         fun fromUrl(urlString: String): DeepLinkData? {
-
             return if (
                 urlString.startsWith("$HTTPS://$HOST/$APP/") ||
                 urlString.startsWith("$SCHEME://$HOST/$APP/")
@@ -44,11 +37,13 @@ data class DeepLinkData(
                     deeplinkParams = DeeplinkParams.fromUrl(url)
                 ).getTail()
             } else {
-                addWish.getTail()
+                // Если это не наша схема, то юзер хочет добавить наше желание
+                DeeplinkCreator.addWishDeeplink.getTail()
             }
         }
 
         fun getAddWishWithDescription(sharedUris: List<String>): DeepLinkData? {
+            val addWish = DeeplinkCreator.addWishDeeplink
             return addWish.copy(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishDescription = sharedUris.joinToString { "/n" }
@@ -57,6 +52,7 @@ data class DeepLinkData(
         }
 
         fun getAddWishWithDescription(sharedDescription: String): DeepLinkData? {
+            val addWish = DeeplinkCreator.addWishDeeplink
             return addWish.copy(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishDescription = sharedDescription
@@ -65,6 +61,7 @@ data class DeepLinkData(
         }
 
         fun getAddWishWithName(name: String): DeepLinkData? {
+            val addWish = DeeplinkCreator.addWishDeeplink
             return addWish.copy(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishName = name
@@ -73,15 +70,12 @@ data class DeepLinkData(
         }
 
         fun getAddWishWithLink(url: String): DeepLinkData? {
+            val addWish = DeeplinkCreator.addWishDeeplink
             return addWish.copy(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishUrl = url
                 )
             ).getTail()
-        }
-
-        fun buildDeeplink() {
-
         }
     }
 
@@ -101,5 +95,15 @@ data class DeepLinkData(
             null
         }
     }
+
+    fun toDeeplink(): String {
+        val path = pathSegments.joinToString(separator = "/")
+        val query = deeplinkParams.toQueryString()
+
+        return "$scheme://$host/$path?$query"
+    }
 }
 
+interface DeeplinkExecutor {
+    fun openDeeplink(deepLinkData: DeepLinkData)
+}
