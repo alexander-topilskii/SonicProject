@@ -9,7 +9,7 @@ import com.ato.ui_state.base.chip.UiChip
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun UiChip.Display(onClick: (UiChip) -> Unit) {
+fun <T> UiChip<T>.Display(onClick: (UiChip<T>) -> Unit) {
     FilterChip(
         colors = FilterChipDefaults.filterChipColors(
             selectedContainerColor = MaterialTheme.colorScheme.primary,
@@ -30,5 +30,5 @@ fun UiChip.Display(onClick: (UiChip) -> Unit) {
 @Preview()
 @Composable
 fun UiChipDemo() {
-    UiChip("red", true).Display({})
+    UiChip<Any>("red", true).Display({})
 }

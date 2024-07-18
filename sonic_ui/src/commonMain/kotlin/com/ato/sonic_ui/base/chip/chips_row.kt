@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ato.ui_state.base.chip.UiChip
@@ -13,8 +14,8 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun UiChipRow.Display(
-    onTagClicked: (UiChip) -> Unit,
+fun <T> UiChipRow<T>.Display(
+    onTagClicked: (UiChip<T>) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     FlowRow(
@@ -25,6 +26,21 @@ fun UiChipRow.Display(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun <T> DisplayCenterChipRow(
+    chipsRow: UiChipRow<T>,
+    onTagClicked: (UiChip<T>) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    FlowRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+        modifier = modifier.padding(8.dp)
+    ) {
+        chipsRow.chips.forEach { it.Display(onTagClicked) }
+    }
+}
+
 // ------------------------------------------------------------------------
 // ------------------------------------------------------------------------
 // ------------------------------------------------------------------------
@@ -32,7 +48,7 @@ fun UiChipRow.Display(
 @Preview()
 @Composable
 fun UiChipRowDemo() {
-    UiChipRow(
+    UiChipRow<Any>(
         chips = listOf(
             UiChip(isSelected = false, text = "green"),
             UiChip(isSelected = true, text = "red"),

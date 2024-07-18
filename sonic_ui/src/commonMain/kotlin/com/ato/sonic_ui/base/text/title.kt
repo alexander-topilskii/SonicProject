@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ato.sonic_ui.base.button.DisplayButton
 import com.ato.sonic_ui.base.line.HorizontalSpaceLine
 import com.ato.ui_state.base.text.UiTitle
 import org.jetbrains.compose.resources.stringResource
@@ -82,26 +83,9 @@ fun DisplayTitle(
         }
 
         state.button?.let {
-            SmallFloatingActionButton(
+            DisplayButton(
+                state = it,
                 onClick = onClick,
-                containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                contentColor = MaterialTheme.colorScheme.secondary,
-                content = {
-                    if (it.isLoading) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(ButtonDefaults.IconSize),
-                            strokeWidth = 2.dp,
-                            color = MaterialTheme.colorScheme.onPrimary
-                        )
-                    } else {
-                        Text(
-                            text = stringResource(resource = it.title),
-                            modifier = Modifier.padding(horizontal = 8.dp),
-                            maxLines = 1,
-                            color = MaterialTheme.colorScheme.onSecondary
-                        )
-                    }
-                },
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
             )
