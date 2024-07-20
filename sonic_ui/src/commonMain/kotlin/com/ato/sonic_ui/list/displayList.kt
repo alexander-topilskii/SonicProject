@@ -85,7 +85,6 @@ fun <T1, T2> LazyListScope.displayMap(
             }
         } else {
             map.forEach { (headers, dataList) ->
-                println("GGGG::displayMap: $headers $dataList")
                 stickyHeader {
                     header(headers, modifier)
                 }
