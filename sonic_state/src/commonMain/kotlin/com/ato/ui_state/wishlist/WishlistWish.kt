@@ -7,10 +7,12 @@ import kotlinx.serialization.Serializable
 data class WishlistWish(
     var documentId: String? = null,
     var userDocumentId: String? = null,
+    @Deprecated("use boardDocumentIds")
     var boardDocumentId: String? = null,
     var name: String? = null,
     var description: String = "",
     var creationDate: Timestamp? = null,
+    var boardDocumentIds: MutableList<String> = mutableListOf(),
     var assignedUserDocumentIds: MutableList<String> = mutableListOf(),
     var url: String? = null
 )
