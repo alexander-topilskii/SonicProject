@@ -85,7 +85,7 @@ fun <T1, T2> LazyListScope.displayMap(
             }
         } else {
             map.forEach { (headers, dataList) ->
-                stickyHeader {
+                item {
                     header(headers, modifier)
                 }
                 items(dataList) { item ->
