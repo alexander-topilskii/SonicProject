@@ -1,6 +1,5 @@
 package com.ato.sonic_ui.wishlist
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -31,7 +29,7 @@ fun DisplayWish(
     Card(
         modifier = modifier,
 //        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        onClick = remember(wish) { { onClick.invoke(wish) } }
+        onClick = remember(wish) { { onClick.invoke(wish) } },
     ) {
         Column(
             modifier = Modifier

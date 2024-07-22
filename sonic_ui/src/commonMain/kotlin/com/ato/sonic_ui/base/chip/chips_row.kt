@@ -35,7 +35,7 @@ fun <T> DisplayCenterChipRow(
 ) {
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-        modifier = modifier.padding(8.dp)
+        modifier = modifier
     ) {
         chipsRow.chips.forEach { it.Display(onTagClicked) }
     }
