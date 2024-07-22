@@ -1,9 +1,7 @@
 package com.ato.sonic_ui.list
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +12,6 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.MaterialTheme
@@ -28,26 +25,47 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ato.sonic_ui.base.icons.DisplayIcon
 import com.ato.ui_state.base.UiIcon
-import com.ato.ui_state.base.list.UiList
 import com.ato.ui_state.base.list.UiMap
 import org.jetbrains.compose.resources.stringResource
 
-fun <T> LazyListScope.displayList(
-    uiList: UiList<T>,
+
+fun <T1, T2> LazyListScope.displayWishMap(
+    uiList: UiMap<T1, T2>,
     modifier: Modifier = Modifier,
-    listContent: @Composable (T, Modifier) -> Unit,
+    onTitleClicked: () -> Unit,
+    header: @Composable (T1, Modifier) -> Unit,
+    listContent: @Composable (T2) -> Unit,
 ) {
-    val list = uiList.content
+    val map = uiList.content
+
     uiList.contentTitle?.let { contentTitle ->
         item {
-            Text(
-                text = stringResource(contentTitle),
-                modifier = modifier,
-                fontWeight = FontWeight.SemiBold
-            )
+            Row(
+                modifier = modifier
+                    .clickable(onClick = onTitleClicked)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(contentTitle),
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 24.sp
+                )
+                DisplayIcon(
+                    UiIcon(
+                        icon = Icons.Default.Add,
+                    ),
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clip(CircleShape)
+                        .padding(8.dp),
+                    tint = MaterialTheme.colorScheme.onBackground
+                )
+            }
         }
     }
-    if (list == null) {
+    if (map == null) {
         item {
             Text(
                 text = stringResource(uiList.loading),
@@ -55,7 +73,7 @@ fun <T> LazyListScope.displayList(
             )
         }
     } else {
-        if (list.isEmpty()) {
+        if (map.isEmpty()) {
             item {
                 Text(
                     text = stringResource(uiList.empty),
@@ -63,10 +81,20 @@ fun <T> LazyListScope.displayList(
                 )
             }
         } else {
-            items(list) { item ->
-                listContent(item, modifier)
+            map.forEach { (headers, dataList) ->
+                item {
+                    header(headers, modifier)
+                }
+                item {
+                    LazyRow {
+                        item { Spacer(Modifier.width(8.dp)) }
+                        items(dataList) { item ->
+                            listContent(item)
+                        }
+                        item { Spacer(Modifier.width(8.dp)) }
+                    }
+                }
             }
         }
     }
 }
-
