@@ -61,9 +61,9 @@ fun DisplayWish(
                     )
                 }
 
-                if (wish.description.isNotEmpty()) {
+                if (!wish.description.isNullOrEmpty()) {
                     Text(
-                        text = wish.description,
+                        text = wish.description.orEmpty(),
                         style = MaterialTheme.typography.bodyMedium,
                         maxLines = 3,
                         overflow = TextOverflow.Ellipsis,
@@ -97,9 +97,9 @@ fun DisplayFullWish(
                 )
             }
 
-            if (wish.description.isNotEmpty()) {
+            if (!wish.description.isNullOrEmpty()) {
                 Text(
-                    text = wish.description,
+                    text = wish.description.orEmpty(),
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(top = 8.dp)
                 )

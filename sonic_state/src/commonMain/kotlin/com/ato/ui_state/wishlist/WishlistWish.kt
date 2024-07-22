@@ -10,7 +10,7 @@ data class WishlistWish(
     @Deprecated("use boardDocumentIds")
     var boardDocumentId: String? = null,
     var name: String? = null,
-    var description: String = "",
+    var description: String? = "",
     var creationDate: Timestamp? = null,
     var isCompleted: Boolean? = null,
     var boardDocumentIds: List<String>? = mutableListOf(),
