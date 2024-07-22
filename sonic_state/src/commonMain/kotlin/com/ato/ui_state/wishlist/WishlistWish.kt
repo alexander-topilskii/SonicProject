@@ -12,7 +12,7 @@ data class WishlistWish(
     var name: String? = null,
     var description: String = "",
     var creationDate: Timestamp? = null,
-    var boardDocumentIds: List<String> = mutableListOf(),
-    var assignedUserDocumentIds: MutableList<String> = mutableListOf(),
+    var boardDocumentIds: List<String>? = mutableListOf(),
+    var assignedUserDocumentIds: MutableList<String>? = mutableListOf(),
     var url: String? = null
 )
