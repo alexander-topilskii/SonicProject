@@ -32,7 +32,7 @@ import org.jetbrains.compose.resources.stringResource
 fun <T1, T2> LazyListScope.displayWishMap(
     uiList: UiMap<T1, T2>,
     modifier: Modifier = Modifier,
-    onTitleClicked: () -> Unit,
+    onTitleClicked: (() -> Unit)?,
     header: @Composable (T1, Modifier) -> Unit,
     listContent: @Composable (T2) -> Unit,
 ) {
@@ -42,7 +42,13 @@ fun <T1, T2> LazyListScope.displayWishMap(
         item {
             Row(
                 modifier = modifier
-                    .clickable(onClick = onTitleClicked)
+                    .let {
+                        if (onTitleClicked != null) {
+                            it.clickable(onClick = onTitleClicked)
+                        } else {
+                            it
+                        }
+                    }
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -52,16 +58,18 @@ fun <T1, T2> LazyListScope.displayWishMap(
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 24.sp
                 )
-                DisplayIcon(
-                    UiIcon(
-                        icon = Icons.Default.Add,
-                    ),
-                    modifier = Modifier
-                        .size(36.dp)
-                        .clip(CircleShape)
-                        .padding(8.dp),
-                    tint = MaterialTheme.colorScheme.onBackground
-                )
+                uiList.contentIcon?.icon?.let { icon ->
+                    DisplayIcon(
+                        UiIcon(
+                            icon = icon,
+                        ),
+                        modifier = Modifier
+                            .size(36.dp)
+                            .clip(CircleShape)
+                            .padding(8.dp),
+                        tint = MaterialTheme.colorScheme.onBackground
+                    )
+                }
             }
         }
     }

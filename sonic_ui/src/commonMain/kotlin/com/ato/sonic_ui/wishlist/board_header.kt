@@ -9,11 +9,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,15 +31,20 @@ fun BoardHeader(
     map: UiMap<WishlistBoard?, WishlistWish>,
     modifier: Modifier,
     board: WishlistBoard?,
-    onBoardClicked: ((WishlistBoard?) -> Unit)?,
+    onHeaderClicked: ((WishlistBoard?) -> Unit)?,
 ) {
-    if (onBoardClicked == null) return
 
     Spacer(modifier.height(16.dp))
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .clickable(onClick = { onBoardClicked(board) }),
+            .let {
+                if (onHeaderClicked != null) {
+                    it.clickable(onClick = remember(map) { { onHeaderClicked.invoke(board) } })
+                } else {
+                    it
+                }
+            },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -57,16 +61,19 @@ fun BoardHeader(
                 modifier = Modifier.weight(1f)
             )
         }
-        DisplayIcon(
-            UiIcon(
-                icon = Icons.AutoMirrored.Filled.ArrowForward,
-            ),
-            modifier = Modifier
-                .size(36.dp)
-                .clip(CircleShape)
-                .padding(8.dp)
-                .weight(1f, fill = false),
-            tint = MaterialTheme.colorScheme.onBackground
-        )
+        map.headerIcon?.icon?.let { icon ->
+            DisplayIcon(
+                UiIcon(
+                    icon = icon,
+                ),
+                modifier = Modifier
+                    .size(36.dp)
+                    .clip(CircleShape)
+                    .padding(8.dp)
+                    .weight(1f, fill = false),
+                tint = MaterialTheme.colorScheme.onBackground
+            )
+        }
+
     }
 }
