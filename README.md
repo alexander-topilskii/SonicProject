@@ -1,53 +1,48 @@
 - To console:
+
 ```
  git submodule add https://github.com/alexander-topilskii/SonicProject.git
  git commit -m "Добавлен сабмодуль: sonic project"
  git submodule update
 ```
+
 - to settings:
+
 ```
+// ------------------- Sonic ------------------- //
+include(":sonic_helpers")
+project(":sonic_helpers").projectDir = file("SonicProject/sonic_helpers")
+
+include(":decompose_template")
+project(":decompose_template").projectDir = file("SonicProject/decompose_template")
+
+include(":decompose_stack_template")
+project(":decompose_stack_template").projectDir = file("SonicProject/decompose_stack_template")
+
 include(":sonic_ui")
 project(":sonic_ui").projectDir = file("SonicProject/sonic_ui")
 
-include(":sonic_presentetion")
-project(":sonic_presentetion").projectDir = file("SonicProject/sonic_presentetion")
-
-include(":sonic_domain")
-project(":sonic_domain").projectDir = file("SonicProject/sonic_domain")
-
-include(":sonic_repository")
-project(":sonic_repository").projectDir = file("SonicProject/sonic_repository")
-
-include(":sonic_template")
-project(":sonic_template").projectDir = file("SonicProject/sonic_template")
-
-include(":sonic_di")
-project(":sonic_di").projectDir = file("SonicProject/sonic_di")
-
-include(":sonic_bottom")
-project(":sonic_bottom").projectDir = file("SonicProject/sonic_bottom")
+include(":sonic_state")
+project(":sonic_state").projectDir = file("SonicProject/sonic_state")
+// ------------------- Sonic ------------------- //
 ```
+
 also:
-```
-// ------------------- Sonic -------------------//
-implementation(project(":sonic_ui"))            //
-implementation(project(":sonic_presentetion"))  //
-implementation(project(":sonic_domain"))        //
-implementation(project(":sonic_repository"))    //
-implementation(project(":sonic_di"))            //
-implementation(project(":sonic_bottom"))        //
-implementation(project(":sonic_template"))      //
-// ------------------- Sonic -------------------//
-```
 
+```
+// ------------------- Sonic -------------------//
+implementation(projects.sonicState)
+implementation(projects.sonicHelpers)
+implementation(projects.sonicUi)
+// ------------------- Sonic -------------------//
+```
 
 Theme builder:
-https://material-foundation.github.io/material-theme-builder/ 
-
-
+https://material-foundation.github.io/material-theme-builder/
 
 Принципы:
+
 - Знания ускоряют разработку
-- шаблоны ускоряют разработку 
+- шаблоны ускоряют разработку
 - проработка ускоряет разработку
 - заменяемость быстрее поддерживаемости
