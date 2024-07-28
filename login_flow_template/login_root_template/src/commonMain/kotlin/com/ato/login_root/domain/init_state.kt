@@ -8,11 +8,11 @@ import com.ato.ui_state.base.button.UiButton
 import com.ato.ui_state.base.input.UiEditTextState
 import com.ato.ui_state.base.text.UiSimpleText
 import kotlinx.coroutines.flow.MutableStateFlow
-import wishlist.login_flow.login_root.generated.resources.Res
-import wishlist.login_flow.login_root.generated.resources.login_email
-import wishlist.login_flow.login_root.generated.resources.login_login_button
-import wishlist.login_flow.login_root.generated.resources.login_or
-import wishlist.login_flow.login_root.generated.resources.login_password
+import minimalisticflashcards.login_root_template.generated.resources.Res
+import minimalisticflashcards.login_root_template.generated.resources.login_email
+import minimalisticflashcards.login_root_template.generated.resources.login_login_button
+import minimalisticflashcards.login_root_template.generated.resources.login_or
+import minimalisticflashcards.login_root_template.generated.resources.login_password
 
 fun getInitState() = MutableStateFlow(
     LoginRootUiState(

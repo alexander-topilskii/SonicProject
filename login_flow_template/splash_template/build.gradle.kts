@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-val moduleName = "splash"
+val moduleName = "splash_template"
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
