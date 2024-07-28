@@ -1,10 +1,6 @@
 package com.ato.data_storage
 
-import androidx.room.Room
-import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSURL
@@ -13,14 +9,15 @@ import platform.Foundation.NSUserDomainMask
 
 actual class Factory {
     actual fun createRoomDatabase(): TemplateDataBase {
-        val dbFile = "${fileDirectory()}/$dbFileName"
-        return Room.databaseBuilder<TemplateDataBase>(
-            name = dbFile,
-            factory = { TemplateDataBase::class.instantiateImpl() }
-        )
-            .setDriver(BundledSQLiteDriver())
-            .setQueryCoroutineContext(Dispatchers.IO)
-            .build()
+        TODO()
+//        val dbFile = "${fileDirectory()}/$dbFileName"
+//        return Room.databaseBuilder<TemplateDataBase>(
+//            name = dbFile,
+//            factory = { TemplateDataBase::class.instantiateImpl() }
+//        )
+//            .setDriver(BundledSQLiteDriver())
+//            .setQueryCoroutineContext(Dispatchers.IO)
+//            .build()
     }
 
     @OptIn(ExperimentalForeignApi::class)
