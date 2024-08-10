@@ -2,6 +2,7 @@ package com.ato.sonic_ui.menu
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,7 +36,6 @@ import com.ato.ui_state.base.menu.Section
 import com.ato.ui_state.base.menu.UiSections
 import org.jetbrains.compose.resources.stringResource
 
-
 @Composable
 fun DisplaySections(
     state: UiSections,
@@ -57,6 +57,7 @@ fun DisplaySections(
         ) {
             state.items.forEach { item ->
                 Text(
+
                     text = item.title?.let { stringResource(it) } ?: item.name.orEmpty(),
                     modifier = Modifier
                         .background(
@@ -68,7 +69,10 @@ fun DisplaySections(
                             shape = RoundedCornerShape(50.dp)
                         )
                         .padding(horizontal = 16.dp, vertical = 4.dp)
-                        .clickable { onSelected(item) },
+                        .clickable(
+                            indication = null,
+                            interactionSource = remember { MutableInteractionSource() }
+                        ) { onSelected(item) },
                     color = if (item.isSelected) {
                         MaterialTheme.colorScheme.onPrimary
                     } else {
