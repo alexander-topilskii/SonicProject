@@ -1,0 +1,12 @@
+<resources>
+    <string name="create_account_name">Your name</string>
+    <string name="create_account_nick">Your nick</string>
+    <string name="create_account_button">Create account</string>
+
+    <string name="create_account_name_empty">Name empty</string>
+    <string name="create_account_nick_empty">Nick empty</string>
+    <string name="create_account_nick_short">Nick too short</string>
+    <string name="create_account_nick_long">Nick too long</string>
+    <string name="create_account_nick_unavailable">Nick contains unavailable letters</string>
+    <string name="create_account_nick_taken">This nick taken</string>
+</resources>

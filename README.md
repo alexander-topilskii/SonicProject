@@ -10,6 +10,9 @@
 
 ```
 // ------------------- Sonic ------------------- //
+include(":data_storage_template")
+project(":data_storage_template").projectDir = file("SonicProject/data_storage_template")
+
 include(":sonic_helpers")
 project(":sonic_helpers").projectDir = file("SonicProject/sonic_helpers")
 
