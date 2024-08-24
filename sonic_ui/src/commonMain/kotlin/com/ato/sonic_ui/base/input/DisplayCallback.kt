@@ -1,20 +1,13 @@
 package com.ato.sonic_ui.base.input
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.indication
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,21 +17,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.icons.DisplayIcon
 import com.ato.ui_state.base.input.UiEditTextState
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
-import wishlist.sonic_ui.generated.resources.Res
-import wishlist.sonic_ui.generated.resources.person_wishes_list_title
-import wishlist.sonic_ui.generated.resources.visibility
-import wishlist.sonic_ui.generated.resources.visibility_off
 
 @Composable
 fun DisplayEditableText(
@@ -95,7 +84,9 @@ fun DisplayEditablePassword(
     state: UiEditTextState,
     modifier: Modifier = Modifier,
     onValueChanged: (String) -> Unit = {},
-    onDone: () -> Unit
+    visibility: DrawableResource, // Res.drawable.visibility
+    visibilityOff: DrawableResource, // Res.drawable.visibility_off
+    onDone: () -> Unit,
 ) = with(state) {
     val textState = remember(inputText) { mutableStateOf(inputText) }
     var passwordVisibility by remember { mutableStateOf(false) }
@@ -113,9 +104,9 @@ fun DisplayEditablePassword(
                     .padding(8.dp),
                 painter = painterResource(
                     if (passwordVisibility) {
-                        Res.drawable.visibility
+                        visibility
                     } else {
-                        Res.drawable.visibility_off
+                       visibilityOff
                     }
                 ),
                 contentDescription = ""
