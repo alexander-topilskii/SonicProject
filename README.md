@@ -1,4 +1,4 @@
-- To console:
+## To console:
 
 ```
  git submodule add https://github.com/alexander-topilskii/SonicProject.git
@@ -6,9 +6,10 @@
  git submodule update
 ```
 
-- to settings:
+## to settings:
 
 ```
+
 // ------------------- Sonic ------------------- //
 include(":data_storage_template")
 project(":data_storage_template").projectDir = file("SonicProject/data_storage_template")
@@ -30,7 +31,7 @@ project(":sonic_state").projectDir = file("SonicProject/sonic_state")
 // ------------------- Sonic ------------------- //
 ```
 
-also:
+## All modules 
 
 ```
 // ------------------- Sonic -------------------//
@@ -39,6 +40,23 @@ implementation(projects.sonicHelpers)
 implementation(projects.sonicUi)
 // ------------------- Sonic -------------------//
 ```
+
+## project gradle
+
+```kotlin 
+  alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
+    alias(libs.plugins.jetbrains.compose) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.google.services) apply true
+```
+
+## module gralde app
 
 Theme builder:
 https://material-foundation.github.io/material-theme-builder/
