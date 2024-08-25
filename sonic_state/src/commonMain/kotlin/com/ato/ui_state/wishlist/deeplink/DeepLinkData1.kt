@@ -4,11 +4,11 @@ import io.ktor.http.Url
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DeepLinkData(
+data class DeepLinkData1(
     val scheme: String?,
     val host: String?,
     val pathSegments: List<String>,
-    val deeplinkParams: DeeplinkParams
+    val deeplinkParams: DeeplinkParams1
 ) {
     companion object {
         const val APP: String = "app"
@@ -22,7 +22,7 @@ data class DeepLinkData(
         const val EVENTS: String = "events"
 
 
-        fun fromUrl(urlString: String): DeepLinkData? {
+        fun fromUrl(urlString: String): DeepLinkData1? {
             return if (
                 urlString.startsWith("$HTTPS://$HOST/$APP/") ||
                 urlString.startsWith("$SCHEME://$HOST/$APP/")
@@ -30,20 +30,20 @@ data class DeepLinkData(
                 val url = Url(urlString)
                 val pathSegments = url.pathSegments.filter { it.isNotEmpty() }
 
-                DeepLinkData(
+                DeepLinkData1(
                     scheme = url.protocol.name,
                     host = url.host,
                     pathSegments = pathSegments,
-                    deeplinkParams = DeeplinkParams.fromUrl(url)
+                    deeplinkParams = DeeplinkParams1.fromUrl(url)
                 ).getTail()
             } else {
                 // Если это не наша схема, то юзер хочет добавить наше желание
-                DeeplinkCreator.addWishDeeplink.getTail()
+                DeeplinkCreator1.addWishDeeplink.getTail()
             }
         }
 
-        fun getAddWishWithDescription(sharedUris: List<String>): DeepLinkData? {
-            val addWish = DeeplinkCreator.addWishDeeplink
+        fun getAddWishWithDescription(sharedUris: List<String>): DeepLinkData1? {
+            val addWish = DeeplinkCreator1.addWishDeeplink
             return addWish.copy(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishDescription = sharedUris.joinToString { "/n" }
@@ -51,8 +51,8 @@ data class DeepLinkData(
             ).getTail()
         }
 
-        fun getAddWishWithDescription(sharedDescription: String): DeepLinkData? {
-            val addWish = DeeplinkCreator.addWishDeeplink
+        fun getAddWishWithDescription(sharedDescription: String): DeepLinkData1? {
+            val addWish = DeeplinkCreator1.addWishDeeplink
             return addWish.copy(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishDescription = sharedDescription
@@ -60,8 +60,8 @@ data class DeepLinkData(
             ).getTail()
         }
 
-        fun getAddWishWithName(name: String): DeepLinkData? {
-            val addWish = DeeplinkCreator.addWishDeeplink
+        fun getAddWishWithName(name: String): DeepLinkData1? {
+            val addWish = DeeplinkCreator1.addWishDeeplink
             return addWish.copy(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishName = name
@@ -69,8 +69,8 @@ data class DeepLinkData(
             ).getTail()
         }
 
-        fun getAddWishWithLink(url: String): DeepLinkData? {
-            val addWish = DeeplinkCreator.addWishDeeplink
+        fun getAddWishWithLink(url: String): DeepLinkData1? {
+            val addWish = DeeplinkCreator1.addWishDeeplink
             return addWish.copy(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishUrl = url
@@ -83,9 +83,9 @@ data class DeepLinkData(
         return if (pathSegments.isNotEmpty()) pathSegments.first() else null
     }
 
-    fun getTail(): DeepLinkData? {
+    fun getTail(): DeepLinkData1? {
         return if (pathSegments.isNotEmpty()) {
-            DeepLinkData(
+            DeepLinkData1(
                 scheme = scheme,
                 host = host,
                 pathSegments = pathSegments.drop(1),
@@ -104,6 +104,6 @@ data class DeepLinkData(
     }
 }
 
-interface DeeplinkExecutor {
-    fun openDeeplink(deepLinkData: DeepLinkData)
+interface DeeplinkExecutor1 {
+    fun openDeeplink(deepLinkData: DeepLinkData1)
 }

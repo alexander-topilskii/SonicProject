@@ -5,7 +5,7 @@ import io.ktor.http.encodeURLParameter
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DeeplinkParams(
+data class DeeplinkParams1(
     val userId: String? = null,
     val wishId: String? = null,
     val wishName: String? = null,
@@ -19,13 +19,13 @@ data class DeeplinkParams(
         const val PARAM_WISH_URL = "wishUrl"
         const val PARAM_WISH_DESCRIPTION = "wishDescription"
 
-        fun fromUrl(url: Url): DeeplinkParams {
+        fun fromUrl(url: Url): DeeplinkParams1 {
             val userId = url.parameters[PARAM_USER_ID]
             val wishId = url.parameters[PARAM_WISH_ID]
             val wishName = url.parameters[PARAM_WISH_NAME]
             val wishUrl = url.parameters[PARAM_WISH_URL]
             val wishDescription = url.parameters[PARAM_WISH_DESCRIPTION]
-            return DeeplinkParams(
+            return DeeplinkParams1(
                 userId = userId,
                 wishId = wishId,
                 wishUrl = wishUrl,
