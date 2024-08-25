@@ -14,7 +14,7 @@ class UsersDao {
     suspend fun observeUser(authId: String?): Flow<User?> {
         if (authId == null) return flowOf(null)
 
-        return Firebase.firestore.collection(USERS_COLLECTION).where {
+        return FirebaseWrapper.firestore.collection(USERS_COLLECTION).where {
             User::id.name equalTo authId
         }
 
@@ -30,7 +30,7 @@ class UsersDao {
     suspend fun getCurrentUser(): User? {
         val currentUser = Firebase.auth.currentUser ?: return null
 
-        val userResponse = Firebase.firestore.collection(USERS_COLLECTION)
+        val userResponse = FirebaseWrapper.firestore.collection(USERS_COLLECTION)
             .where {
                 User::id.name equalTo currentUser.uid
             }.get()
@@ -55,7 +55,7 @@ class UsersDao {
             nickname = nickname.lowercase()
         )
 
-        Firebase.firestore
+        FirebaseWrapper.firestore
             .collection(USERS_COLLECTION)
             .add(user)
     }
@@ -63,7 +63,7 @@ class UsersDao {
     suspend fun getUserById(userDocId: String?): User? {
         userDocId ?: return null
 
-        val userResponse = Firebase.firestore
+        val userResponse = FirebaseWrapper.firestore
             .collection(USERS_COLLECTION)
             .document(userDocId)
             .get()
@@ -74,7 +74,7 @@ class UsersDao {
     }
 
     suspend fun getAllUsers(): List<User> {
-        val response = Firebase.firestore
+        val response = FirebaseWrapper.firestore
             .collection(USERS_COLLECTION)
             .get()
 
@@ -86,13 +86,13 @@ class UsersDao {
     }
 
     suspend fun search(promt: String): List<User> {
-        val response1 = Firebase.firestore
+        val response1 = FirebaseWrapper.firestore
             .collection(USERS_COLLECTION)
             .where { User::nickname.name greaterThanOrEqualTo promt }
             .where { User::nickname.name lessThanOrEqualTo (promt + '\uf8ff') }
             .get()
 
-        val response2 = Firebase.firestore
+        val response2 = FirebaseWrapper.firestore
             .collection(USERS_COLLECTION)
             .where { User::name.name greaterThanOrEqualTo promt }
             .where { User::name.name lessThanOrEqualTo (promt + '\uf8ff') }
@@ -108,7 +108,7 @@ class UsersDao {
     }
 
     suspend fun getAllUsers(userIds: List<String>): List<User> {
-        val response = Firebase.firestore
+        val response = FirebaseWrapper.firestore
             .collection(USERS_COLLECTION)
             .where { FieldPath.documentId inArray userIds }
             .get()
