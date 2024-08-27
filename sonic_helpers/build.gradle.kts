@@ -54,6 +54,9 @@ kotlin {
             implementation(libs.essenty.stateKeeper)
             implementation(libs.essenty.backHandler)
 
+            implementation(libs.kmp.firebase.database)
+            implementation(libs.kmp.firebase.firestore)
+
             // compose
             implementation(compose.runtime)
             implementation(compose.foundation)

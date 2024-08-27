@@ -66,6 +66,7 @@ kotlin {
             implementation(libs.essenty.backHandler)
 
             //
+            implementation(libs.kmp.firebase.common)
             implementation(libs.kmp.firebase.database)
             implementation(libs.kmp.firebase.firestore)
 

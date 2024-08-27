@@ -68,6 +68,8 @@ kotlin {
             implementation(libs.essenty.stateKeeper)
             implementation(libs.essenty.backHandler)
 
+            implementation(libs.kmp.firebase.database)
+            implementation(libs.kmp.firebase.firestore)
 
             implementation(libs.kmp.firebase.auth)
 
