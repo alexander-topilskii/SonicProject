@@ -17,6 +17,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -106,7 +110,7 @@ fun DisplayEditablePassword(
                     if (passwordVisibility) {
                         visibility
                     } else {
-                       visibilityOff
+                        visibilityOff
                     }
                 ),
                 contentDescription = ""
@@ -144,10 +148,10 @@ fun DisplayEditablePassword(
             .copy(keyboardType = keyboardType as KeyboardType),
         keyboardActions = KeyboardActions(
             onDone = {
-                println("GGGG::DisplayEditablePassword:done")
-                onDone.invoke() },
-            onGo = { println("GGGG::DisplayEditablePassword:go")},
-            onSend = { println("GGGG::DisplayEditablePassword:se")}
+                onDone.invoke()
+            },
+            onGo = {},
+            onSend = { }
         )
     )
 }

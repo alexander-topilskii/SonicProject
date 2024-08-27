@@ -14,6 +14,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import kotlinx.coroutines.flow.distinctUntilChanged
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -22,6 +24,7 @@ fun PaginatedTextField(largeText: String, pageSize: Int = 1000) {
     val textPages = remember { largeText.chunked(pageSize) }
     val lazyListState = rememberLazyListState()
     val scope = rememberCoroutineScope()
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     var visiblePages by remember { mutableStateOf(listOf<Int>()) }
     val bufferPages = 5 // Number of pages to keep before and after the visible ones
@@ -45,7 +48,11 @@ fun PaginatedTextField(largeText: String, pageSize: Int = 1000) {
             OutlinedTextField(
                 value = textPages[pageIndex],
                 onValueChange = { /* handle change if needed */ },
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().onFocusChanged {
+                    if (!it.hasFocus) {
+                        keyboardController?.hide()
+                    }
+                },
                 readOnly = true
             )
         }

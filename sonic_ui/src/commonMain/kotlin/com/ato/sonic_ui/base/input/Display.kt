@@ -8,6 +8,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.icons.DisplayIcon
@@ -23,6 +25,8 @@ fun UiEditTextState.Display(
     onValueChanged: (String) -> Unit = {},
     onEndIconClicked: (() -> Unit)? = null
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     OutlinedTextField(
         trailingIcon = {
             DisplayIcon(
@@ -41,7 +45,11 @@ fun UiEditTextState.Display(
         minLines = minLines,
         maxLines = maxLines,
         singleLine = singleLine,
-        modifier = modifier,
+        modifier = modifier.onFocusChanged {
+            if (!it.hasFocus) {
+                keyboardController?.hide()
+            }
+        },
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType as KeyboardType)
     )
 }
