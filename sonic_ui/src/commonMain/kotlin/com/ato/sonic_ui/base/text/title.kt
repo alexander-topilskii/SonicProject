@@ -2,6 +2,7 @@ package com.ato.sonic_ui.base.text
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -197,65 +198,70 @@ fun DisplayAppBarTitle(
     onBackClicked: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
-    Spacer(modifier = Modifier.height(24.dp))
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier.fillMaxWidth(),
+    Box(
+        modifier = Modifier
+            .padding(top = 16.dp, bottom = 8.dp)
     ) {
-        val title = if (state.titleFormatArgs == null) {
-            stringResource(state.title)
-        } else {
-            stringResource(state.title, state.titleFormatArgs!!)
-        }
-
         Row(
-            modifier = Modifier
-                .padding(end = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = modifier.fillMaxWidth(),
         ) {
-            if (onBackClicked != null) {
-                Spacer(modifier = Modifier.width(8.dp))
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "",
-                    modifier = Modifier
-                        .size(36.dp)
-                        .clip(CircleShape)
-                        .clickable(
-                            onClick = onBackClicked,
-                        )
-                        .padding(8.dp),
-                )
-                Spacer(modifier = Modifier.width(8.dp))
+            val title = if (state.titleFormatArgs == null) {
+                stringResource(state.title)
             } else {
-                Spacer(modifier = Modifier.width(16.dp))
+                stringResource(state.title, state.titleFormatArgs!!)
             }
 
-            Text(
-                text = title,
-                fontWeight = FontWeight.Bold,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                fontSize = 36.sp,
-            )
-        }
+            Row(
+                modifier = Modifier
+                    .padding(end = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (onBackClicked != null) {
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .size(36.dp)
+                            .clip(CircleShape)
+                            .clickable(
+                                onClick = onBackClicked,
+                            )
+                            .padding(8.dp),
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                } else {
+                    Spacer(modifier = Modifier.width(16.dp))
+                }
 
-        state.button?.let {
-            when (it) {
-                is UiButton -> DisplayButton(
-                    state = it,
-                    onClick = onClick,
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp)
-                )
-                is UiIconButton -> DisplayUiIconButton(
-                    state = it,
-                    onClick = onClick,
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp)
+                Text(
+                    text = title,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    fontSize = 36.sp,
                 )
             }
 
+            state.button?.let {
+                when (it) {
+                    is UiButton -> DisplayButton(
+                        state = it,
+                        onClick = onClick,
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                    )
+
+                    is UiIconButton -> DisplayUiIconButton(
+                        state = it,
+                        onClick = onClick,
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                    )
+                }
+
+            }
         }
     }
 }

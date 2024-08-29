@@ -13,8 +13,6 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,15 +30,15 @@ import org.jetbrains.compose.resources.stringResource
 
 
 fun <T1, T2> LazyListScope.displayWishMap(
-    uiList: UiMap<T1, T2>,
+    uiMap: UiMap<T1, T2>,
     modifier: Modifier = Modifier,
     onTitleClicked: (() -> Unit)?,
     header: @Composable (T1, Modifier) -> Unit,
     listContent: @Composable (T2) -> Unit,
 ) {
-    val map = uiList.content
+    val map = uiMap.content
 
-    uiList.contentTitle?.let { contentTitle ->
+    uiMap.contentTitle?.let { contentTitle ->
         item {
             Row(
                 modifier = modifier
@@ -64,7 +62,7 @@ fun <T1, T2> LazyListScope.displayWishMap(
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 24.sp
                 )
-                uiList.contentIcon?.icon?.let { icon ->
+                uiMap.contentIcon?.icon?.let { icon ->
                     DisplayIcon(
                         UiIcon(
                             icon = icon,
@@ -82,7 +80,7 @@ fun <T1, T2> LazyListScope.displayWishMap(
     if (map == null) {
         item {
             Text(
-                text = stringResource(uiList.loading),
+                text = stringResource(uiMap.loading),
                 modifier = modifier
             )
         }
@@ -90,7 +88,7 @@ fun <T1, T2> LazyListScope.displayWishMap(
         if (map.isEmpty()) {
             item {
                 Text(
-                    text = stringResource(uiList.empty),
+                    text = stringResource(uiMap.empty),
                     modifier = modifier
                 )
             }

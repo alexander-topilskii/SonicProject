@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ato.ui_state.base.chip.UiChip
 import com.ato.ui_state.base.chip.UiChipRow
+import com.ato.ui_state.base.chip.UiIconChip
+import com.ato.ui_state.base.chip.UiTextChip
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -22,7 +24,13 @@ fun <T> UiChipRow<T>.Display(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier.padding(8.dp)
     ) {
-        chips.forEach { it.Display(onTagClicked) }
+        chips.forEach {
+            when (it) {
+                is UiTextChip -> DisplayUiTextChip(it, onTagClicked)
+                is UiIconChip -> DisplayUiIconChip(it, onTagClicked)
+            }
+
+        }
     }
 }
 
@@ -37,7 +45,12 @@ fun <T> DisplayCenterChipRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
         modifier = modifier
     ) {
-        chipsRow.chips.forEach { it.Display(onTagClicked) }
+        chipsRow.chips.forEach {
+            when (it) {
+                is UiTextChip -> DisplayUiTextChip(it, onTagClicked)
+                is UiIconChip -> DisplayUiIconChip(it, onTagClicked)
+            }
+        }
     }
 }
 
@@ -50,14 +63,14 @@ fun <T> DisplayCenterChipRow(
 fun UiChipRowDemo() {
     UiChipRow<Any>(
         chips = listOf(
-            UiChip(isSelected = false, text = "green"),
-            UiChip(isSelected = true, text = "red"),
-            UiChip(isSelected = false, text = "orange"),
-            UiChip(isSelected = false, text = "blue"),
-            UiChip(isSelected = false, text = "green"),
-            UiChip(isSelected = false, text = "red"),
-            UiChip(isSelected = false, text = "orange"),
-            UiChip(isSelected = false, text = "blue"),
+            UiTextChip(isSelected = false, text = "green"),
+            UiTextChip(isSelected = true, text = "red"),
+            UiTextChip(isSelected = false, text = "orange"),
+            UiTextChip(isSelected = false, text = "blue"),
+            UiTextChip(isSelected = false, text = "green"),
+            UiTextChip(isSelected = false, text = "red"),
+            UiTextChip(isSelected = false, text = "orange"),
+            UiTextChip(isSelected = false, text = "blue"),
         )
     ).Display({})
 }
