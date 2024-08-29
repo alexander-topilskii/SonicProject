@@ -56,7 +56,6 @@ fun DisplaySections(
         ) {
             state.items.forEach { item ->
                 Text(
-
                     text = item.title?.let { stringResource(it) } ?: item.name.orEmpty(),
                     modifier = Modifier
                         .background(
@@ -75,7 +74,7 @@ fun DisplaySections(
                     color = if (item.isSelected) {
                         MaterialTheme.colorScheme.onPrimary
                     } else {
-                        MaterialTheme.colorScheme.onPrimaryContainer
+                        MaterialTheme.colorScheme.onPrimary
                     },
                     textAlign = TextAlign.Center,
                     fontSize = 14.sp
