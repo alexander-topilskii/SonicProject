@@ -5,3 +5,5 @@ interface Ui {
     val id: Long
         get() = 0L
 }
+
+interface Button: Ui

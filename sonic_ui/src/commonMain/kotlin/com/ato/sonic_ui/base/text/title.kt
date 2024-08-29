@@ -27,7 +27,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ato.sonic_ui.base.button.DisplayButton
+import com.ato.sonic_ui.base.button.DisplayUiIconButton
 import com.ato.sonic_ui.base.line.HorizontalSpaceLine
+import com.ato.ui_state.Button
+import com.ato.ui_state.base.button.UiButton
+import com.ato.ui_state.base.button.UiIconButton
 import com.ato.ui_state.base.text.UiTitle
 import org.jetbrains.compose.resources.stringResource
 
@@ -83,12 +87,21 @@ fun DisplayTitle(
         }
 
         state.button?.let {
-            DisplayButton(
-                state = it,
-                onClick = onClick,
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-            )
+            when (it) {
+                is UiButton -> DisplayButton(
+                    state = it,
+                    onClick = onClick,
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp)
+                )
+                is UiIconButton -> DisplayUiIconButton(
+                    state = it,
+                    onClick = onClick,
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp)
+                )
+            }
+
         }
     }
     HorizontalSpaceLine(
