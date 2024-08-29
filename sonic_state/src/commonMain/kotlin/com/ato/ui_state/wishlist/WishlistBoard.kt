@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class WishlistBoard(
+    @kotlinx.serialization.Transient
     var documentId: String? = null,
     var userDocumentId: String? = null,
     var name: String? = null,
