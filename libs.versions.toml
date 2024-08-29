@@ -8,7 +8,7 @@ chromecastSender = "0.29"
 decompose = "3.0.0"
 essenty = "2.1.0"
 filekit = "0.6.1"
-firebase-kmp = "1.13.0"
+firebase-kmp = "2.0.0"
 kmpauth = "2.0.0"
 koinAndroid = "3.4.0"
 kotlin = "2.0.0"
@@ -130,6 +130,7 @@ androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "l
 
 # firebase kmp
 kmp-firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebase-kmp" }
+kmp-firebase-common = { module = "dev.gitlive:firebase-common-internal", version.ref = "firebase-kmp" }
 kmp-firebase-database = { module = "dev.gitlive:firebase-database", version.ref = "firebase-kmp" }
 kmp-firebase-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "firebase-kmp" }
 
