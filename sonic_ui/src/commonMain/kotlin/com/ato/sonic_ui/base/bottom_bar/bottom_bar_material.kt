@@ -1,6 +1,7 @@
 package com.ato.sonic_ui.base.bottom_bar
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Edit
@@ -19,7 +20,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.Display
 import com.ato.ui_state.base.NavBarItem
 import com.ato.ui_state.base.UiIcon
@@ -28,8 +31,10 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun UiNavBar.Display(onClick: (Int) -> Unit = { }) {
-
-    NavigationBar {
+    NavigationBar(
+        modifier = Modifier
+            .height(64.dp)
+    ) {
         items.forEachIndexed { index, (uiIconText, text, isSelected) ->
             NavigationBarItem(
                 selected = isSelected,

@@ -1,6 +1,7 @@
 package com.ato.sonic_ui.wishlist
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -40,7 +41,11 @@ fun BoardHeader(
             .fillMaxWidth()
             .let {
                 if (onHeaderClicked != null) {
-                    it.clickable(onClick = remember(map) { { onHeaderClicked.invoke(board) } })
+                    it.clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = remember(map) { { onHeaderClicked.invoke(board) } }
+                    )
                 } else {
                     it
                 }
