@@ -191,6 +191,7 @@ fun ColumnScope.DisplayTitle(
     )
 }
 
+// TODO: use TopAppBar ?
 @Composable
 fun DisplayAppBarTitle(
     state: UiTitle,
