@@ -19,13 +19,12 @@ import com.ato.ui_state.base.button.UiButton
 fun PersonCard(
     name: String,
     nick: String,
-    onClick: () -> Unit,
+    onClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier,
-//        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        onClick = onClick
+        onClick = { onClick?.invoke() }
     ) {
         Text(
             text = name,

@@ -1,5 +1,10 @@
 package com.ato.sonic_ui.radio
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,13 +24,12 @@ import androidx.compose.ui.unit.dp
 import com.ato.ui_state.base.radio.UiRadioCard
 import org.jetbrains.compose.resources.stringResource
 
-
 @Composable
 fun DisplayUiRadioCard(
     state: UiRadioCard,
     modifier: Modifier = Modifier,
     onClick: (UiRadioCard) -> Unit,
-    content: @Composable ()-> Unit = {}
+    content: @Composable () -> Unit = {}
 ) {
     val title = if (state.formatArgs == null) {
         stringResource(state.text)
@@ -36,7 +40,6 @@ fun DisplayUiRadioCard(
     Card(
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(containerColor = if (state.isSelected) MaterialTheme.colorScheme.primary else Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = if (state.isSelected) 8.dp else 2.dp),
         modifier = modifier
             .clickable(onClick = { onClick.invoke(state) })
     ) {
@@ -61,12 +64,18 @@ fun DisplayUiRadioCard(
 
             state.icon?.let {
                 Icon(
-                    imageVector =  state.icon!!,
+                    imageVector = state.icon!!,
                     contentDescription = null
                 )
             }
         }
 
-        content.invoke()
+        AnimatedVisibility(
+            visible = state.isSelected,
+            enter = fadeIn() + expandVertically(),
+            exit = fadeOut() + shrinkVertically(),
+        ) {
+            content.invoke()
+        }
     }
 }
