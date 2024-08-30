@@ -11,7 +11,6 @@ data class WishlistBoard(
     var userDocumentId: String? = null,
     var name: String? = null,
     var wishListIds: List<String>? = emptyList(),
-    var availableForFollowers: Boolean? = null,
     var availableForFollowing: Boolean? = null,
     var availableForAll: Boolean? = null,
     var availableForUserIds: List<String>? = emptyList(),
