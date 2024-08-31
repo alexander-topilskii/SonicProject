@@ -15,7 +15,8 @@ import kotlinx.serialization.builtins.serializer
 class DefaultTemplateComponent(
     private val componentContext: ComponentContext,
     private val item: String,
-    private val di: Di = Di()
+//    private val appContainer: AppContainer,
+//    private val di: Di = Di(appContainer),
 ) : TemplateComponent, ComponentContext by componentContext,
     CoroutineScope by componentContext.componentCoroutineScope() {
 
