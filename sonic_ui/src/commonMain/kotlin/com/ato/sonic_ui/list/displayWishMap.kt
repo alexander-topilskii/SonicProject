@@ -34,7 +34,7 @@ fun <T1, T2> LazyListScope.displayWishMap(
     modifier: Modifier = Modifier,
     onTitleClicked: (() -> Unit)?,
     header: @Composable (T1, Modifier) -> Unit,
-    listContent: @Composable (T2?) -> Unit,
+    listContent: @Composable (T2?, T1) -> Unit,
 ) {
     val map = uiMap.content
 
@@ -101,7 +101,7 @@ fun <T1, T2> LazyListScope.displayWishMap(
                     LazyRow {
                         item { Spacer(Modifier.width(8.dp)) }
                         items(dataList) { item ->
-                            listContent(item)
+                            listContent(item, headers)
                         }
                         item { Spacer(Modifier.width(8.dp)) }
                     }
