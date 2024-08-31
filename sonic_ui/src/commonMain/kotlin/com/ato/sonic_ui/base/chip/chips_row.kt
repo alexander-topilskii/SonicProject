@@ -29,7 +29,6 @@ fun <T> UiChipRow<T>.Display(
                 is UiTextChip -> DisplayUiTextChip(it, onTagClicked)
                 is UiIconChip -> DisplayUiIconChip(it, onTagClicked)
             }
-
         }
     }
 }
@@ -42,7 +41,7 @@ fun <T> DisplayCenterChipRow(
     modifier: Modifier = Modifier,
 ) {
     FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
         modifier = modifier
     ) {
         chipsRow.chips.forEach {
