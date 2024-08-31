@@ -7,7 +7,8 @@ data class UiList<T>(
     val loading: StringResource,
     val empty: StringResource,
     val contentTitle: StringResource? = null,
-    val content: List<T>?
+    val content: List<T>?,
+    val isVisible: Boolean = true
 )
 
 data class UiMap<T1, T2>(
@@ -17,5 +18,6 @@ data class UiMap<T1, T2>(
     val contentIcon: UiIcon? = null,
     val headerTitle: StringResource? = null,
     val headerIcon: UiIcon? = null,
-    val content: Map<T1, List<T2?>>?
+    val content: Map<T1, List<T2?>>?,
+    val isVisible: Boolean = true
 )

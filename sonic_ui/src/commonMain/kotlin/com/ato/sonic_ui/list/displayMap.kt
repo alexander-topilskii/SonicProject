@@ -16,6 +16,8 @@ fun <T1, T2> LazyListScope.displayMap(
     header: @Composable (T1, Modifier) -> Unit,
     listContent: @Composable (T2?, Modifier) -> Unit,
 ) {
+    if (!uiList.isVisible) return
+
     val map = uiList.content
     uiList.contentTitle?.let { contentTitle ->
         item {

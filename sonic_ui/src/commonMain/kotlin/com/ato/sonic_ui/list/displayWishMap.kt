@@ -36,6 +36,8 @@ fun <T1, T2> LazyListScope.displayWishMap(
     header: @Composable (T1, Modifier) -> Unit,
     listContent: @Composable (T2?, T1) -> Unit,
 ) {
+    if (!uiMap.isVisible) return
+
     val map = uiMap.content
 
     uiMap.contentTitle?.let { contentTitle ->
