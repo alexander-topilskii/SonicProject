@@ -37,9 +37,15 @@ fun DisplayUiRadioCard(
         stringResource(state.text, state.formatArgs!!)
     }
 
+    val containerColor = if (state.isSelected) {
+        MaterialTheme.colorScheme.primary
+    } else {
+        MaterialTheme.colorScheme.surfaceContainer
+    }
+
     Card(
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = if (state.isSelected) MaterialTheme.colorScheme.primary else Color.White),
+        colors = CardDefaults.cardColors(containerColor = containerColor),
         modifier = modifier
             .clickable(onClick = { onClick.invoke(state) })
     ) {
