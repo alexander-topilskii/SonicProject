@@ -61,15 +61,13 @@ fun DisplayWish(
                     )
                 }
 
-                if (!wish.description.isNullOrEmpty()) {
-                    Text(
-                        text = wish.description.orEmpty(),
-                        style = MaterialTheme.typography.bodyMedium,
-                        maxLines = 3,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.padding(top = 8.dp)
-                    )
-                }
+                Text(
+                    text = wish.description.orEmpty(),
+                    style = MaterialTheme.typography.bodyMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
             }
         }
     }

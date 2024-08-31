@@ -17,5 +17,5 @@ data class UiMap<T1, T2>(
     val contentIcon: UiIcon? = null,
     val headerTitle: StringResource? = null,
     val headerIcon: UiIcon? = null,
-    val content: Map<T1, List<T2>>?
+    val content: Map<T1, List<T2?>>?
 )

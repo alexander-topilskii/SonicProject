@@ -1,6 +1,5 @@
 package com.ato.sonic_ui.list
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
@@ -11,12 +10,11 @@ import com.ato.ui_state.base.list.UiMap
 import org.jetbrains.compose.resources.stringResource
 
 
-@OptIn(ExperimentalFoundationApi::class)
 fun <T1, T2> LazyListScope.displayMap(
     uiList: UiMap<T1, T2>,
     modifier: Modifier = Modifier,
     header: @Composable (T1, Modifier) -> Unit,
-    listContent: @Composable (T2, Modifier) -> Unit,
+    listContent: @Composable (T2?, Modifier) -> Unit,
 ) {
     val map = uiList.content
     uiList.contentTitle?.let { contentTitle ->
