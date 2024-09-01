@@ -240,6 +240,7 @@ fun DisplayAppBarTitle(
                     text = title,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
+                    modifier = Modifier.weight(1f),
                     overflow = TextOverflow.Ellipsis,
                     fontSize = 36.sp,
                 )
