@@ -17,10 +17,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -28,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.icons.DisplayIcon
 import com.ato.ui_state.base.input.UiEditTextState
 import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -66,12 +63,13 @@ fun DisplayEditableText(
             onValueChanged(it)
         },
         label = { Text(stringResource(title)) },
-        supportingText = {
-            errorText?.let {
-                Text(stringResource(it))
-            } ?: supportText?.let {
-                Text(stringResource(it))
-            }
+        supportingText = if (supportText == null && errorText == null) {
+            null
+        } else {
+            ShowErrorOrSupportText(
+                supportText,
+                errorText
+            )
         },
         isError = errorText != null,
         minLines = minLines,
@@ -81,6 +79,20 @@ fun DisplayEditableText(
         keyboardOptions = ((keyboardOptions as? KeyboardOptions) ?: KeyboardOptions.Default)
             .copy(keyboardType = keyboardType as KeyboardType)
     )
+}
+
+@Composable
+private fun ShowErrorOrSupportText(
+    errorText: StringResource?,
+    supportText: StringResource?
+): @Composable () -> Unit {
+    return {
+        errorText?.let {
+            Text(stringResource(it))
+        } ?: supportText?.let {
+            Text(stringResource(it))
+        }
+    }
 }
 
 @Composable
