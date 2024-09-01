@@ -97,6 +97,7 @@ fun LazyItemScope.DisplayTitle(
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
                 )
+
                 is UiIconButton -> DisplayUiIconButton(
                     state = it,
                     onClick = onClick,
@@ -173,6 +174,7 @@ fun ColumnScope.DisplayTitle(
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
                 )
+
                 is UiIconButton -> DisplayUiIconButton(
                     state = it,
                     onClick = onClick,
@@ -205,6 +207,7 @@ fun DisplayAppBarTitle(
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = modifier.fillMaxWidth(),
         ) {
             val title = if (state.titleFormatArgs == null) {
@@ -213,38 +216,33 @@ fun DisplayAppBarTitle(
                 stringResource(state.title, state.titleFormatArgs!!)
             }
 
-            Row(
-                modifier = Modifier
-                    .padding(end = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (onBackClicked != null) {
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(36.dp)
-                            .clip(CircleShape)
-                            .clickable(
-                                onClick = onBackClicked,
-                            )
-                            .padding(8.dp),
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                } else {
-                    Spacer(modifier = Modifier.width(16.dp))
-                }
 
-                Text(
-                    text = title,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    modifier = Modifier.weight(1f),
-                    overflow = TextOverflow.Ellipsis,
-                    fontSize = 36.sp,
+            if (onBackClicked != null) {
+                Spacer(modifier = Modifier.width(8.dp))
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "",
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clip(CircleShape)
+                        .clickable(
+                            onClick = onBackClicked,
+                        )
+                        .padding(8.dp),
                 )
+                Spacer(modifier = Modifier.width(8.dp))
+            } else {
+                Spacer(modifier = Modifier.width(16.dp))
             }
+
+            Text(
+                text = title,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                modifier = Modifier.weight(1f),
+                overflow = TextOverflow.Ellipsis,
+                fontSize = 24.sp,
+            )
 
             state.button?.let {
                 when (it) {
