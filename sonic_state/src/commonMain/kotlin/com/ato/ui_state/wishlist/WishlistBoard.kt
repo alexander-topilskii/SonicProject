@@ -10,9 +10,9 @@ data class WishlistBoard(
     var documentId: String? = null,
     var userDocumentId: String? = null,
     var name: String? = null,
-    var wishListIds: List<String>? = emptyList(),
+    var wishListIds: List<String>? = null,
     var availableForFollowing: Boolean? = null,
     var availableForAll: Boolean? = null,
-    var availableForUserIds: List<String>? = emptyList(),
+    var availableForUserIds: List<String>? = null,
     var creationDate: Timestamp? = null,
 )

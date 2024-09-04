@@ -28,3 +28,26 @@ fun DisplayText(
         modifier = modifier
     )
 }
+
+@Composable
+fun DisplaySingleLineText(
+    state: UiSimpleText,
+    fontWeight: FontWeight? = null,
+    fontSize: TextUnit = TextUnit.Unspecified,
+    modifier: Modifier = Modifier
+) {
+    val title = if (state.formatArgs == null) {
+        stringResource(state.text)
+    } else {
+        stringResource(state.text, state.formatArgs!!)
+    }
+
+    Text(
+        text = title,
+        maxLines = 1,
+
+        fontWeight = fontWeight,
+        fontSize = fontSize,
+        modifier = modifier
+    )
+}
