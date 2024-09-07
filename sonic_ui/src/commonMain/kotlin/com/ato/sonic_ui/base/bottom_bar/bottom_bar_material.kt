@@ -42,7 +42,7 @@ fun UiNavBar.Display(onClick: (Int) -> Unit = { }) {
             Modifier
                 .fillMaxWidth()
                 .height(1.dp),
-            color = MaterialTheme.colorScheme.outline
+            color = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f)
         )
 
         NavigationBar(
