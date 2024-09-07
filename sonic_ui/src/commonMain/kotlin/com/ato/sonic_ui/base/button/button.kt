@@ -43,10 +43,10 @@ fun DisplayButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
-    ) {
+) {
     if (state.isVisible) {
         Button(
-            colors =colors,
+            colors = colors,
             modifier = modifier,
             onClick = onClick,
             enabled = state.isEnabled,

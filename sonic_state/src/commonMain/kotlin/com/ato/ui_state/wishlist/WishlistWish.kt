@@ -21,7 +21,7 @@ data class WishlistWish(
     var description: String? = "",
     var creationDate: Timestamp? = null,
     var isCompleted: Boolean? = null,
-    var boardIds: List<String>? = mutableListOf(),
+    var boardIds: List<String>? = null,
     var assignedUserDocumentIds: MutableList<String>? = mutableListOf(),
     var url: String? = null
 )
