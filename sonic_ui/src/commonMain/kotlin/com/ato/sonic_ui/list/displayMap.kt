@@ -13,7 +13,7 @@ import org.jetbrains.compose.resources.stringResource
 fun <T1, T2> LazyListScope.displayMap(
     uiList: UiMap<T1, T2>,
     modifier: Modifier = Modifier,
-    header: @Composable (T1, Modifier) -> Unit,
+    header: @Composable (Int, T1, Modifier) -> Unit,
     listContent: @Composable (T2?, Modifier) -> Unit,
 ) {
     if (!uiList.isVisible) return
@@ -44,9 +44,9 @@ fun <T1, T2> LazyListScope.displayMap(
                 )
             }
         } else {
-            map.forEach { (headers, dataList) ->
+            map.onEachIndexed { index, (headers, dataList) ->
                 item {
-                    header(headers, modifier)
+                    header(index, headers, modifier)
                 }
                 items(dataList) { item ->
                     listContent(item, modifier)
