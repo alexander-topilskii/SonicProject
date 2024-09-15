@@ -92,7 +92,7 @@ fun SwipeButton(
 
     Box(
         modifier
-            .height(56.dp)
+            .height(contentSize)
             .background(backgroundColor, RoundedCornerShape(28.dp))
             .onSizeChanged { layoutSize ->
                 val dragEndPoint = if (orientation == Orientation.Vertical) {
