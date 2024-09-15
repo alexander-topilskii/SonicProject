@@ -18,14 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.icons.DisplayIcon
 import com.ato.sonic_ui.base.text.DisplayText
-import com.ato.ui_state.base.UiIcon
-import com.ato.ui_state.base.text.UiSimpleText
-
-data class UiSwipeLoadingButton(
-    val text: UiSimpleText,
-    val icon: UiIcon,
-    val isLoading: Boolean
-)
+import com.ato.ui_state.base.button.UiSwipeLoadingButton
 
 @Composable
 fun SwipeLoadingButton(
