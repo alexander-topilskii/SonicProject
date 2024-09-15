@@ -97,7 +97,9 @@ fun <T1, T2> LazyListScope.displayWishMap(
         } else {
             map.forEach { (headers, dataList) ->
                 item {
-                    header(headers, modifier)
+                    if (dataList.isNotEmpty()) {
+                        header(headers, modifier)
+                    }
                 }
                 item {
                     LazyRow {

@@ -46,7 +46,9 @@ fun <T1, T2> LazyListScope.displayMap(
         } else {
             map.onEachIndexed { index, (headers, dataList) ->
                 item {
-                    header(index, headers, modifier)
+                    if (dataList.isNotEmpty()) {
+                        header(index, headers, modifier)
+                    }
                 }
                 items(dataList) { item ->
                     listContent(item, modifier)
