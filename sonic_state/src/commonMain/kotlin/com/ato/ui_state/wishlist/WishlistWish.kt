@@ -15,8 +15,8 @@ data class WishlistWish(
     @Transient
     var documentId: String? = null,
     var userDocumentId: String? = null,
-    @Deprecated("use boardDocumentIds")
-    var boardDocumentId: String? = null,
+    @Deprecated("use boardIds")
+    var boardDocumentId: String? = "",
     var name: String? = null,
     var description: String? = "",
     var creationDate: Timestamp? = null,

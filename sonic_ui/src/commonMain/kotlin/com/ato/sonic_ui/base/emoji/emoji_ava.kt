@@ -29,6 +29,8 @@ fun DisplayEmojiAvaWithCross(
     emoji: String?,
     onEmojiClicked: () -> Unit,
     onClearClicked: () -> Unit,
+    size: Float,
+    sizeFactor: Float = 0.5f,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -44,7 +46,7 @@ fun DisplayEmojiAvaWithCross(
                         color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)
                     ), shape = CircleShape
                 )
-                .size(256.dp)
+                .size(size.dp)
                 .clickable(
                     indication = null,
                     interactionSource = remember { MutableInteractionSource() },
@@ -53,9 +55,10 @@ fun DisplayEmojiAvaWithCross(
                 .align(Alignment.Center)
         ) {
             Text(
-                text = emoji ?: "",
+                text = emoji ?: "+",
+                color = if (emoji == null) MaterialTheme.colorScheme.outline.copy(alpha = 0.2f) else Color.Unspecified,
                 textAlign = TextAlign.Center,
-                fontSize = 128.sp,
+                fontSize = (size * sizeFactor).sp,
                 modifier = Modifier
                     .align(Alignment.Center)
 
@@ -105,7 +108,7 @@ fun DisplayEmojiAva(
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
-                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)
+                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f)
                     ), shape = CircleShape
                 )
                 .size(size.dp)
