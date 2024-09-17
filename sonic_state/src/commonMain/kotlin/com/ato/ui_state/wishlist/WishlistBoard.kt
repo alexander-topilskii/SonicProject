@@ -10,6 +10,7 @@ data class WishlistBoard(
     var documentId: String? = null,
     var userDocumentId: String? = null,
     var name: String? = null,
+    var emoji: String? = null,
     var wishIds: List<String>? = null,
     var availableForFollowing: Boolean? = null,
     var availableForAll: Boolean? = null,
