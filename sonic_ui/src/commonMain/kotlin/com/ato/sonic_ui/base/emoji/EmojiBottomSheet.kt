@@ -7,8 +7,8 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
-import com.ato.ui_state.base.emoji.emoji.UiEmojiData
-import com.ato.ui_state.base.emoji.emoji.UiEmojiPanel
+import com.ato.ui_state.base.emoji.UiEmojiData
+import com.ato.ui_state.base.emoji.UiEmojiPanel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)

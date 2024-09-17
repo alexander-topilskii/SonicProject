@@ -92,11 +92,12 @@ fun DisplayEmojiAvaWithCross(
 @Composable
 fun DisplayEmojiAva(
     emoji: String?,
+    size: Float,
+    sizeFactor: Float,
+    modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 16.dp, horizontal = 16.dp)
+        modifier = modifier
     ) {
         Box(
             modifier = Modifier
@@ -107,13 +108,13 @@ fun DisplayEmojiAva(
                         color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)
                     ), shape = CircleShape
                 )
-                .size(256.dp)
+                .size(size.dp)
                 .align(Alignment.Center)
         ) {
             Text(
                 text = emoji ?: "",
                 textAlign = TextAlign.Center,
-                fontSize = 128.sp,
+                fontSize = (size * sizeFactor).sp,
                 modifier = Modifier
                     .align(Alignment.Center)
 

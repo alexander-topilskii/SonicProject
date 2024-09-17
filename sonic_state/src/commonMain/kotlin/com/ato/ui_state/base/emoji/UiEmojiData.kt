@@ -1,4 +1,4 @@
-package com.ato.ui_state.base.emoji.emoji
+package com.ato.ui_state.base.emoji
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

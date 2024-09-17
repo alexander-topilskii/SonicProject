@@ -13,14 +13,6 @@ data class UiUserInfo(
 )
 
 data class UiBoardInfo(
-    val nameTitle: UiSimpleText, // Name
-    val name: UiSimpleText,
-    val wishCountTitle: UiSimpleText, // Wish count
-    val wishCount: UiSimpleText,
-    val completedWishTitle: UiSimpleText, // Completed wishes
-    val completedWish: UiSimpleText,
-    val takenWishCountTitle: UiSimpleText, // Taken wish count
-    val takenWishCount: UiSimpleText,
-    val privacyTitle: UiSimpleText,
-    val privacy: UiSimpleText
+    val emoji: String?,
+    val info: List<Pair<UiSimpleText, UiSimpleText>>,
 )

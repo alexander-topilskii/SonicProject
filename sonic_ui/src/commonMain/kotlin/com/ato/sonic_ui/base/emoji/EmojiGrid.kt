@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.TextStyle
-import com.ato.ui_state.base.emoji.emoji.UiEmojiData
+import com.ato.ui_state.base.emoji.UiEmojiData
 
 
 @Composable
