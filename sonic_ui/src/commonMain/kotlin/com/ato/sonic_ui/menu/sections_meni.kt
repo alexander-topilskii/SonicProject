@@ -50,7 +50,7 @@ fun DisplaySections(
         Row(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.primaryContainer)
-                .padding(4.dp),
+                .padding(horizontal = 16.dp, vertical = 4.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -66,6 +66,7 @@ fun DisplaySections(
                             },
                             shape = RoundedCornerShape(50.dp)
                         )
+                        .weight(1f)
                         .padding(horizontal = 16.dp, vertical = 4.dp)
                         .clickable(
                             indication = null,
@@ -74,7 +75,7 @@ fun DisplaySections(
                     color = if (item.isSelected) {
                         MaterialTheme.colorScheme.onPrimary
                     } else {
-                        MaterialTheme.colorScheme.onPrimary
+                        MaterialTheme.colorScheme.primary
                     },
                     textAlign = TextAlign.Center,
                     fontSize = 14.sp
