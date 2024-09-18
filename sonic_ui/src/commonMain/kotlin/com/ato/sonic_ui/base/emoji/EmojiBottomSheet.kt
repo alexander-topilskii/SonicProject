@@ -2,6 +2,7 @@ package com.ato.sonic_ui.base.emoji
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -40,6 +41,7 @@ fun EmojiBottomSheet(
         ModalBottomSheet(
             sheetState = bottomSheetState,
             onDismissRequest = onDismissRequest,
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
             content = {
                 Column {
                     header()
