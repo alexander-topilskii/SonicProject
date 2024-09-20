@@ -14,6 +14,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
@@ -43,9 +44,10 @@ fun DisplayUiRadioCard(
         MaterialTheme.colorScheme.surfaceContainer
     }
 
-    Card(
+    OutlinedCard(
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = containerColor),
+        colors = CardDefaults.outlinedCardColors(),
+        border = CardDefaults.outlinedCardBorder(enabled = state.isSelected),
         modifier = modifier
             .clickable(onClick = { onClick.invoke(state) })
     ) {
@@ -57,7 +59,7 @@ fun DisplayUiRadioCard(
             RadioButton(
                 selected = state.isSelected,
                 colors = RadioButtonDefaults.colors(
-                    selectedColor = MaterialTheme.colorScheme.onPrimary,
+                    selectedColor = MaterialTheme.colorScheme.primary,
                 ),
                 onClick = null
             )
