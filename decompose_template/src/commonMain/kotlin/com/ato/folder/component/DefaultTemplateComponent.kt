@@ -39,11 +39,10 @@ class DefaultTemplateComponent(
             handler.getData()
         }
 
-    override fun onItemClicked(item: String) {
-        launch {
+    override fun onBackClicked() {
 
-        }
     }
+
 }
 
 

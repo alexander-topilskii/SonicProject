@@ -7,5 +7,5 @@ import org.jetbrains.compose.resources.StringResource
 data class UiTitle(
     val title: StringResource,
     val titleFormatArgs: String? = null,
-    val button: Button?,
+    val button: Button? = null,
 )

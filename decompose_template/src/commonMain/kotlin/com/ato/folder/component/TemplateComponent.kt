@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface TemplateComponent {
     val uiState: Flow<TemplateUiState?>
 
-    fun onItemClicked(item: String)
+    fun onBackClicked()
 }
 
