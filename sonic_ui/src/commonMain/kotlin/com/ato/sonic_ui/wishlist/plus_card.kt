@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun CenteredPlusCard(
+fun CenteredIconCard(
     icon: ImageVector,
     onClick: () -> Unit,
     modifier: Modifier = Modifier

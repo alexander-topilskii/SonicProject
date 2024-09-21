@@ -40,6 +40,7 @@ kotlin {
 
         commonMain.dependencies {
 //            implementation(projects.dataStorage)
+//            implementation(projects.commonResources)
 
             implementation(projects.sonicState)
             implementation(projects.sonicUi)
@@ -68,6 +69,7 @@ kotlin {
             implementation(libs.essenty.stateKeeper)
             implementation(libs.essenty.backHandler)
 
+            implementation(libs.kotlinx.datetime)
 
             implementation(libs.kmp.firebase.database)
             implementation(libs.kmp.firebase.firestore)

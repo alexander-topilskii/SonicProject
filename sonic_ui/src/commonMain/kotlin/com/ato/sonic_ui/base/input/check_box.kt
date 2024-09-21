@@ -6,6 +6,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.ato.sonic_ui.base.text.DisplayText
 import com.ato.ui_state.base.input.UiCheckBox
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -13,7 +14,8 @@ import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
 
 @Composable
-fun UiCheckBox.Display(
+fun DisplayCheckBox(
+    state: UiCheckBox,
     modifier: Modifier = Modifier,
     onValueChanged: (Boolean) -> Unit = {}
 ) {
@@ -21,24 +23,21 @@ fun UiCheckBox.Display(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
     ) {
-        if (!textToCheck) {
+        if (!state.textToCheck) {
             Checkbox(
-                checked = this@Display.isChecked,
+                checked = state.isChecked,
                 onCheckedChange = { onValueChanged.invoke(it) }
             )
         }
-        description?.let { description ->
-            Text(
-                stringResource(description),
-            )
+        state.description?.let { description ->
+            DisplayText(description)
         }
-        if (textToCheck) {
+        if (state.textToCheck) {
             Checkbox(
-                checked = this@Display.isChecked,
+                checked = state.isChecked,
                 onCheckedChange = { onValueChanged.invoke(it) }
             )
         }
-
     }
 }
 
@@ -48,7 +47,7 @@ fun Demo(
     @PreviewParameter(UiCheckBoxProvider::class)
     item: UiCheckBox,
 ) {
-    item.Display()
+
 }
 
 class UiCheckBoxProvider : PreviewParameterProvider<UiCheckBox> {
