@@ -57,6 +57,8 @@ kotlin {
             implementation(libs.kmp.firebase.database)
             implementation(libs.kmp.firebase.firestore)
 
+            implementation(libs.kotlinx.datetime)
+
             // compose
             implementation(compose.runtime)
             implementation(compose.foundation)

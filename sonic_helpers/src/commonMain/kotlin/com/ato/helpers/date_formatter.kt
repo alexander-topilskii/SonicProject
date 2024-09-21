@@ -1,0 +1,17 @@
+package com.ato.helpers
+
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
+
+fun formatDate(newDate: Long): String {
+    val instant = Instant.fromEpochMilliseconds(newDate)
+    val timeZone = TimeZone.currentSystemDefault()
+    val localDateTime = instant.toLocalDateTime(timeZone)
+
+    val day = localDateTime.dayOfMonth
+    val monthName = localDateTime.month.name.lowercase().replaceFirstChar { it.uppercase() }
+    val year = localDateTime.year
+
+   return "$day $monthName $year"
+}
