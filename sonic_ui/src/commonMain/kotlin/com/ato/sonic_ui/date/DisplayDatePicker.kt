@@ -16,7 +16,7 @@ fun DisplayDatePicker(
     onDismiss: () -> Unit,
     onDateChosen: (Long?) -> Unit
 ) {
-    val datePickerState = rememberDatePickerState()
+    val datePickerState = rememberDatePickerState(initialSelectedDateMillis = state.date)
 
     if (state.isShown) {
         DatePickerDialog(
