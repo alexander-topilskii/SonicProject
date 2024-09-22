@@ -29,9 +29,6 @@ fun DisplayEvent(
                 text = state.name ?: "",
                 fontWeight = FontWeight.Bold,
             )
-            if (!state.description.isNullOrEmpty()) {
-                Text(text = state.description!!)
-            }
             state.eventDate?.let { dateMs ->
                 Text(
                     text = formatDate(dateMs.toMilliseconds()),
