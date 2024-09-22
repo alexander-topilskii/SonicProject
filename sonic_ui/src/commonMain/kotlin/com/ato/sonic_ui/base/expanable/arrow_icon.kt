@@ -36,7 +36,7 @@ fun ExpandableCircleWithIcon(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
-            .padding(bottom = 6.dp)
+            .padding(bottom = 8.dp)
     ) {
         // Круг с иконкой
         Surface(
