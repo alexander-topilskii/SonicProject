@@ -40,6 +40,8 @@ kotlin {
 
         commonMain.dependencies {
             implementation(projects.sonicState)
+            implementation(projects.sonicHelpers)
+
             // serialization
             implementation(libs.kotlinx.serialization.json)
 
