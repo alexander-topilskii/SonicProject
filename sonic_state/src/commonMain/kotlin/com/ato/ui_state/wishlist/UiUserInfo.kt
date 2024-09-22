@@ -4,12 +4,7 @@ import com.ato.ui_state.base.text.UiSimpleText
 import org.jetbrains.compose.resources.StringResource
 
 data class UiUserInfo(
-    val nameTitle: StringResource, // Name
-    val name: String?,
-    val nickTitle: StringResource, // Nick
-    val nick: String?,
-    val emailTitle: StringResource? = null, // Email
-    val email: String? = null,
+    val info: List<Pair<UiSimpleText, UiSimpleText>>,
 )
 
 data class UiBoardInfo(

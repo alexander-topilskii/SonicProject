@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -27,8 +25,8 @@ fun <T1, T2> DisplayGridInfo(
     header: @Composable () -> Unit = {},
     footer: @Composable () -> Unit = {},
     modifier: Modifier = Modifier,
-
-    ) {
+    weights: Pair<Float, Float> = 1f to 2f,
+) {
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
@@ -47,10 +45,9 @@ fun <T1, T2> DisplayGridInfo(
                             .fillMaxWidth()
                             .padding(vertical = 8.dp, horizontal = 16.dp)
                     ) {
-                        leftTableContent(item.first, index, Modifier.weight(1f))
+                        leftTableContent(item.first, index, Modifier.weight(weights.first))
                         Spacer(Modifier.width(4.dp))
-                        rightTableContent(item.second, index, Modifier.weight(2f))
-
+                        rightTableContent(item.second, index, Modifier.weight(weights.second))
                     }
                 }
                 footer()
