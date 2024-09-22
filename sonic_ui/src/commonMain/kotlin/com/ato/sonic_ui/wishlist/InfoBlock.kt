@@ -14,13 +14,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.text.DisplaySingleLineText
 import com.ato.sonic_ui.base.text.DisplayText
-import com.ato.ui_state.base.grid.DisplayGridInfo
 import com.ato.ui_state.base.text.UiSimpleText
-import com.ato.ui_state.wishlist.UiUserInfo
+import com.ato.ui_state.wishlist.UiCommonInfo
 
 
 @Composable
-fun DisplayInfoBlock(data: UiUserInfo, modifier: Modifier = Modifier) {
+fun DisplayInfoBlock(data: UiCommonInfo, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier,
     ) {
