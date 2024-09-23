@@ -31,7 +31,8 @@ import dev.gitlive.firebase.firestore.toMilliseconds
 fun DisplayEvent(
     state: WishlistEvent,
     colors: CardColors = CardDefaults.cardColors(),
-    modifier: Modifier = Modifier) {
+    modifier: Modifier = Modifier
+) {
     Card(
         modifier = modifier,
         colors = colors
