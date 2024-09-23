@@ -1,9 +1,11 @@
 package com.ato.sonic_ui.base.text
 
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
@@ -16,6 +18,7 @@ fun DisplayText(
     fontWeight: FontWeight? = null,
     fontSize: TextUnit = TextUnit.Unspecified,
     color: Color = Color.Unspecified,
+    style: TextStyle = LocalTextStyle.current,
     modifier: Modifier = Modifier
 ) {
     val title = if (state.formatArgs == null) {
@@ -29,7 +32,8 @@ fun DisplayText(
         fontWeight = fontWeight,
         color = color,
         fontSize = fontSize,
-        modifier = modifier
+        modifier = modifier,
+        style = style
     )
 }
 
