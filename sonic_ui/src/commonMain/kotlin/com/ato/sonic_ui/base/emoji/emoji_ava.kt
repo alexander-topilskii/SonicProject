@@ -97,6 +97,7 @@ fun DisplayEmojiAva(
     size: Float,
     sizeFactor: Float,
     modifier: Modifier = Modifier,
+    boarderAlpha: Float = 0.1f,
 ) {
     Box(
         modifier = modifier
@@ -107,7 +108,7 @@ fun DisplayEmojiAva(
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
-                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f)
+                        color = MaterialTheme.colorScheme.outline.copy(alpha = boarderAlpha)
                     ), shape = CircleShape
                 )
                 .size(size.dp)
