@@ -25,7 +25,7 @@ import com.ato.ui_state.wishlist.UiBoard
 @Composable
 fun DisplayBoard(
     state: UiBoard,
-    onAddClicked: () -> Unit,
+    onAddClicked: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -69,16 +69,19 @@ fun DisplayBoard(
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                 )
             }
-            Spacer(modifier = Modifier.width(8.dp)) // Space between emoji and texts
 
-            CenteredIconCard(
-                elevation = CardDefaults.cardElevation(8.dp),
-                icon = Icons.Filled.Add,
-                onClick = onAddClicked,
-                modifier = Modifier
-                    .height(60.dp)
-                    .width(60.dp)
-            )
+            if (onAddClicked != null) {
+                Spacer(modifier = Modifier.width(8.dp)) // Space between emoji and texts
+
+                CenteredIconCard(
+                    elevation = CardDefaults.cardElevation(8.dp),
+                    icon = Icons.Filled.Add,
+                    onClick = onAddClicked,
+                    modifier = Modifier
+                        .height(60.dp)
+                        .width(60.dp)
+                )
+            }
         }
     }
 }
