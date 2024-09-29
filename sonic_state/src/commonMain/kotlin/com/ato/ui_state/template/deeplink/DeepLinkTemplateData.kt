@@ -66,6 +66,6 @@ data class DeepLinkTemplateData(
     }
 }
 
-interface DeeplinkExecutor {
+interface DeeplinkTemplateExecutor {
     fun openDeeplink(deepLinkTemplateData: DeepLinkTemplateData)
 }
