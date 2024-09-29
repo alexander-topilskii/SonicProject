@@ -5,15 +5,15 @@ import io.ktor.http.encodeURLParameter
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DeeplinkParams(
+data class DeeplinkTemplateParams(
     val userId: String? = null,
 ) {
     companion object {
         const val PARAM_USER_ID = "userId"
 
-        fun fromUrl(url: Url): DeeplinkParams {
+        fun fromUrl(url: Url): DeeplinkTemplateParams {
             val userId = url.parameters[PARAM_USER_ID]
-            return DeeplinkParams(
+            return DeeplinkTemplateParams(
                 userId = userId,
             )
         }

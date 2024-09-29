@@ -6,11 +6,11 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class DeepLinkData(
+data class DeepLinkTemplateData(
     val scheme: String?,
     val host: String?,
     val pathSegments: List<String>,
-    val deeplinkParams: DeeplinkParams
+    val deeplinkParams: DeeplinkTemplateParams
 ) {
     companion object {
         const val APP: String = "app"
@@ -20,7 +20,7 @@ data class DeepLinkData(
         const val SETTINGS: String = "settings"
 
 
-        fun fromUrl(urlString: String): DeepLinkData? {
+        fun fromUrl(urlString: String): DeepLinkTemplateData? {
             return if (
                 urlString.startsWith("$HTTPS://$HOST/$APP/") ||
                 urlString.startsWith("$SCHEME://$HOST/$APP/")
@@ -28,15 +28,15 @@ data class DeepLinkData(
                 val url = Url(urlString)
                 val pathSegments = url.pathSegments.filter { it.isNotEmpty() }
 
-                DeepLinkData(
+                DeepLinkTemplateData(
                     scheme = url.protocol.name,
                     host = url.host,
                     pathSegments = pathSegments,
-                    deeplinkParams = DeeplinkParams.fromUrl(url)
+                    deeplinkParams = DeeplinkTemplateParams.fromUrl(url)
                 ).getTail()
             } else {
                 // Если это не наша схема, то юзер хочет добавить наше желание
-                DeeplinkCreator.addWishDeeplink.getTail()
+                DeeplinkTemplateCreator.addWishDeeplink.getTail()
             }
         }
     }
@@ -45,9 +45,9 @@ data class DeepLinkData(
         return if (pathSegments.isNotEmpty()) pathSegments.first() else null
     }
 
-    fun getTail(): DeepLinkData? {
+    fun getTail(): DeepLinkTemplateData? {
         return if (pathSegments.isNotEmpty()) {
-            DeepLinkData(
+            DeepLinkTemplateData(
                 scheme = scheme,
                 host = host,
                 pathSegments = pathSegments.drop(1),
@@ -67,5 +67,5 @@ data class DeepLinkData(
 }
 
 interface DeeplinkExecutor {
-    fun openDeeplink(deepLinkData: DeepLinkData)
+    fun openDeeplink(deepLinkTemplateData: DeepLinkTemplateData)
 }
