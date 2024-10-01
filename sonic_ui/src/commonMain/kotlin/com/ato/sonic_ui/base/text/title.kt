@@ -202,13 +202,13 @@ fun DisplayAppBarTitle(
     modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .padding(top = 16.dp, bottom = 8.dp)
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
         ) {
             val title = if (state.titleFormatArgs == null) {
                 stringResource(state.title)
