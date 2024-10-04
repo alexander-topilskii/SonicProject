@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -94,7 +95,7 @@ fun DisplayUserAvaWithCross(
                     .size(24.dp)
                     .align(Alignment.TopEnd)
                     .background(
-                        color = Color.Black.copy(alpha = 0.1f),
+                        color = Color.Black.copy(alpha = 0.05f),
                         shape = CircleShape
                     ),
                 contentAlignment = Alignment.Center
@@ -102,7 +103,8 @@ fun DisplayUserAvaWithCross(
                 Icon(
                     modifier = Modifier.padding(2.dp),
                     imageVector = Icons.Default.Close,
-                    contentDescription = null
+                    contentDescription = null,
+                    tint = LocalContentColor.current.copy(alpha = 0.3f)
                 )
             }
         }
