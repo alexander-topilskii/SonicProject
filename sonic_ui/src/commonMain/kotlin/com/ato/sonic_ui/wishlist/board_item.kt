@@ -74,7 +74,7 @@ fun DisplayBoard(
                 Spacer(modifier = Modifier.width(8.dp)) // Space between emoji and texts
 
                 CenteredIconCard(
-                    elevation = CardDefaults.cardElevation(8.dp),
+                    elevation = CardDefaults.cardElevation(4.dp),
                     icon = Icons.Filled.Add,
                     onClick = onAddClicked,
                     modifier = Modifier
