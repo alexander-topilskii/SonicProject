@@ -71,6 +71,9 @@ kotlin {
             implementation(libs.filekit.core)
             implementation(libs.filekit.compose)
             implementation(libs.okio)
+
+            // images
+            implementation(libs.landscapist.coil3)
         }
     }
 }
