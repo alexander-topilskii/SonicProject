@@ -52,7 +52,6 @@ fun DisplayWish(
         colors = cardColors,
         onClick = remember(wish) { { onClick.invoke(wish) } },
     ) {
-
         Column(
             modifier = Modifier
                 .padding(16.dp)
@@ -102,71 +101,68 @@ fun DisplayFullWish(
                 .padding(16.dp)
                 .fillMaxWidth()
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
-                if (!wish.imageUrl.isNullOrEmpty()) {
-                    Box(
-                        modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        DisplayImage(
-                            imagePikerState = UiImagePicker(wish.imageUrl),
-                            shape = RoundedCornerShape(16.dp),
-                        )
-                    }
-                    Spacer(modifier = Modifier.height(24.dp))
-                } else {
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
-                wish.name?.let { name ->
-                    Text(
-                        text = name,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
+            if (!wish.imageUrl.isNullOrEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    DisplayImage(
+                        imagePikerState = UiImagePicker(wish.imageUrl),
+                        shape = RoundedCornerShape(16.dp),
                     )
                 }
+                Spacer(modifier = Modifier.height(24.dp))
+            }
+            wish.name?.let { name ->
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
 
-                if (!wish.description.isNullOrEmpty()) {
-                    Text(
-                        text = wish.description.orEmpty(),
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.padding(top = 8.dp)
-                    )
-                }
+            if (!wish.description.isNullOrEmpty()) {
+                Text(
+                    text = wish.description.orEmpty(),
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+            }
 
-                if (!wish.url.isNullOrEmpty()) {
-                    ClickableUrlText(
-                        url = wish.url!!,
-                        modifier = Modifier.padding(top = 4.dp)
-                    )
-                }
+            if (!wish.url.isNullOrEmpty()) {
+                ClickableUrlText(
+                    url = wish.url!!,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
             }
         }
     }
+}
 
-    @Composable
-    fun ClickableUrlText(url: String, modifier: Modifier = Modifier) {
-        val uriHandler = LocalUriHandler.current
+@Composable
+fun ClickableUrlText(url: String, modifier: Modifier = Modifier) {
+    val uriHandler = LocalUriHandler.current
 
-        val annotatedText = buildAnnotatedString {
-            pushStringAnnotation(tag = "URL", annotation = url)
-            withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.error)) {
-                append(url)
-            }
-            pop()
+    val annotatedText = buildAnnotatedString {
+        pushStringAnnotation(tag = "URL", annotation = url)
+        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.error)) {
+            append(url)
         }
-
-        ClickableText(
-            text = annotatedText,
-            onClick = { offset ->
-                annotatedText.getStringAnnotations(tag = "URL", start = offset, end = offset)
-                    .firstOrNull()?.let { annotation ->
-                        try {
-                            uriHandler.openUri(annotation.item)
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    }
-            },
-            modifier = modifier
-        )
+        pop()
     }
+
+    ClickableText(
+        text = annotatedText,
+        onClick = { offset ->
+            annotatedText.getStringAnnotations(tag = "URL", start = offset, end = offset)
+                .firstOrNull()?.let { annotation ->
+                    try {
+                        uriHandler.openUri(annotation.item)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+        },
+        modifier = modifier
+    )
+}
