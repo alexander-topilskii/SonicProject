@@ -26,7 +26,7 @@ fun CircularIcon(
     backgroundColor: Color = MaterialTheme.colorScheme.surfaceVariant,
     iconTint: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit
+    onClick: () -> Unit = {}
 ) {
     Box(
         modifier = modifier.clickable(
