@@ -6,12 +6,15 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -29,59 +33,89 @@ import com.skydoves.landscapist.coil3.CoilImage
 
 
 @Composable
-fun DisplayUserAva(
-    avaUrl: String? = null,
-    onAvaClicked: () -> Unit = {},
+fun DisplayImageWithCross(
+    imageUrl: String? = null,
+    imageFile: ByteArray? = null,
+    onImageClicked: () -> Unit = {},
+    onClearClicked: () -> Unit = {},
     size: Float = 256f,
     sizeFactor: Float = 0.5f,
+    shape: Shape = CircleShape,
     modifier: Modifier = Modifier,
+    noImageHolder: @Composable BoxScope.() -> Unit = {
+        Text(
+            text = "+",
+            color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f),
+            textAlign = TextAlign.Center,
+            fontSize = (size * sizeFactor).sp,
+            modifier = Modifier
+                .align(Alignment.Center)
+        )
+    }
 ) {
+    val data = imageFile ?: imageUrl
     Box(
         modifier = modifier
     ) {
         Box(
             modifier = Modifier
-                .background(color = Color.Transparent, shape = CircleShape)
+                .background(color = Color.Transparent, shape = shape)
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
                         color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)
-                    ), shape = CircleShape
+                    ), shape = shape
                 )
                 .size(size.dp)
                 .clickable(
                     indication = null,
                     interactionSource = remember { MutableInteractionSource() },
-                    onClick = onAvaClicked
+                    onClick = onImageClicked
                 )
                 .align(Alignment.Center)
         ) {
-            if (avaUrl == null) {
-                Text(
-                    text = "?",
-                    color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f),
-                    textAlign = TextAlign.Center,
-                    fontSize = (size * sizeFactor).sp,
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                )
+            if (data == null) {
+                noImageHolder()
             } else {
                 CoilImage(
                     modifier = Modifier
-                        .clip(CircleShape)
-                        .border(
-                            width = 2.dp,
-                            color = MaterialTheme.colorScheme.surface,
-                            shape = CircleShape
-                        )
+                        .clip(shape)
                         .size(size.dp),
-                    imageModel = { avaUrl },
+                    imageModel = { data },
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Crop,
                         alignment = Alignment.Center
                     )
                 )
             }
+
+        }
+
+        if (data != null) {
+            Box(
+                modifier = Modifier
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = onClearClicked
+                    )
+                    .padding(4.dp)
+                    .size(24.dp)
+                    .align(Alignment.TopEnd)
+                    .background(
+                        color = Color.Black.copy(alpha = 0.05f),
+                        shape = shape
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    modifier = Modifier.padding(2.dp),
+                    imageVector = Icons.Default.Close,
+                    contentDescription = null,
+                    tint = LocalContentColor.current.copy(alpha = 0.3f)
+                )
+            }
         }
     }
 }
+

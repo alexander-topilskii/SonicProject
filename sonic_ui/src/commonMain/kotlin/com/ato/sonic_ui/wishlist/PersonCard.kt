@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.button.DisplayButton
-import com.ato.sonic_ui.base.image.DisplayUserAva
+import com.ato.sonic_ui.base.image.DisplayImage
 import com.ato.ui_state.base.button.UiButton
 
 @Composable
@@ -62,7 +62,7 @@ fun PersonCard(
                     modifier = Modifier.padding(8.dp).padding(end = 8.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    DisplayUserAva(
+                    DisplayImage(
                         avaUrl = avaUrl,
                         size = 64f
                     )

@@ -19,6 +19,7 @@ data class WishlistWish(
     var boardDocumentId: String? = "",
     var name: String? = null,
     var description: String? = "",
+    var imageUrl: String? = null,
     var creationDate: Timestamp? = null,
     var isCompleted: Boolean? = null,
     var boardIds: List<String>? = null,
