@@ -28,14 +28,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ato.ui_state.base.image.UiImagePicker
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
 
 
 @Composable
 fun DisplayImageWithCross(
-    imageUrl: String? = null,
-    imageFile: ByteArray? = null,
+    imagePikerState: UiImagePicker,
     onImageClicked: () -> Unit = {},
     onClearClicked: () -> Unit = {},
     size: Float = 256f,
@@ -53,7 +53,7 @@ fun DisplayImageWithCross(
         )
     }
 ) {
-    val data = imageFile ?: imageUrl
+    val data = imagePikerState.imageFile ?: imagePikerState.imageUrl
     Box(
         modifier = modifier
     ) {

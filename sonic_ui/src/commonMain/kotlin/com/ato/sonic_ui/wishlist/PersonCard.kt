@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.button.DisplayButton
 import com.ato.sonic_ui.base.image.DisplayImage
 import com.ato.ui_state.base.button.UiButton
+import com.ato.ui_state.base.image.UiImagePicker
 
 @Composable
 fun PersonCard(
@@ -63,7 +64,7 @@ fun PersonCard(
                     contentAlignment = Alignment.Center
                 ) {
                     DisplayImage(
-                        avaUrl = avaUrl,
+                        imagePikerState = UiImagePicker(avaUrl),
                         size = 64f
                     )
                 }

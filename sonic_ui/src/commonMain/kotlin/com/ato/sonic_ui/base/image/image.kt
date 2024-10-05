@@ -21,21 +21,21 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ato.ui_state.base.image.UiImagePicker
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
 
 
 @Composable
 fun DisplayImage(
-    avaUrl: String? = null,
-    avaFile: ByteArray? = null,
+    imagePikerState: UiImagePicker,
     onImageClicked: () -> Unit = {},
     size: Float = 256f,
     sizeFactor: Float = 0.5f,
     shape: Shape = CircleShape,
     modifier: Modifier = Modifier,
 ) {
-    val data = avaFile ?: avaUrl
+    val data = imagePikerState.imageFile ?: imagePikerState.imageUrl
     Box(
         modifier = modifier
     ) {
@@ -75,7 +75,7 @@ fun DisplayImage(
                             shape = shape
                         )
                         .size(size.dp),
-                    imageModel = { avaUrl },
+                    imageModel = { data },
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Crop,
                         alignment = Alignment.Center
