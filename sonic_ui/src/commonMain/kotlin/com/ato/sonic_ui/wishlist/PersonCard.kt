@@ -1,6 +1,5 @@
 package com.ato.sonic_ui.wishlist
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,9 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.ato.sonic_ui.base.button.DisplayButton
 import com.ato.sonic_ui.base.image.DisplayImage
-import com.ato.ui_state.base.button.UiButton
 import com.ato.ui_state.base.image.UiImagePicker
 
 @Composable
@@ -70,53 +67,5 @@ fun PersonCard(
                 }
             }
         }
-    }
-}
-
-@Composable
-fun PersonCardButtons(
-    name: String,
-    nick: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    acceptButton: UiButton,
-    declineButton: UiButton,
-    onAccept: () -> Unit,
-    onDecline: () -> Unit,
-) {
-    Card(
-        modifier = modifier,
-        onClick = onClick
-    ) {
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = name,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(horizontal = 8.dp)
-                .padding(top = 8.dp)
-        )
-        Spacer(Modifier.height(2.dp))
-        Text(
-            text = "@${nick}",
-            modifier = Modifier
-                .padding(horizontal = 8.dp)
-                .padding(bottom = 8.dp)
-        )
-        Row(
-            horizontalArrangement = Arrangement.SpaceAround,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
-        ) {
-            DisplayButton(
-                state = acceptButton,
-                onClick = onAccept
-            )
-            DisplayButton(
-                state = declineButton,
-                onClick = onDecline
-            )
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
     }
 }
