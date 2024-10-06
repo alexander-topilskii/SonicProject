@@ -62,7 +62,8 @@ fun PersonCard(
                 ) {
                     DisplayImage(
                         imagePikerState = UiImagePicker(avaUrl),
-                        size = 64f
+                        size = 64f,
+                        onImageClicked = onClick ?: {}
                     )
                 }
             }

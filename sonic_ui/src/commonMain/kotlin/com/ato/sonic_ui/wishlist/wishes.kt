@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -17,12 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.ato.sonic_ui.base.image.DisplayImage
 import com.ato.ui_state.base.image.UiImagePicker
@@ -53,103 +48,46 @@ fun DisplayWish(
                 .padding(16.dp)
                 .fillMaxWidth()
         ) {
-            wish.name?.let { name ->
-                Text(
-                    text = name,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
-            Row {
-                Text(
-                    text = wish.description.orEmpty(),
-                    style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.padding(top = 8.dp).weight(1f)
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun DisplayFullWish(
-    wish: WishlistWish,
-    modifier: Modifier = Modifier,
-) {
-    Card(
-        modifier = modifier,
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-        ) {
-            if (!wish.imageUrl.isNullOrEmpty()) {
-                Box(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
                 ) {
-                    DisplayImage(
-                        imagePikerState = UiImagePicker(wish.imageUrl),
-                        shape = RoundedCornerShape(16.dp),
+                    wish.name?.let { name ->
+                        Text(
+                            text = name,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                    }
+                    Spacer(Modifier.height(2.dp))
+                    Text(
+                        text = wish.description.orEmpty(),
+                        style = MaterialTheme.typography.bodyMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.padding(top = 8.dp)
                     )
                 }
-                Spacer(modifier = Modifier.height(24.dp))
-            }
-            wish.name?.let { name ->
-                Text(
-                    text = name,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-
-            if (!wish.description.isNullOrEmpty()) {
-                Text(
-                    text = wish.description.orEmpty(),
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-            }
-
-            if (!wish.url.isNullOrEmpty()) {
-                ClickableUrlText(
-                    url = wish.url!!,
-                    modifier = Modifier.padding(top = 4.dp)
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun ClickableUrlText(url: String, modifier: Modifier = Modifier) {
-    val uriHandler = LocalUriHandler.current
-
-    val annotatedText = buildAnnotatedString {
-        pushStringAnnotation(tag = "URL", annotation = url)
-        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.error)) {
-            append(url)
-        }
-        pop()
-    }
-
-    ClickableText(
-        text = annotatedText,
-        onClick = { offset ->
-            annotatedText.getStringAnnotations(tag = "URL", start = offset, end = offset)
-                .firstOrNull()?.let { annotation ->
-                    try {
-                        uriHandler.openUri(annotation.item)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
+                wish.imageUrl?.let { imageUrl ->
+                    Box(
+                        modifier = Modifier,
+                        contentAlignment = Alignment.Center
+                    ) {
+                        DisplayImage(
+                            imagePikerState = UiImagePicker(imageUrl),
+                            size = 64f,
+                            shape = RoundedCornerShape(8.dp),
+                            onImageClicked = { onClick.invoke(wish) }
+                        )
                     }
                 }
-        },
-        modifier = modifier
-    )
+            }
+
+        }
+    }
 }
