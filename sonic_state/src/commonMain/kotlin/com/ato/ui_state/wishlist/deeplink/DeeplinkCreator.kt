@@ -12,13 +12,13 @@ object DeeplinkCreator {
 
     val addWishDeeplink
         get() = DeepLinkData(
-            pathSegments = listOf(APP, WISHES, ADD_WISH),
+            pathSegments = listOf(WISHES, ADD_WISH),
             deeplinkParams = DeeplinkParams()
         )
 
     val shareWishDeeplink
         get() = DeepLinkData(
-            pathSegments = listOf(APP, FRIENDS, PERSON, BOARD, WISH),
+            pathSegments = listOf(FRIENDS, PERSON, BOARD, WISH),
             deeplinkParams = DeeplinkParams()
         )
 
