@@ -2,17 +2,23 @@ package com.ato.ui_state.wishlist.deeplink
 
 import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.ADD_WISH
 import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.APP
-import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.HOST
-import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.SCHEME
+import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.BOARD
+import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.FRIENDS
+import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.PERSON
+import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.WISH
 import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.WISHES
 
 object DeeplinkCreator {
 
     val addWishDeeplink
         get() = DeepLinkData(
-            scheme = SCHEME,
-            host = HOST,
             pathSegments = listOf(APP, WISHES, ADD_WISH),
+            deeplinkParams = DeeplinkParams()
+        )
+
+    val shareWishDeeplink
+        get() = DeepLinkData(
+            pathSegments = listOf(APP, FRIENDS, PERSON, BOARD, WISH),
             deeplinkParams = DeeplinkParams()
         )
 
@@ -22,6 +28,16 @@ object DeeplinkCreator {
                 wishName = name,
                 wishDescription = description,
                 wishUrl = url
+            )
+        )
+    }
+
+    fun shareWishDeeplink(userId: String, boardId: String?, wishId: String): DeepLinkData {
+        return shareWishDeeplink.copy(
+            deeplinkParams = shareWishDeeplink.deeplinkParams.copy(
+                userId = userId,
+                wishId = wishId,
+                boardId = boardId
             )
         )
     }

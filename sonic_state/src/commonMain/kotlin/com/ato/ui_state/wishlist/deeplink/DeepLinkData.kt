@@ -5,8 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DeepLinkData(
-    val scheme: String?,
-    val host: String?,
     val pathSegments: List<String>,
     val deeplinkParams: DeeplinkParams
 ) {
@@ -16,6 +14,9 @@ data class DeepLinkData(
         const val SCHEME: String = "wishlist"
         const val HTTPS: String = "https"
         const val FRIENDS: String = "friends"
+        const val PERSON: String = "person"
+        const val BOARD: String = "board"
+        const val WISH: String = "wish"
         const val WISHES: String = "wishes"
         const val ADD_WISH: String = "add_wish"
         const val SETTINGS: String = "settings"
@@ -31,8 +32,6 @@ data class DeepLinkData(
                 val pathSegments = url.pathSegments.filter { it.isNotEmpty() }
 
                 DeepLinkData(
-                    scheme = url.protocol.name,
-                    host = url.host,
                     pathSegments = pathSegments,
                     deeplinkParams = DeeplinkParams.fromUrl(url)
                 ).getTail()
@@ -86,8 +85,6 @@ data class DeepLinkData(
     fun getTail(): DeepLinkData? {
         return if (pathSegments.isNotEmpty()) {
             DeepLinkData(
-                scheme = scheme,
-                host = host,
                 pathSegments = pathSegments.drop(1),
                 deeplinkParams = deeplinkParams
             )
@@ -96,11 +93,18 @@ data class DeepLinkData(
         }
     }
 
-    fun toDeeplink(): String {
+    fun toInnerDeeplink(): String {
         val path = pathSegments.joinToString(separator = "/")
         val query = deeplinkParams.toQueryString()
 
-        return "$scheme://$host/$path?$query"
+        return "$SCHEME://$HOST/$APP/$path?$query"
+    }
+
+    fun toWebDeeplink(): String {
+        val path = pathSegments.joinToString(separator = "/")
+        val query = deeplinkParams.toQueryString()
+
+        return "$HTTPS://$HOST/$APP/$path?$query"
     }
 }
 
