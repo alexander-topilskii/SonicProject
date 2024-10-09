@@ -22,7 +22,6 @@ data class DeepLinkData(
         const val SETTINGS: String = "settings"
         const val EVENTS: String = "events"
 
-
         fun fromUrl(urlString: String): DeepLinkData? {
             return if (
                 urlString.startsWith("$HTTPS://$HOST/$APP/") ||
@@ -75,6 +74,17 @@ data class DeepLinkData(
                     wishUrl = url
                 )
             ).getTail()
+        }
+
+        // Придумать решение поизящнее
+        private var callback: (() -> Unit)? = null
+
+        fun setOnDestinationReached(onReached: ()->Unit){
+            callback = onReached
+        }
+
+        fun onDestinationReached() {
+            callback?.invoke()
         }
     }
 
