@@ -35,8 +35,8 @@ data class DeepLinkData(
                     deeplinkParams = DeeplinkParams.fromUrl(url)
                 ).getTail()
             } else {
-                // Если это не наша схема, то юзер хочет добавить наше желание
-                DeeplinkCreator.addWishDeeplink.getTail()
+                // Если это не наша схема, то юзер хочет добавить наше желание по ссылке
+                DeeplinkCreator.addWishDeeplink
             }
         }
 
@@ -46,7 +46,7 @@ data class DeepLinkData(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishDescription = sharedUris.joinToString { "/n" }
                 )
-            ).getTail()
+            )
         }
 
         fun getAddWishWithDescription(sharedDescription: String): DeepLinkData? {
@@ -55,7 +55,7 @@ data class DeepLinkData(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishDescription = sharedDescription
                 )
-            ).getTail()
+            )
         }
 
         fun getAddWishWithName(name: String): DeepLinkData? {
@@ -64,7 +64,7 @@ data class DeepLinkData(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishName = name
                 )
-            ).getTail()
+            )
         }
 
         fun getAddWishWithLink(url: String): DeepLinkData? {
@@ -73,7 +73,7 @@ data class DeepLinkData(
                 deeplinkParams = addWish.deeplinkParams.copy(
                     wishUrl = url
                 )
-            ).getTail()
+            )
         }
 
         // Придумать решение поизящнее

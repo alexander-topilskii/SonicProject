@@ -1,7 +1,6 @@
 package com.ato.ui_state.wishlist.deeplink
 
 import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.ADD_WISH
-import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.APP
 import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.BOARD
 import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.FRIENDS
 import com.ato.ui_state.wishlist.deeplink.DeepLinkData.Companion.PERSON
