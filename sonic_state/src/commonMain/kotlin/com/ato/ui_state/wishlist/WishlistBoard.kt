@@ -1,6 +1,7 @@
 package com.ato.ui_state.wishlist
 
 import dev.gitlive.firebase.firestore.Timestamp
+import dev.gitlive.firebase.firestore.TimestampSerializer
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -10,10 +11,19 @@ import kotlinx.serialization.descriptors.PolymorphicKind
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.StructureKind
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.descriptors.buildSerialDescriptor
+import kotlinx.serialization.descriptors.element
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.long
 
 @Serializable
 data class WishlistBoard(
@@ -28,62 +38,31 @@ data class WishlistBoard(
     var availableForFollowing: Boolean? = null,
     var availableForAll: Boolean? = null,
     var availableForUserIds: List<String>? = null,
-    @Serializable(with = JsonTimestampSerializer::class)
+    @Serializable(with = CustomTimestampSerializer::class)
     var creationDate: Timestamp? = null,
 )
+object CustomTimestampSerializer : KSerializer<Timestamp> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Timestamp", PrimitiveKind.STRING)
 
-object JsonTimestampSerializer : KSerializer<Timestamp?> {
-    @OptIn(InternalSerializationApi::class)
-    override val descriptor: SerialDescriptor = buildSerialDescriptor("Timestamp", PolymorphicKind.OPEN)
-
-    override fun serialize(encoder: Encoder, value: Timestamp?) {
-        if (value == null) {
-            encoder.encodeNull()
-        } else {
-            // You can choose which format to serialize into
-            // For simplicity, serialize as nested object
-            val compositeEncoder = encoder.beginStructure(descriptor)
-            compositeEncoder.encodeLongElement(descriptor, 0, value.seconds)
-            compositeEncoder.encodeIntElement(descriptor, 1, value.nanoseconds)
-            compositeEncoder.endStructure(descriptor)
-        }
+    override fun serialize(encoder: Encoder, value: Timestamp) {
+        val jsonEncoder = encoder as? kotlinx.serialization.json.JsonEncoder
+            ?: throw SerializationException("This class can be saved only by Json")
+        val jsonObject = JsonObject(mapOf(
+            "seconds" to JsonPrimitive(value.seconds),
+            "nanoseconds" to JsonPrimitive(value.nanoseconds)
+        ))
+        jsonEncoder.encodeJsonElement(jsonObject)
     }
 
-    override fun deserialize(decoder: Decoder): Timestamp? {
-        if (decoder.decodeNotNullMark()) {
-            return try {
-                // Try decoding as a nested object
-                val compositeDecoder = decoder.beginStructure(descriptor)
-                var seconds: Long? = null
-                var nanoseconds: Int? = null
-
-                loop@ while (true) {
-                    when (val index = compositeDecoder.decodeElementIndex(descriptor)) {
-                        0 -> seconds = compositeDecoder.decodeLongElement(descriptor, 0)
-                        1 -> nanoseconds = compositeDecoder.decodeIntElement(descriptor, 1)
-                        CompositeDecoder.DECODE_DONE -> break@loop
-                        else -> throw SerializationException("Unknown index $index")
-                    }
-                }
-                compositeDecoder.endStructure(descriptor)
-
-                if (seconds != null && nanoseconds != null) {
-                    Timestamp(seconds, nanoseconds)
-                } else {
-                    null
-                }
-            } catch (e: SerializationException) {
-                // If decoding as object fails, try decoding as Long
-                val milliseconds = decoder.decodeLong()
-                val seconds = milliseconds / 1000L
-                val nanoseconds = ((milliseconds % 1000L) * 1_000_000L).toInt()
-                Timestamp(seconds, nanoseconds)
-            }
-        } else {
-            decoder.decodeNull()
-            return null
-        }
+    override fun deserialize(decoder: Decoder): Timestamp {
+        val jsonDecoder = decoder as? kotlinx.serialization.json.JsonDecoder
+            ?: throw SerializationException("This class can be loaded only by Json")
+        val jsonObject = jsonDecoder.decodeJsonElement().jsonObject
+        val seconds = jsonObject["seconds"]?.jsonPrimitive?.long
+            ?: throw SerializationException("Missing 'seconds' field")
+        val nanoseconds = jsonObject["nanoseconds"]?.jsonPrimitive?.int
+            ?: throw SerializationException("Missing 'nanoseconds' field")
+        return Timestamp(seconds, nanoseconds)
     }
 }
-
 

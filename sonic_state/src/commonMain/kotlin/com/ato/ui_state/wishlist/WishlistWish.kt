@@ -21,7 +21,7 @@ data class WishlistWish(
     var name: String? = null,
     var description: String? = "",
     var imageUrl: String? = null,
-    @Serializable(with = JsonTimestampSerializer::class)
+    @Serializable(with = CustomTimestampSerializer::class)
     var creationDate: Timestamp? = null,
     var isCompleted: Boolean? = null,
     var boardIds: List<String>? = null,
