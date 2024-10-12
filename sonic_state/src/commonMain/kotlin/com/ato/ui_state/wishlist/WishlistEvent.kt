@@ -13,8 +13,8 @@ data class WishlistEvent(
     var name: String? = null,
     var description: String? = null,
     var isAnnual: Boolean? = null,
-    @Serializable(with = CustomTimestampSerializer::class)
+    @Serializable(with = TimestampSerializer::class)
     var eventDate: Timestamp? = null,
-    @Serializable(with = CustomTimestampSerializer::class)
+    @Serializable(with = TimestampSerializer::class)
     var creationDate: Timestamp? = null,
 )
