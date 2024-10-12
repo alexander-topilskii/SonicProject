@@ -1,6 +1,7 @@
 package com.ato.ui_state.wishlist
 
 import dev.gitlive.firebase.firestore.Timestamp
+import dev.gitlive.firebase.firestore.TimestampSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
@@ -12,6 +13,8 @@ data class WishlistEvent(
     var name: String? = null,
     var description: String? = null,
     var isAnnual: Boolean? = null,
+    @Serializable(with = JsonTimestampSerializer::class)
     var eventDate: Timestamp? = null,
+    @Serializable(with = JsonTimestampSerializer::class)
     var creationDate: Timestamp? = null,
 )
