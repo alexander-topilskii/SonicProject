@@ -212,7 +212,7 @@ fun Preview() {
             .padding(horizontal = 16.dp)
             .fillMaxWidth(),
         onUnlock = {
-            println("INTAG: MainActivity:onCreate:un locked")
+
         }
     )
 }
