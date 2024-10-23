@@ -38,8 +38,8 @@ data class WishlistBoard(
     var availableForFollowing: Boolean? = null,
     var availableForAll: Boolean? = null,
     var availableForUserIds: List<String>? = null,
-    @Serializable(with = TimestampSerializer::class)
-    var creationDate: Timestamp? = null,
+//    @Serializable(with = TimestampSerializer::class)
+//    var creationDate: Timestamp? = null,
 )
 object CustomTimestampSerializer : KSerializer<Timestamp> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Timestamp", PrimitiveKind.STRING)
