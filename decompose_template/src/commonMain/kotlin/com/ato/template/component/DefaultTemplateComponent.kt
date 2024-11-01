@@ -1,9 +1,9 @@
-package com.ato.folder.component
+package com.ato.template.component
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.instancekeeper.getOrCreate
-import com.ato.folder.gateways.TemplateGateways
-import com.ato.folder.ui.TemplateUiState
+import com.ato.template.gateways.TemplateGateways
+import com.ato.template.ui.TemplateUiState
 import com.ato.helpers.componentCoroutineScope
 import com.ato.helpers.createNotNullStateFlow
 import kotlinx.coroutines.CoroutineScope

@@ -1,8 +1,8 @@
-package com.ato.folder.gateways
+package com.ato.template.gateways
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.instancekeeper.InstanceKeeper
-import com.ato.folder.ui.TemplateUiState
+import com.ato.template.ui.TemplateUiState
 import com.ato.helpers.componentCoroutineScope
 import com.ato.ui_state.base.button.UiButton
 import com.ato.ui_state.base.text.UiTitle

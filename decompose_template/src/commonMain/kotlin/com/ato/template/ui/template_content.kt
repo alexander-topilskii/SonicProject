@@ -1,4 +1,4 @@
-package com.ato.folder.ui
+package com.ato.template.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,7 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import com.ato.folder.component.TemplateComponent
+import com.ato.template.component.TemplateComponent
 import com.ato.sonic_ui.base.modifiers.onTap
 import com.ato.sonic_ui.base.text.DisplayAppBarTitle
 import com.ato.sonic_ui.date.DisplayDatePicker

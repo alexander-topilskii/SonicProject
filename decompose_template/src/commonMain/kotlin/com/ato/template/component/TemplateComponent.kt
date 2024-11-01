@@ -1,6 +1,6 @@
-package com.ato.folder.component
+package com.ato.template.component
 
-import com.ato.folder.ui.TemplateUiState
+import com.ato.template.ui.TemplateUiState
 import com.ato.helpers.ResultOf
 import kotlinx.coroutines.flow.Flow
 
