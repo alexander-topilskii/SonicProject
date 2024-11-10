@@ -260,7 +260,6 @@ fun DisplayAppBarTitle(
                             .padding(horizontal = 16.dp)
                     )
                 }
-
             }
         }
     }
