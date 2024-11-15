@@ -32,6 +32,7 @@ data class WishlistBoard(
     var userDocumentId: String? = null,
     var name: String? = null,
     var emoji: String? = null,
+    var backgroundUrl: String? = null,
     @Deprecated("Don't use it. We use it to filter old boards")
     var isDefault: Boolean? = null,
     var wishIds: List<String>? = null,

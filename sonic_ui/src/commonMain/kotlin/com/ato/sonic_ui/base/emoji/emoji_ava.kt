@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,10 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun DisplayEmojiAvaWithCross(
     emoji: String?,
+    colors: List<Color> = listOf(
+        Color.Transparent,
+        Color.Transparent
+    ),
     onEmojiClicked: () -> Unit,
     onClearClicked: () -> Unit,
     size: Float,
@@ -34,11 +39,14 @@ fun DisplayEmojiAvaWithCross(
 ) {
     Box(
         modifier = modifier
-
     ) {
         Box(
             modifier = Modifier
-                .background(color = Color.Transparent, shape = CircleShape)
+                .background(
+                    brush = Brush.linearGradient(
+                        colors
+                    ), shape = CircleShape
+                )
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
