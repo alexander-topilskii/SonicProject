@@ -24,7 +24,7 @@ import com.ato.ui_state.wishlist.UiBoard
 
 @Composable
 fun DisplayBoard(
-    state: UiBoard,
+    data: UiBoard,
     onAddClicked: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
@@ -39,11 +39,11 @@ fun DisplayBoard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Display the emoji if it's not null
-            if (state.boardEmoji != null) {
+            if (data.boardEmoji != null) {
                 DisplayEmojiAva(
                     size = 60f,
                     sizeFactor = 0.7f,
-                    emoji = state.boardEmoji,
+                    emoji = data.boardEmoji,
                     boarderAlpha = 0f,
                 )
             }
@@ -55,7 +55,7 @@ fun DisplayBoard(
             ) {
                 // Display the board name
                 DisplayText(
-                    state = state.boardName,
+                    state = data.boardName,
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -64,7 +64,7 @@ fun DisplayBoard(
 
                 // Display the count of wishes
                 DisplayText(
-                    state = state.boardWishCount,
+                    state = data.boardWishCount,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                 )

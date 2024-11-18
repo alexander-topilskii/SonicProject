@@ -1,5 +1,7 @@
 package com.ato.ui_state.wishlist
 
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import dev.gitlive.firebase.firestore.Timestamp
 import dev.gitlive.firebase.firestore.TimestampSerializer
 import kotlinx.serialization.InternalSerializationApi
@@ -39,9 +41,24 @@ data class WishlistBoard(
     var availableForFollowing: Boolean? = null,
     var availableForAll: Boolean? = null,
     var availableForUserIds: List<String>? = null,
-//    @Serializable(with = TimestampSerializer::class)
+    var firstEmojiGradientColor: String? = null,
+    var secondEmojiGradientColor: String? = null
+    //    @Serializable(with = TimestampSerializer::class)
 //    var creationDate: Timestamp? = null,
 )
+
+fun String?.stringToColor(default: Color = Color.Gray): Color {
+    if (this == null)  return default
+
+    return Color(this.toLong(16).toInt())
+}
+
+fun Color?.colorToString(): String {
+    if (this == null)  return  Color.Gray.toArgb().toUInt().toString(16)
+
+    return this.toArgb().toUInt().toString(16)
+}
+
 object CustomTimestampSerializer : KSerializer<Timestamp> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Timestamp", PrimitiveKind.STRING)
 

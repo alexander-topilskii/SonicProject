@@ -45,7 +45,8 @@ fun DisplayEmojiAvaWithCross(
                 .background(
                     brush = Brush.linearGradient(
                         colors
-                    ), shape = CircleShape
+                    ),
+                    shape = CircleShape
                 )
                 .border(
                     border = BorderStroke(
@@ -102,6 +103,10 @@ fun DisplayEmojiAvaWithCross(
 @Composable
 fun DisplayEmojiAva(
     emoji: String?,
+    colors: List<Color> = listOf(
+        Color.Transparent,
+        Color.Transparent
+    ),
     size: Float,
     sizeFactor: Float,
     modifier: Modifier = Modifier,
@@ -112,7 +117,10 @@ fun DisplayEmojiAva(
     ) {
         Box(
             modifier = Modifier
-                .background(color = Color.Transparent, shape = CircleShape)
+                .background(
+                    brush = Brush.linearGradient(colors),
+                    shape = CircleShape
+                )
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
