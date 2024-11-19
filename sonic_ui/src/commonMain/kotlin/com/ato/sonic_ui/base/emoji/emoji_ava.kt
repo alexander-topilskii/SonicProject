@@ -42,17 +42,18 @@ fun DisplayEmojiAvaWithCross(
     ) {
         Box(
             modifier = Modifier
+                .border(
+                    border = BorderStroke(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)
+                    ),
+                    shape = CircleShape
+                )
                 .background(
                     brush = Brush.linearGradient(
                         colors
                     ),
                     shape = CircleShape
-                )
-                .border(
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)
-                    ), shape = CircleShape
                 )
                 .size(size.dp)
                 .clickable(
@@ -84,7 +85,10 @@ fun DisplayEmojiAvaWithCross(
                     .size(24.dp)
                     .align(Alignment.TopEnd)
                     .background(
-                        color = Color.Black.copy(alpha = 0.1f),
+                        color = MaterialTheme.colorScheme.background,
+                        shape = CircleShape)
+                    .background(
+                        color = Color.Black.copy(alpha = 0.3f),
                         shape = CircleShape
                     ),
                 contentAlignment = Alignment.Center
