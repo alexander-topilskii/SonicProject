@@ -8,5 +8,6 @@ data class WishlistToggle(
     @Transient
     var documentId: String? = null,
     val skipName: Boolean? = null,
-    val niceBoardList: Boolean? = null
+    val niceBoardList: Map<String?, Boolean>? = null,
+    val createAccountSkipable: Map<String?, Boolean>? = null,
 )
