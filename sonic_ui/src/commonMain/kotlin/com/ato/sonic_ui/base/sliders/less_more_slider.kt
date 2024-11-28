@@ -1,16 +1,15 @@
 package com.ato.sonic_ui.base.sliders
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.SliderState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.ato.ui_state.base.sliders.UiLessMoreSlider
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun UiLessMoreSlider.Display(onChange: (Double) -> Unit, modifier: Modifier = Modifier) {
@@ -28,17 +27,32 @@ fun UiLessMoreSlider.Display(onChange: (Double) -> Unit, modifier: Modifier = Mo
     )
 }
 
-@Preview()
-@Composable
-fun UiLessMoreSliderPreview() {
-    var sliderPosition by remember { mutableDoubleStateOf(0.0) }
 
-    UiLessMoreSlider(
-        value = sliderPosition,
-        defaultValue = 4.0,
-        steps = 5L,
-        range = 1.0..5.0,
-    ).Display({
-        sliderPosition = it
-    })
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DisplaySlider(
+    state: UiLessMoreSlider,
+    onChange: (Double) -> Unit,
+    modifier: Modifier = Modifier,
+    thumb: @Composable (SliderState) -> Unit = {
+        SliderDefaults.Thumb(
+            interactionSource = remember { MutableInteractionSource() },
+            colors = SliderDefaults.colors(),
+            enabled = true
+        )
+    },
+) {
+    Slider(
+        value = state.value.toFloat(),
+        onValueChange = { onChange(it.toDouble()) },
+        thumb = thumb,
+        colors = SliderDefaults.colors(
+            thumbColor = MaterialTheme.colorScheme.secondary,
+            activeTrackColor = MaterialTheme.colorScheme.secondary,
+            inactiveTrackColor = MaterialTheme.colorScheme.secondaryContainer,
+        ),
+        steps = state.steps.toInt(),
+        valueRange = state.range.start.toFloat()..state.range.endInclusive.toFloat(),
+        modifier = modifier
+    )
 }
