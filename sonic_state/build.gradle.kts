@@ -13,7 +13,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
 
     alias(libs.plugins.ksp)
-    alias(libs.plugins.room)
 }
 
 
@@ -44,9 +43,6 @@ kotlin {
         commonMain.dependencies {
             // serialization
             implementation(libs.kotlinx.serialization.json)
-
-            // room
-            implementation(libs.androidx.room.runtime)
 
             // compose
             implementation(compose.runtime)
@@ -88,8 +84,4 @@ android {
     defaultConfig {
         minSdk = libs.versions.android.min.sdk.get().toInt()
     }
-}
-
-room {
-    schemaDirectory("$projectDir/schemas")
 }

@@ -46,9 +46,6 @@ kotlin {
             // serialization
             implementation(libs.kotlinx.serialization.json)
 
-            // room
-            implementation(libs.androidx.room.runtime)
-
             // compose
             implementation(compose.runtime)
             implementation(compose.foundation)
